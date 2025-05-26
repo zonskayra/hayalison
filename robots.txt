@@ -1,0 +1,15 @@
+# Hayali Çizgili Robots.txt
+User-agent: *
+Allow: /
+
+# Finans yönetim alanını gizle
+Disallow: /finans/
+
+# Sitemap
+Sitemap: https://hayalicizgili.com/sitemap.xml
+
+# Disallow admin ve özel sayfalar
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/

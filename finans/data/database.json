@@ -1,0 +1,46 @@
+{
+  "transactions": [],
+  "incomeCategories": [
+    {
+      "id": "default-income-1",
+      "name": "Maaş",
+      "color": "#28a745"
+    },
+    {
+      "id": "default-income-2",
+      "name": "Ek Gelir",
+      "color": "#20c997"
+    },
+    {
+      "id": "default-income-3",
+      "name": "Yatırım Getirisi",
+      "color": "#17a2b8"
+    }
+  ],
+  "expenseCategories": [
+    {
+      "id": "default-expense-1",
+      "name": "Gıda",
+      "color": "#dc3545"
+    },
+    {
+      "id": "default-expense-2",
+      "name": "Faturalar",
+      "color": "#fd7e14"
+    },
+    {
+      "id": "default-expense-3",
+      "name": "Ulaşım",
+      "color": "#ffc107"
+    },
+    {
+      "id": "default-expense-4",
+      "name": "Sağlık",
+      "color": "#6f42c1"
+    }
+  ],
+  "autoExpenses": [],
+  "expenseTemplates": [],
+  "expenseTemplateGroups": [],
+  "lastUpdated": "2025-05-22T11:45:00.000Z"
+}

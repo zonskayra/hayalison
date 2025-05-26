@@ -1,0 +1,389 @@
+/* 
+ * Hayali Çizgili - İletişim Sayfası Stilleri
+ */
+
+/* ===== SAYFA BAŞLIĞI ===== */
+.page-header {
+    padding: 120px 0 40px;
+    background-color: var(--color-white);
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.page-header .divider {
+    margin-bottom: 1rem;
+}
+
+/* ===== İLETİŞİM BİLGİLERİ VE FORM BÖLÜMÜ ===== */
+#contact {
+    padding: 50px 0;
+    background-color: var(--color-light);
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column; /* Mobil için dikey düzen */
+    gap: 2rem;
+}
+
+/* İletişim Bilgileri */
+.contact-info {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.contact-info h2 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.info-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.info-content p {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+}
+
+.info-content a {
+    color: var(--color-text);
+    transition: var(--transition);
+}
+
+.info-content a:hover {
+    color: var(--color-primary);
+}
+
+.social-media {
+    margin-top: 2rem;
+}
+
+.social-media h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.social-media .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-media .social-icons a {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.social-media .social-icons a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* İletişim Formu */
+.contact-form {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.contact-form h2 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(248, 195, 205, 0.3);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: auto;
+    margin-top: 0.3rem;
+}
+
+.checkbox-container label {
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.submit-button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.submit-button:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== SSS BÖLÜMÜ ===== */
+#faq {
+    padding: 50px 0;
+    background-color: var(--color-white);
+}
+
+.faq-container {
+    margin-top: 2rem;
+}
+
+.mobile-accordion-item {
+    background-color: var(--color-light);
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.mobile-accordion-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.mobile-accordion-header h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.mobile-accordion-header i {
+    font-size: 1rem;
+    color: var(--color-primary);
+    transition: var(--transition);
+}
+
+.mobile-accordion-content {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.mobile-accordion-item.active .mobile-accordion-header {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.mobile-accordion-item.active .mobile-accordion-header i {
+    color: var(--color-white);
+    transform: rotate(180deg);
+}
+
+.mobile-accordion-item.active .mobile-accordion-content {
+    max-height: 500px;
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+/* ===== SİPARİŞ BİLGİLERİ BÖLÜMÜ ===== */
+#order-info {
+    padding: 50px 0;
+    background-color: var(--color-light);
+}
+
+.order-steps {
+    margin-top: 2rem;
+}
+
+.order-step {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.order-step:last-child {
+    margin-bottom: 0;
+}
+
+.order-step-number {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.order-step-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.order-step-content p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.order-cta {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* ===== TABLET VE MASAÜSTÜ İÇİN MEDIA QUERIES ===== */
+
+/* Tablet (768px ve üzeri) */
+@media (min-width: 768px) {
+    /* Sayfa Başlığı */
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    /* İletişim Bölümü */
+    .contact-container {
+        flex-direction: row; /* Tablet için yatay düzen */
+    }
+    
+    .contact-info {
+        flex: 1;
+    }
+    
+    .contact-form {
+        flex: 2;
+    }
+    
+    /* SSS Bölümü */
+    .faq-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    /* Sipariş Bilgileri Bölümü */
+    .order-steps {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .order-step {
+        margin-bottom: 0;
+    }
+}
+
+/* Masaüstü (1024px ve üzeri) */
+@media (min-width: 1024px) {
+    /* İletişim Bölümü */
+    .contact-container {
+        gap: 3rem;
+    }
+    
+    /* Sipariş Bilgileri Bölümü */
+    .order-steps {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Büyük Ekranlar (1200px ve üzeri) */
+@media (min-width: 1200px) {
+    /* İletişim Bölümü */
+    .contact-container {
+        gap: 4rem;
+    }
+}
+
+/* Çok küçük ekranlar için (320px ve altı) */
+@media (max-width: 320px) {
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+}

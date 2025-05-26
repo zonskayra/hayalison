@@ -1,0 +1,713 @@
+/* 
+ * Hayali Çizgili - Gelişmiş Buton ve Geçiş Stilleri
+ * Daha sofistike ve modern tasarım için ek CSS
+ */
+
+/* ===== GELIŞMIŞ BUTON STILLERI ===== */
+:root {
+  --color-primary-dark: #e29eab;
+  --color-primary-glow: rgba(248, 195, 205, 0.8);
+  --color-secondary-dark: #7fc7e2;
+  --color-secondary-glow: rgba(165, 222, 241, 0.8);
+  --color-tertiary-dark: #f0c55c;
+  --color-tertiary-glow: rgba(255, 223, 0, 0.8);
+  --button-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --glow-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  
+  /* Yeni gradient değişkenleri */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  --gradient-primary-reverse: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  --gradient-tertiary: linear-gradient(135deg, var(--color-tertiary) 0%, var(--color-tertiary-dark) 100%);
+  --gradient-mixed: linear-gradient(135deg, var(--color-primary) 0%, var(--color-tertiary) 100%);
+  --gradient-rainbow: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-tertiary), var(--color-primary));
+}
+
+/* Temel Buton Geliştirmeleri */
+.cta-primary, 
+.cta-secondary, 
+.cta-button a,
+.btn-3d,
+.btn-glass,
+.btn-neumorphic,
+.carousel-control,
+button {
+  position: relative;
+  overflow: hidden;
+  transition: var(--button-transition);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow, opacity;
+}
+
+/* ===== 3D BUTONLAR ===== */
+.btn-3d {
+  transform: translateY(0);
+  box-shadow: 
+    0 4px 0 var(--color-primary-dark),
+    0 8px 10px rgba(0, 0, 0, 0.15);
+  border-bottom: 2px solid var(--color-primary-dark);
+}
+
+.btn-3d:hover, .btn-3d:focus {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 0 var(--color-primary-dark),
+    0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d:active {
+  transform: translateY(2px);
+  box-shadow: 
+    0 2px 0 var(--color-primary-dark),
+    0 5px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s;
+}
+
+.btn-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.2) 0%, 
+    rgba(255, 255, 255, 0) 50%, 
+    rgba(0, 0, 0, 0.1) 100%);
+  pointer-events: none;
+}
+
+/* ===== CAM BUTONLAR ===== */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  color: var(--color-text);
+}
+
+.btn-glass:hover, .btn-glass:focus {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-glass:active {
+  transform: translateY(1px) scale(0.99);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.btn-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.8s ease;
+}
+
+.btn-glass:hover::before {
+  left: 150%;
+}
+
+/* Cam buton varyasyonları */
+.btn-glass-primary {
+  background: rgba(248, 195, 205, 0.2);
+  color: var(--color-primary-dark);
+  border-color: rgba(248, 195, 205, 0.3);
+}
+
+.btn-glass-secondary {
+  background: rgba(165, 222, 241, 0.2);
+  color: var(--color-secondary-dark);
+  border-color: rgba(165, 222, 241, 0.3);
+}
+
+.btn-glass-tertiary {
+  background: rgba(209, 193, 230, 0.2);
+  color: var(--color-tertiary-dark);
+  border-color: rgba(209, 193, 230, 0.3);
+}
+
+/* ===== NEUMORPHIC BUTONLAR ===== */
+.btn-neumorphic {
+  background-color: var(--color-light);
+  box-shadow: 
+    6px 6px 12px rgba(0, 0, 0, 0.1),
+    -6px -6px 12px rgba(255, 255, 255, 0.8);
+  border: none;
+}
+
+.btn-neumorphic:hover, .btn-neumorphic:focus {
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.12),
+    -8px -8px 16px rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.btn-neumorphic:active {
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  transform: translateY(0);
+}
+
+/* ===== SOSYAL MEDYA BUTONLARI ===== */
+.social-icons-neumorphic a {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--button-transition);
+  color: var(--color-text);
+  background-color: var(--color-light);
+  box-shadow: 
+    4px 4px 8px rgba(0, 0, 0, 0.1),
+    -4px -4px 8px rgba(255, 255, 255, 0.8);
+}
+
+.social-icons-neumorphic a:hover, 
+.social-icons-neumorphic a:focus {
+  transform: translateY(-3px);
+  box-shadow: 
+    6px 6px 12px rgba(0, 0, 0, 0.12),
+    -6px -6px 12px rgba(255, 255, 255, 0.9);
+}
+
+.social-icons-neumorphic a:active {
+  transform: translateY(0);
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+}
+
+/* Instagram özel stili */
+.social-icons-neumorphic a.instagram i {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Facebook özel stili */
+.social-icons-neumorphic a.facebook i {
+  color: #4267B2;
+}
+
+/* Twitter özel stili */
+.social-icons-neumorphic a.twitter i {
+  color: #1DA1F2;
+}
+
+/* WhatsApp özel stili */
+.social-icons-neumorphic a.whatsapp i {
+  color: #25D366;
+}
+
+/* ===== PULSE VE GLOW EFEKTLERI ===== */
+.pulse-animation {
+  animation: button-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+  box-shadow: 0 0 0 0 var(--color-primary-glow);
+}
+
+@keyframes button-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-primary-glow);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(248, 195, 205, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(248, 195, 205, 0);
+  }
+}
+
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 15px 5px var(--color-primary-glow);
+  opacity: 0;
+  border-radius: inherit;
+  z-index: -1;
+  transition: var(--glow-transition);
+}
+
+.glow-effect:hover::after {
+  opacity: 1;
+}
+
+/* Yeni Glow Buton Stili */
+.btn-glow {
+  position: relative;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  z-index: 1;
+  border: none;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-rainbow);
+  z-index: -1;
+  border-radius: calc(var(--radius-md) + 2px);
+  background-size: 400%;
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+/* Glow buton varyasyonları */
+.btn-glow-primary::before {
+  background: linear-gradient(45deg,
+    var(--color-primary),
+    var(--color-primary-dark),
+    var(--color-primary),
+    var(--color-primary-dark));
+}
+
+.btn-glow-secondary::before {
+  background: linear-gradient(45deg,
+    var(--color-secondary),
+    var(--color-secondary-dark),
+    var(--color-secondary),
+    var(--color-secondary-dark));
+}
+
+.btn-glow-tertiary::before {
+  background: linear-gradient(45deg,
+    var(--color-tertiary),
+    var(--color-tertiary-dark),
+    var(--color-tertiary),
+    var(--color-tertiary-dark));
+}
+
+/* ===== GELIŞMIŞ DALGALANMA EFEKTI ===== */
+.enhanced-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes enhanced-ripple {
+  to {
+    transform: scale(var(--scale, 3));
+    opacity: 0;
+  }
+}
+
+.enhanced-ripple--color {
+  background-color: rgba(248, 195, 205, 0.6);
+}
+
+/* ===== FARE İZLEME EFEKTI ===== */
+.mouse-tracking-glow {
+  --glow-size: 150px;
+  --glow-color: rgba(248, 195, 205, 0.4);
+  background-image: 
+    radial-gradient(
+      circle var(--glow-size) at var(--x, 50%) var(--y, 50%), 
+      var(--glow-color), 
+      transparent
+    );
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transition: background-image 0.2s;
+}
+
+/* ===== DOKUNMATIK GERIBESLEME ===== */
+.touch-target {
+  position: relative;
+  transform: translateY(0);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.touch-active {
+  transform: scale(0.97) translateY(3px) !important;
+}
+
+/* WhatsApp stili style-common.css dosyasına taşındı */
+
+/* ===== TESTIMONIAL DOTS GELIŞTIRMELERI ===== */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-dot:hover {
+  background-color: #ccc;
+}
+
+.carousel-dot::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  border-radius: 50%;
+}
+
+.carousel-dot.active::after {
+  transform: scale(1);
+}
+
+/* ===== CAROUSEL KONTROLLERI GELIŞTIRMELERI ===== */
+.carousel-controls {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.carousel-control {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #eee;
+  color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-control:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-control:active {
+  transform: scale(0.9);
+}
+
+.carousel-control.prev {
+  left: -5px;
+}
+
+.carousel-control.next {
+  right: -5px;
+}
+
+/* ===== HERO ELEMENT ANIMASYONLARI ===== */
+.hero-element {
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+@keyframes float-element {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes rotate-element {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse-element {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes shine-element {
+  0% { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3)); }
+  50% { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)); }
+  100% { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3)); }
+}
+
+/* ===== MOBIL ÖZEL STILLLER ===== */
+@media (max-width: 768px) {
+  .btn-3d, .btn-glass, .btn-neumorphic {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .social-icons-neumorphic a {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .carousel-control {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .enhanced-ripple {
+    display: none; /* Mobil performans için devre dışı bırak */
+  }
+}
+
+/* ===== YÜKSEK PERFORMANSLI CIHAZLAR IÇIN EXTRA ANIMASYONLAR ===== */
+@media (prefers-reduced-motion: no-preference) {
+  .btn-3d:hover {
+    animation: btn-3d-bounce 0.4s ease;
+  }
+  
+  @keyframes btn-3d-bounce {
+    0%, 100% { transform: translateY(-2px); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  .social-icons-neumorphic a:hover i {
+    animation: icon-wiggle 0.5s ease;
+  }
+  
+  @keyframes icon-wiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+  }
+  
+  .hero-element {
+    animation: float-element 6s ease-in-out infinite;
+  }
+  
+  .hero-element:nth-child(even) {
+    animation-duration: 8s;
+    animation-delay: 1s;
+  }
+  
+  .hero-element:nth-child(3n) {
+    animation: rotate-element 20s linear infinite;
+  }
+  
+  .hero-element:nth-child(3n+1) {
+    animation: pulse-element 4s ease-in-out infinite;
+  }
+  
+  .hero-element:nth-child(3n+2) {
+    animation: shine-element 3s ease-in-out infinite;
+  }
+}
+
+/* ===== TEMA GERÇISIMLERI ===== */
+/* Koyu renk oyunları */
+.dark-theme .btn-glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .btn-neumorphic {
+  background-color: var(--color-dark);
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.3),
+    -6px -6px 12px rgba(255, 255, 255, 0.04);
+}
+
+.dark-theme .btn-neumorphic:hover {
+  box-shadow:
+    8px 8px 16px rgba(0, 0, 0, 0.4),
+    -8px -8px 16px rgba(255, 255, 255, 0.06);
+}
+
+.dark-theme .btn-neumorphic:active {
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.4),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.06);
+}
+
+/* ===== YENİ GRADIENT BUTONLAR ===== */
+.btn-gradient {
+  background-size: 200% auto;
+  background-image: var(--gradient-primary);
+  color: var(--color-white);
+  border: none;
+  transition: 0.5s;
+}
+
+.btn-gradient:hover {
+  background-position: right center;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-gradient:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient buton varyasyonları */
+.btn-gradient-primary {
+  background-image: var(--gradient-primary);
+}
+
+.btn-gradient-secondary {
+  background-image: var(--gradient-secondary);
+}
+
+.btn-gradient-tertiary {
+  background-image: var(--gradient-tertiary);
+}
+
+.btn-gradient-mixed {
+  background-image: var(--gradient-mixed);
+}
+
+/* ===== OUTLINE BUTONLAR ===== */
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(248, 195, 205, 0.3);
+}
+
+.btn-outline:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Outline buton varyasyonları */
+.btn-outline-primary {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+  background: var(--color-primary);
+}
+
+.btn-outline-secondary {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.btn-outline-secondary:hover {
+  background: var(--color-secondary);
+}
+
+.btn-outline-tertiary {
+  border-color: var(--color-tertiary);
+  color: var(--color-tertiary);
+}
+
+.btn-outline-tertiary:hover {
+  background: var(--color-tertiary);
+}
+
+/* ===== ÖZEL ANIMASYONLAR ===== */
+/* Kalp atışı efekti */
+.heartbeat {
+  animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.3); }
+  70% { transform: scale(1); }
+}
+
+/* Yüklenme indikatörü */
+.loading-dots span {
+  animation: loadingDots 1.5s infinite;
+  opacity: 0;
+  display: inline-block;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loadingDots {
+  0% { opacity: 0; transform: translateY(0); }
+  25% { opacity: 1; transform: translateY(-5px); }
+  50% { opacity: 0; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(0); }
+}

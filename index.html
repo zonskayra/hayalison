@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hayali Çizgili - Kişiye Özel Boyama Kitapları | Personalized Coloring Books</title>
+    <meta name="description" content="Kişiye özel çocuk boyama kitapları | Personalized coloring books for children">
+    
+    <!-- Dil algılama ve yönlendirme -->
+    <script>
+        // Daha önce seçilmiş bir dil var mı kontrol et
+        const savedLanguage = localStorage.getItem('preferredLanguage');
+        
+        // Yönlendirme fonksiyonu
+        function redirectToLanguage() {
+            // Eğer daha önce bir dil seçilmişse, o dile yönlendir
+            if (savedLanguage) {
+                if (savedLanguage === 'en') {
+                    window.location.href = 'en/index.html';
+                } else {
+                    window.location.href = 'tr/index.html';
+                }
+            } else {
+                // Tarayıcı dilini al
+                const browserLang = navigator.language || navigator.userLanguage;
+                
+                // Tarayıcı dili Türkçe ise
+                if (browserLang.startsWith('tr')) {
+                    window.location.href = 'tr/index.html';
+                } else {
+                    window.location.href = 'en/index.html';
+                }
+            }
+        }
+        
+        // Sayfa yüklendiğinde yönlendirme yap
+        window.onload = redirectToLanguage;
+        
+        // Sayfa yüklenmeden önce de yönlendirmeyi dene
+        redirectToLanguage();
+    </script>
+    
+    <!-- Yönlendirme çalışmazsa -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=tr/index.html">
+    </noscript>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFF9E6;
+            color: #333;
+        }
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 500px;
+        }
+        h1 {
+            color: #F8C3CD;
+        }
+        p {
+            margin: 20px 0;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #F8C3CD;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .manual-links {
+            margin-top: 20px;
+        }
+        .manual-links a {
+            color: #F8C3CD;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+    </style>
+    <script>
+        // Kullanıcının dil tercihini kontrol et
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            
+            if (savedLanguage) {
+                // Kaydedilmiş dil tercihi varsa, o dile yönlendir
+                window.location.href = savedLanguage + '/index.html';
+            } else {
+                // Tarayıcı dilini kontrol et
+                const userLang = navigator.language || navigator.userLanguage;
+                
+                if (userLang.startsWith('en')) {
+                    window.location.href = 'en/index.html';
+                } else {
+                    // Varsayılan olarak Türkçe'ye yönlendir
+                    window.location.href = 'tr/index.html';
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hayali Çizgili</h1>
+        <div class="loader"></div>
+        <p>Yönlendiriliyor... / Redirecting...</p>
+        <div class="manual-links">
+            <a href="tr/index.html">Türkçe</a> |
+            <a href="en/index.html">English</a>
+        </div>
+    </div>
+</body>
+</html>

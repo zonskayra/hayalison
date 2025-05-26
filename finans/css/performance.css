@@ -1,0 +1,130 @@
+/* Hayali Çizgili Finans - Performans Optimizasyonları */
+
+/* Animasyonlar için donanım hızlandırma */
+.card,
+.btn,
+.modal,
+.list-group-item {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Sayfa yükleme animasyonu */
+body {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* İlk yükleme için iskelet ekranı */
+.skeleton-loader {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+    height: 18px;
+    margin-bottom: 8px;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Modal açılış performansı iyileştirmesi */
+.modal {
+    will-change: opacity, transform;
+}
+
+/* Görünür alana girdiğinde yüklenen içerik için */
+.lazy-container {
+    min-height: 200px;
+    position: relative;
+}
+
+/* Font rendering optimizasyonu */
+body {
+    text-rendering: optimizeSpeed;
+}
+
+/* Kaydırma optimizasyonu */
+.table-responsive,
+.list-group {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Yüksek performanslı gölgeler */
+.shadow-optimized {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Özelleştirilmiş scrollbar - daha iyi performans için */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Arayüz yanıt performansı */
+.btn, 
+.nav-link,
+.form-control {
+    transition: all 0.1s ease-out;
+}
+
+/* Ana içerik alanı için daha hızlı yükleme */
+#app-container {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#app-container.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Baskı için optimizasyon */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: #fff !important;
+        font-size: 12pt;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .card {
+        border: none;
+        box-shadow: none;
+    }
+}

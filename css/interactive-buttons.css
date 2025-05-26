@@ -1,0 +1,417 @@
+/* 
+ * Hayali Çizgili - Etkileşim Odaklı Buton Stilleri
+ * Gelişmiş hover efektleri, pulse animasyonları ve ripple efektleri
+ */
+
+/* ===== TEMEL DEĞİŞKENLER ===== */
+:root {
+  --btn-primary-color: #F8C3CD;
+  --btn-primary-dark: #e29eab;
+  --btn-primary-glow: rgba(248, 195, 205, 0.6);
+  --btn-secondary-color: #A5DEF1;
+  --btn-secondary-dark: #7fc7e2;
+  --btn-secondary-glow: rgba(165, 222, 241, 0.6);
+  --btn-tertiary-color: #D1C1E6;
+  --btn-tertiary-dark: #b8a5d1;
+  --btn-tertiary-glow: rgba(209, 193, 230, 0.6);
+  
+  /* Animasyon süreleri */
+  --btn-hover-duration: 0.3s;
+  --btn-click-duration: 0.15s;
+  --btn-pulse-duration: 2s;
+  --btn-ripple-duration: 0.6s;
+  
+  /* Easing functions */
+  --btn-ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --btn-ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --btn-ease-pulse: cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* ===== TEMEL BUTON SINIFI ===== */
+.interactive-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-subheading);
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--btn-hover-duration) var(--btn-ease-bounce);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow, opacity;
+  min-height: var(--touch-target-size);
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== PRIMARY BUTON ===== */
+.interactive-btn--primary {
+  background: linear-gradient(135deg, var(--btn-primary-color) 0%, var(--btn-primary-dark) 100%);
+  color: var(--color-white);
+  box-shadow: 
+    0 4px 15px rgba(248, 195, 205, 0.3),
+    0 0 0 0 var(--btn-primary-glow);
+}
+
+.interactive-btn--primary:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 8px 25px rgba(248, 195, 205, 0.4),
+    0 0 20px var(--btn-primary-glow);
+  background: linear-gradient(135deg, var(--btn-primary-dark) 0%, var(--btn-primary-color) 100%);
+}
+
+.interactive-btn--primary:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all var(--btn-click-duration) var(--btn-ease-smooth);
+}
+
+/* ===== SECONDARY BUTON ===== */
+.interactive-btn--secondary {
+  background: transparent;
+  color: var(--btn-secondary-color);
+  border: 2px solid var(--btn-secondary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-btn--secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--btn-secondary-color) 0%, var(--btn-secondary-dark) 100%);
+  transition: left var(--btn-hover-duration) var(--btn-ease-bounce);
+  z-index: -1;
+}
+
+.interactive-btn--secondary:hover {
+  color: var(--color-white);
+  border-color: var(--btn-secondary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px var(--btn-secondary-glow);
+}
+
+.interactive-btn--secondary:hover::before {
+  left: 0;
+}
+
+.interactive-btn--secondary:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ===== PULSE ANIMASYONU ===== */
+.interactive-btn--pulse {
+  animation: btn-pulse var(--btn-pulse-duration) var(--btn-ease-pulse) infinite;
+}
+
+@keyframes btn-pulse {
+  0% {
+    box-shadow: 
+      0 4px 15px rgba(248, 195, 205, 0.3),
+      0 0 0 0 var(--btn-primary-glow);
+  }
+  50% {
+    box-shadow: 
+      0 4px 15px rgba(248, 195, 205, 0.3),
+      0 0 0 10px rgba(248, 195, 205, 0.1);
+  }
+  100% {
+    box-shadow: 
+      0 4px 15px rgba(248, 195, 205, 0.3),
+      0 0 0 20px rgba(248, 195, 205, 0);
+  }
+}
+
+/* ===== RIPPLE EFEKTI ===== */
+.interactive-btn--ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation var(--btn-ripple-duration) linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ===== GLOW EFEKTI ===== */
+.interactive-btn--glow {
+  position: relative;
+}
+
+.interactive-btn--glow::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    var(--btn-primary-color), 
+    var(--btn-secondary-color), 
+    var(--btn-tertiary-color), 
+    var(--btn-primary-color));
+  background-size: 400%;
+  border-radius: calc(var(--radius-md) + 2px);
+  z-index: -1;
+  opacity: 0;
+  animation: glow-rotate 3s linear infinite;
+  transition: opacity var(--btn-hover-duration) ease;
+}
+
+.interactive-btn--glow:hover::after {
+  opacity: 1;
+}
+
+@keyframes glow-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== MOUSE TRACKING EFEKTI ===== */
+.interactive-btn--mouse-track {
+  background: linear-gradient(135deg, var(--btn-primary-color) 0%, var(--btn-primary-dark) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-btn--mouse-track::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle 100px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.interactive-btn--mouse-track:hover::before {
+  opacity: 1;
+}
+
+/* ===== 3D BUTON EFEKTI ===== */
+.interactive-btn--3d {
+  background: var(--btn-primary-color);
+  color: var(--color-white);
+  border-bottom: 4px solid var(--btn-primary-dark);
+  transform: translateY(0);
+  transition: all var(--btn-hover-duration) var(--btn-ease-bounce);
+}
+
+.interactive-btn--3d:hover {
+  transform: translateY(-2px);
+  border-bottom-width: 6px;
+  box-shadow: 0 6px 20px rgba(248, 195, 205, 0.3);
+}
+
+.interactive-btn--3d:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  box-shadow: 0 2px 10px rgba(248, 195, 205, 0.2);
+}
+
+/* ===== LOADING STATE ===== */
+.interactive-btn--loading {
+  pointer-events: none;
+  opacity: 0.7;
+  position: relative;
+}
+
+.interactive-btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: btn-loading 1s linear infinite;
+}
+
+@keyframes btn-loading {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== GRADIENT SHIFT EFEKTI ===== */
+.interactive-btn--gradient-shift {
+  background: linear-gradient(45deg, 
+    var(--btn-primary-color), 
+    var(--btn-secondary-color), 
+    var(--btn-tertiary-color));
+  background-size: 300% 300%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== HEARTBEAT EFEKTI ===== */
+.interactive-btn--heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+/* ===== SHINE EFEKTI ===== */
+.interactive-btn--shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-btn--shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.8s ease;
+}
+
+.interactive-btn--shine:hover::before {
+  left: 150%;
+}
+
+/* ===== RESPONSIVE DÜZENLEMELER ===== */
+@media (max-width: 768px) {
+  .interactive-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+  
+  /* Mobilde daha basit animasyonlar */
+  .interactive-btn--mouse-track::before {
+    display: none;
+  }
+  
+  .interactive-btn--glow::after {
+    display: none;
+  }
+  
+  /* Touch feedback */
+  .interactive-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .interactive-btn,
+  .interactive-btn::before,
+  .interactive-btn::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .interactive-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.interactive-btn:focus {
+  outline: 2px solid var(--btn-secondary-color);
+  outline-offset: 2px;
+}
+
+.interactive-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-group--vertical {
+  flex-direction: column;
+}
+
+.btn-group--horizontal {
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-group .interactive-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ===== ICON SUPPORT ===== */
+.interactive-btn i {
+  margin-right: 0.5rem;
+  transition: transform var(--btn-hover-duration) var(--btn-ease-bounce);
+}
+
+.interactive-btn:hover i {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.interactive-btn--icon-only {
+  padding: 0.8rem;
+  width: var(--touch-target-size);
+  height: var(--touch-target-size);
+}
+
+.interactive-btn--icon-only i {
+  margin: 0;
+  font-size: 1.2rem;
+}
