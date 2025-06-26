@@ -397,8 +397,7 @@ class DesktopSEO {
 
     addLanguageAlternates() {
         const languages = [
-            { lang: 'tr', href: window.location.href },
-            { lang: 'en', href: window.location.href.replace('/tr/', '/en/') }
+            { lang: 'tr', href: window.location.href }
         ];
         
         languages.forEach(lang => {

@@ -1,0 +1,21 @@
+# GitHub language detection override
+*.html linguist-detectable=true
+*.js linguist-detectable=true
+*.css linguist-detectable=false
+*.md linguist-documentation=true
+
+# Set primary language to HTML instead of CSS
+*.html linguist-language=HTML
+*.js linguist-language=JavaScript
+
+# Ignore generated or vendor files
+styles.css linguist-generated=true
+web-styles.css linguist-generated=true
+mobile-styles.css linguist-generated=true
+critical-css.css linguist-generated=true
+decorative-elements.css linguist-generated=true
+web-critical.css linguist-generated=true
+
+# Ensure main files are detected properly
+index.html linguist-detectable=true
+script.js linguist-detectable=true
