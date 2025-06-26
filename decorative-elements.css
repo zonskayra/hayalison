@@ -1,0 +1,505 @@
+/* ===== FULL-SIZE HERO CHARACTER ===== */
+/* Sayfanın dibine ayak basan büyük karakter */
+
+:root {
+    /* Character properties - Desktop */
+    --hero-character-width: 800px;
+    --hero-character-height: 900px;
+    
+    /* Character properties - Mobile */
+    --hero-character-mobile-width: 300px;
+    --hero-character-mobile-height: 350px;
+    
+    /* Animation properties */
+    --character-float-duration: 4s;
+}
+
+/* ===== HERO BÜYÜK KARAKTER - TEK GÖRSEL ===== */
+.hero-main-character {
+    position: absolute;
+    left: -100px;
+    bottom: 0;
+    width: var(--hero-character-width);
+    height: var(--hero-character-height);
+    /* background: url('./character-images/main-hero-character.png') no-repeat bottom center; */
+    background-size: contain;
+    z-index: 0; /* Text'in arkasında */
+    pointer-events: none;
+    animation: heroCharacterFloat var(--character-float-duration) ease-in-out infinite;
+    opacity: 0.8;
+}
+
+/* ===== HERO DEKORASYONLARİ ===== */
+.hero-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* Ana Hero Karakter - Text'leri kapamayacak şekilde */
+.hero-decorations .main-character {
+    position: absolute;
+    left: -150px; /* Daha sola kaydırıldı */
+    bottom: 0;
+    width: 600px; /* Biraz küçültüldü */
+    height: 700px; /* Biraz küçültüldü */
+    /* background: url('./character-images/main-hero-character.png') no-repeat bottom center; */
+    background-size: contain;
+    animation: heroCharacterFloat var(--character-float-duration) ease-in-out infinite;
+    z-index: 0;
+    opacity: 0.4; /* Daha şeffaf - text'ler daha görünür */
+}
+
+/* Text'lerin üzerine gelecek durumlarda extra şeffaflık */
+.hero-decorations .main-character:hover {
+    opacity: 0.2;
+}
+
+/* ===== MOBİL RESPONSIVE ===== */
+@media (max-width: 1200px) {
+    .hero-decorations .main-character {
+        width: 500px;
+        height: 600px;
+        left: -120px;
+        opacity: 0.35;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-decorations .main-character {
+        width: 280px;
+        height: 320px;
+        left: -80px;
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-decorations .main-character {
+        width: 220px;
+        height: 260px;
+        left: -60px;
+        opacity: 0.25;
+    }
+}
+
+/* ===== TEXT GÖRÜNÜRLÜĞÜ ARTTIRMA ===== */
+.hero-content {
+    position: relative;
+    z-index: 5; /* Text'lerin karakter önünde kalması */
+}
+
+.hero-text {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.02); /* Hafif arka plan */
+    backdrop-filter: blur(1px); /* Hafif blur efekti */
+    border-radius: 8px;
+    padding: 10px 0;
+}
+
+.hero-title {
+    position: relative;
+    z-index: 15;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Text shadow için */
+}
+
+.hero-description {
+    position: relative;
+    z-index: 12;
+    background: rgba(255, 255, 255, 0.05); /* Hafif beyaz arka plan */
+    padding: 15px;
+    border-radius: 8px;
+    backdrop-filter: blur(2px);
+}
+
+/* ===== ANİMASYONLAR ===== */
+@keyframes heroCharacterFloat {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-15px) translateX(5px) scale(1.01);
+    }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+/* ===== SECTION CORNER DECORATIONS ===== */
+.section-decoration-top-left {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 60px;
+    height: 75px;
+    /* background: url('./character-images/child-drawing.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.15;
+    animation: pulseDecoration 3s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.section-decoration-top-right {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 70px;
+    height: 85px;
+    /* background: url('./character-images/girl-singing.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.12;
+    animation: wiggleDecoration 4s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.section-decoration-bottom-left {
+    position: absolute;
+    bottom: -25px;
+    left: -10px;
+    width: 65px;
+    height: 80px;
+    /* background: url('./character-images/boy-painting.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.14;
+    animation: gentleFloat 5s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.section-decoration-bottom-right {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 75px;
+    height: 90px;
+    /* background: url('./character-images/family-together.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.13;
+    animation: slowSway 6s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ===== CARD DECORATIVE ELEMENTS ===== */
+.card-decoration {
+    position: relative;
+}
+
+.card-decoration::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 40px;
+    height: 50px;
+    /* background: url('./character-images/mini-character.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.2;
+    animation: cardDecorFloat 3s ease-in-out infinite;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ===== FLOATING MINI CHARACTERS ===== */
+.floating-mini-chars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.mini-char-1 {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 30px;
+    height: 35px;
+    /* background: url('./character-images/tiny-reader.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.1;
+    animation: miniFloat1 8s ease-in-out infinite;
+}
+
+.mini-char-2 {
+    position: absolute;
+    top: 60%;
+    right: 8%;
+    width: 25px;
+    height: 30px;
+    /* background: url('./character-images/tiny-artist.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.08;
+    animation: miniFloat2 10s ease-in-out infinite reverse;
+}
+
+.mini-char-3 {
+    position: absolute;
+    bottom: 30%;
+    left: 10%;
+    width: 35px;
+    height: 40px;
+    /* background: url('./character-images/tiny-singer.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.09;
+    animation: miniFloat3 7s ease-in-out infinite;
+}
+
+/* ===== HEADER/FOOTER DECORATIONS ===== */
+.header-decoration-left {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 60px;
+    /* background: url('./character-images/header-char-left.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.15;
+    animation: headerFloat 4s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.header-decoration-right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 65px;
+    /* background: url('./character-images/header-char-right.png') no-repeat center; */
+    background-size: contain;
+    opacity: 0.12;
+    animation: headerFloat 4s ease-in-out infinite reverse;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ===== BACKGROUND PATTERN CHARACTERS ===== */
+.background-character-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-image:
+        url('./character-images/pattern-char-1.png'),
+        url('./character-images/pattern-char-2.png'),
+        url('./character-images/pattern-char-3.png'); */
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 
+        10% 20%,
+        85% 30%,
+        50% 80%;
+    background-size: 60px, 50px, 70px;
+    opacity: 0.05;
+    animation: patternShift 30s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes floatLeft {
+    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) translateX(5px) rotate(2deg); }
+    50% { transform: translateY(-5px) translateX(10px) rotate(0deg); }
+    75% { transform: translateY(-15px) translateX(5px) rotate(-2deg); }
+}
+
+@keyframes floatRight {
+    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    25% { transform: translateY(-8px) translateX(-5px) rotate(-2deg); }
+    50% { transform: translateY(-12px) translateX(-8px) rotate(0deg); }
+    75% { transform: translateY(-6px) translateX(-3px) rotate(2deg); }
+}
+
+@keyframes gentleBounce {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-8px) scale(1.05); }
+}
+
+@keyframes slowRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseDecoration {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.25; transform: scale(1.1); }
+}
+
+@keyframes wiggleDecoration {
+    0%, 100% { transform: rotate(0deg) translateX(0px); }
+    25% { transform: rotate(2deg) translateX(2px); }
+    50% { transform: rotate(0deg) translateX(0px); }
+    75% { transform: rotate(-2deg) translateX(-2px); }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+}
+
+@keyframes slowSway {
+    0%, 100% { transform: rotate(0deg) translateX(0px); }
+    33% { transform: rotate(1deg) translateX(3px); }
+    66% { transform: rotate(-1deg) translateX(-3px); }
+}
+
+@keyframes cardDecorFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(5deg); }
+}
+
+@keyframes miniFloat1 {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-15px) translateX(5px); }
+    50% { transform: translateY(-8px) translateX(10px); }
+    75% { transform: translateY(-20px) translateX(3px); }
+}
+
+@keyframes miniFloat2 {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    33% { transform: translateY(-10px) translateX(-8px); }
+    66% { transform: translateY(-18px) translateX(-5px); }
+}
+
+@keyframes miniFloat3 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(10deg); }
+}
+
+@keyframes headerFloat {
+    0%, 100% { transform: translateY(-50%) translateX(0px); }
+    50% { transform: translateY(-50%) translateX(5px); }
+}
+
+@keyframes patternShift {
+    0%, 100% { 
+        background-position: 10% 20%, 85% 30%, 50% 80%;
+        opacity: 0.05;
+    }
+    50% { 
+        background-position: 15% 25%, 80% 35%, 55% 75%;
+        opacity: 0.08;
+    }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .decorative-characters::before {
+        width: 80px;
+        height: 100px;
+        left: -8%;
+    }
+    
+    .decorative-characters::after {
+        width: 70px;
+        height: 85px;
+        right: -5%;
+    }
+    
+    .hero-decorations .character-1,
+    .hero-decorations .character-2 {
+        width: 60px;
+        height: 75px;
+    }
+    
+    .section-decoration-top-left,
+    .section-decoration-top-right,
+    .section-decoration-bottom-left,
+    .section-decoration-bottom-right {
+        width: 40px;
+        height: 50px;
+    }
+    
+    .mini-char-1,
+    .mini-char-2,
+    .mini-char-3 {
+        width: 20px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .decorative-characters::before,
+    .decorative-characters::after {
+        display: none; /* Hide on very small screens */
+    }
+    
+    .floating-mini-chars {
+        display: none; /* Hide floating chars on mobile */
+    }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.decorative-characters,
+.hero-decorations,
+.floating-mini-chars {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .decorative-characters::before,
+    .decorative-characters::after,
+    .hero-decorations .character-1,
+    .hero-decorations .character-2,
+    .section-decoration-top-left,
+    .section-decoration-top-right,
+    .section-decoration-bottom-left,
+    .section-decoration-bottom-right,
+    .card-decoration::before,
+    .mini-char-1,
+    .mini-char-2,
+    .mini-char-3,
+    .header-decoration-left,
+    .header-decoration-right,
+    .background-character-pattern {
+        animation: none;
+        transform: none;
+    }
+}
+
+/* ===== HOVER INTERACTIONS ===== */
+.decorative-characters:hover::before {
+    animation-duration: 3s;
+    opacity: 0.4;
+}
+
+.decorative-characters:hover::after {
+    animation-duration: 3s;
+    opacity: 0.35;
+}
+
+/* ===== BLEND MODES FOR BETTER INTEGRATION ===== */
+.hero-decorations .character-1,
+.hero-decorations .character-2 {
+    mix-blend-mode: multiply;
+}
+
+.section-decoration-top-left,
+.section-decoration-top-right,
+.section-decoration-bottom-left,
+.section-decoration-bottom-right {
+    mix-blend-mode: soft-light;
+}
+
+.background-character-pattern {
+    mix-blend-mode: overlay;
+}

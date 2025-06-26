@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişiye Özel Şarkı | Hikayenizin Melodisi - Hayali Çizgili</title>
+    <meta name="description" content="Hikayenizi notalara dökün! Sevdikleriniz için anılarınızdan ilham alan, tamamen size özel bir şarkı besteliyoruz. Doğum günü, yıldönümü ve tüm özel günler için unutulmaz bir hediye.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h2 class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <img src="images/logo.png" alt="Hayali Çizgili Logo" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                        <i class="fas fa-pencil-alt" style="display: none;"></i>
+                    </a>
+                </h2>
+            </div>
+            <nav class="nav" id="nav" role="navigation" aria-label="Ana navigasyon" aria-hidden="true">
+                <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+                <div class="nav-content">
+                    <ul class="nav-list" role="menubar">
+                        <li role="none"><a href="index.html#home" class="nav-link" role="menuitem" tabindex="-1">Ana Sayfa</a></li>
+                        <li role="none"><a href="index.html#featured-products" class="nav-link" role="menuitem" tabindex="-1">Ürünler</a></li>
+                        <li role="none"><a href="index.html#features" class="nav-link" role="menuitem" tabindex="-1">Özellikler</a></li>
+                        <li role="none"><a href="index.html#process" class="nav-link" role="menuitem" tabindex="-1">Süreç</a></li>
+                        <li role="none"><a href="index.html#contact" class="nav-link" role="menuitem" tabindex="-1">İletişim</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <button class="nav-toggle" id="nav-toggle"
+                    aria-label="Navigasyon menüsünü aç"
+                    aria-expanded="false"
+                    aria-controls="nav"
+                    type="button">
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="sr-only">Menü</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail">
+        <div class="product-container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Ana Sayfa</a>
+                <span>/</span>
+                <a href="index.html#featured-products">Ürünler</a>
+                <span>/</span>
+                <span>Kişiye Özel Şarkı</span>
+            </div>
+
+            <!-- Product Detail Grid -->
+            <div class="product-detail-grid">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="main-image">
+                        <div class="image-placeholder music">
+                            <div class="placeholder-icon">🎵</div>
+                            <div class="placeholder-text">Kişiye Özel Şarkı</div>
+                            <div class="placeholder-subtitle">2 farklı tarzda profesyonel şarkı<br>Tamamen size özel söz ve melodi</div>
+                        </div>
+                        <img src="images/sarki-main.jpg" alt="Kişiye Özel Şarkı" id="mainImage" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.image-placeholder').style.display='none';" onerror="this.style.display='none'; this.parentElement.querySelector('.image-placeholder').style.display='flex';">
+                    </div>
+                    <div class="thumbnail-images">
+                        <div class="thumbnail active">
+                            <div class="thumbnail-placeholder">🎵</div>
+                            <img src="images/sarki-main.jpg" alt="Ana Görsel" onclick="changeImage(this)" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.thumbnail-placeholder').style.display='none';" onerror="this.style.display='none'; this.parentElement.querySelector('.thumbnail-placeholder').style.display='flex';">
+                        </div>
+                        <div class="thumbnail">
+                            <div class="thumbnail-placeholder">🎤</div>
+                            <img src="images/sarki-2.jpg" alt="Müzik Stüdyosu" onclick="changeImage(this)" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.thumbnail-placeholder').style.display='none';" onerror="this.style.display='none'; this.parentElement.querySelector('.thumbnail-placeholder').style.display='flex';">
+                        </div>
+                        <div class="thumbnail">
+                            <div class="thumbnail-placeholder">🎼</div>
+                            <img src="images/sarki-3.jpg" alt="Şarkı Yazım Süreci" onclick="changeImage(this)" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.thumbnail-placeholder').style.display='none';" onerror="this.style.display='none'; this.parentElement.querySelector('.thumbnail-placeholder').style.display='flex';">
+                        </div>
+                        <div class="thumbnail">
+                            <div class="thumbnail-placeholder">🎧</div>
+                            <img src="images/sarki-4.jpg" alt="Kayıt Süreci" onclick="changeImage(this)" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.thumbnail-placeholder').style.display='none';" onerror="this.style.display='none'; this.parentElement.querySelector('.thumbnail-placeholder').style.display='flex';">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                <!-- 1. İLK GİRİŞ: Başlık, Fiyat, Kısa Açıklama -->
+                <div class="product-header">
+                    <h1>Hikayenizin Şarkısı (Kişiye Özel)</h1>
+                    <div class="product-category" data-category="Tüm Özel Günler">
+                        <span class="sr-only">Kategori:</span>
+                        Tüm Özel Günler
+                    </div>
+                    
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">(18 değerlendirme)</span>
+                    </div>
+
+                    <div class="product-price">
+                        <span class="price-current">₺450,00</span>
+                        <span class="price-text">'den başlayan fiyatlarla</span>
+                    </div>
+
+                    <div class="product-summary">
+                        Duygularınızı kelimelerin ötesine taşıyın ve hikayenizi sevdiklerinize özel bir şarkıyla anlatın. Profesyonel müzisyenlerimiz anılarınızdan ilham alarak size özel beste yapar.
+                    </div>
+                </div>
+
+                <!-- 2. PAKET SEÇİMİ VE VARİANTLAR -->
+                <div class="product-variants">
+                    <div class="variant-group">
+                        <label class="variant-label">Paket Seçimi:</label>
+                        <select class="variant-select" id="packageSelect" onchange="updatePrice();">
+                            <option value="2songs" data-price="450">2 Şarkı Paketi - ₺450,00</option>
+                            <option value="3songs" data-price="600">3 Şarkı Paketi - ₺600,00</option>
+                            <option value="premium" data-price="750">Premium Paket (4 Şarkı) - ₺750,00</option>
+                        </select>
+                    </div>
+                    
+                    <div class="variant-group">
+                        <label class="variant-label">Adet:</label>
+                        <div class="quantity-selector">
+                            <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="5" onchange="updatePrice()">
+                            <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. SİPARİŞ VE WHATSAPP -->
+                <div class="purchase-section">
+                    <div class="total-price">
+                        <span class="total-label">Toplam:</span>
+                        <span class="total-amount" id="totalPrice">₺450,00</span>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-buy-now" onclick="directWhatsAppOrder()">
+                            <i class="fas fa-bolt"></i>
+                            Hemen Sipariş Ver!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Teslimat Bilgileri -->
+                <div class="quick-features">
+                    <div class="feature-item">
+                        <i class="fas fa-music"></i>
+                        <span>Dijital Teslimat</span>
+                    </div>
+                        <div class="feature-item">
+                            <i class="fas fa-clock"></i>
+                            <span>7-10 Gün Hazır</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Güvenli Ödeme</span>
+                        </div>
+                    </div>
+
+                <!-- Ödeme Seçenekleri -->
+                <div class="payment-options">
+                    <h3>Ödeme Seçenekleri</h3>
+                    <div class="payment-methods">
+                        <div class="payment-item">
+                            <i class="fas fa-university"></i>
+                            <span>Havale/EFT</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>FAST</span>
+                        </div>
+                        <div class="payment-item">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Shopier</span>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+            
+            <!-- Additional Product Information Section -->
+            <div class="product-additional-info">
+                <div class="container">
+                    <!-- Detaylı Açıklama -->
+                    <div class="product-description-detailed">
+                        <h3>Ürün Açıklaması</h3>
+                        <p>
+                            Bir hediyeden çok daha fazlası... Bu, sizin veya sevdiklerinizin hikayesinin notalara dökülmüş hali. Profesyonel müzisyen ve söz yazarlarımız, paylaştığınız anıları ve duyguları dinleyerek, tamamen size özel, ruhunuza dokunacak bir beste ve güfte hazırlıyor. Bir doğum günü, mezuniyet, yıldönümü gibi en özel anlarınızı, sonsuza dek dinlenecek bir şarkıyla taçlandırın.
+                        </p>
+                        <p>
+                            Şarkınız, biri daha duygusal ve yavaş, diğeri daha hareketli olmak üzere iki farklı tarzda düzenlenerek size sunulur. Böylece her moda uygun, hikayenizin ritmini yansıtan bir esere sahip olursunuz. Bu eşsiz hediye ile sevginizi ve takdirinizi en orijinal ve dokunaklı şekilde ifade edin.
+                        </p>
+                    </div>
+
+                    <!-- Ürün Özellikleri -->
+                    <div class="product-specifications">
+                        <h3>Ürün Özellikleri</h3>
+                        <ul class="specs-list">
+                            <li><strong>Müzik Kalitesi:</strong> Profesyonel stüdyo kalitesi</li>
+                            <li><strong>Şarkı Sayısı:</strong> 2-4 farklı tarzda şarkı</li>
+                            <li><strong>Format:</strong> Yüksek kaliteli MP3 + Enstrümantal</li>
+                            <li><strong>Teslimat:</strong> 7-10 gün içinde dijital teslimat</li>
+                            <li><strong>Revizyon:</strong> 1 kez ücretsiz değişiklik hakkı</li>
+                            <li><strong>Gizlilik:</strong> Anılarınız güvenli şekilde işlenir</li>
+                        </ul>
+                    </div>
+
+                    <!-- Sipariş Süreci -->
+                    <div class="order-process">
+                        <h3>Sipariş Süreci</h3>
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Anı Paylaşımı</h4>
+                                    <p>WhatsApp üzerinden özel anılarınızı ve müzik tercihlerinizi paylaşın</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Profesyonel Beste</h4>
+                                    <p>Uzman müzisyenlerimiz hikayenizi farklı tarzlarda şarkıya dönüştürür</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Kaliteli Kayıt</h4>
+                                    <p>Profesyonel stüdyoda kayıt yapılır ve 7-10 günde dijital olarak teslim edilir</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <img src="images/logo.png" alt="Hayali Çizgili Logo" class="footer-logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                        <i class="fas fa-pencil-alt" style="display: none;"></i>
+                    </h3>
+                    <p class="footer-description">
+                        Sevdiklerinizin fotoğraflarını sanatsal çizgilere dönüştürerek kişiye özel boyama kitapları yaratıyoruz.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/hayalicizgili" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/hayali.cizgili" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@Rüyalaradoğru" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Ürünlerimiz</h4>
+                    <ul>
+                        <li><a href="urun1.html">10 Görsel Boyama Kitabı</a></li>
+                        <li><a href="urun1.html">12 Görsel Boyama Kitabı</a></li>
+                        <li><a href="urun1.html">Premium Boyama Kitabı</a></li>
+                        <li><a href="#contact">Boyama Kalem Setleri</a></li>
+                        <li><a href="#contact">Özel Hediye Ambalajı</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kurumsal</h4>
+                    <ul>
+                        <li><a href="index.html#testimonials">Referanslar</a></li>
+                        <li><a href="index.html#process">Süreç</a></li>
+                        <li><a href="index.html#contact">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+90 850 346 6172</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>hayalicizgili@gmail.com</span>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>İstanbul, Türkiye</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">
+                    <p>&copy; 2024 Hayali Çizgili. Tüm hakları saklıdır.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Gizlilik Politikası</a>
+                    <a href="#">Kullanım Şartları</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/908503466172?text=Merhaba! Kişiye özel şarkı sipariş etmek istiyorum. Özel şarkı hazırlatabilir miyim?"
+           target="_blank" aria-label="WhatsApp ile iletişime geç">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Yukarı çık">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Image Change Function
+        function changeImage(thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            const allThumbnails = document.querySelectorAll('.thumbnail');
+            
+            // Remove active class from all thumbnails
+            allThumbnails.forEach(thumb => thumb.classList.remove('active'));
+            
+            // Add active class to clicked thumbnail
+            thumbnail.parentElement.classList.add('active');
+            
+            // Change main image
+            mainImage.src = thumbnail.src;
+        }
+
+        // E-commerce Functions for Music Products
+        function updatePrice() {
+            const packageSelect = document.getElementById('packageSelect');
+            const quantity = document.getElementById('quantity');
+            const totalPrice = document.getElementById('totalPrice');
+            const priceCurrentElement = document.querySelector('.price-current');
+            
+            const selectedOption = packageSelect.options[packageSelect.selectedIndex];
+            const unitPrice = parseInt(selectedOption.getAttribute('data-price'));
+            const qty = parseInt(quantity.value);
+            const total = unitPrice * qty;
+            
+            // Update displays
+            totalPrice.textContent = `₺${total.toLocaleString('tr-TR')},00`;
+            priceCurrentElement.textContent = `₺${unitPrice.toLocaleString('tr-TR')},00`;
+            
+            // Add animation effect
+            totalPrice.style.transform = 'scale(1.1)';
+            totalPrice.style.transition = 'transform 0.2s ease';
+            setTimeout(() => {
+                totalPrice.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        function increaseQty() {
+            const quantity = document.getElementById('quantity');
+            if (quantity.value < 5) {
+                quantity.value = parseInt(quantity.value) + 1;
+                updatePrice();
+            }
+        }
+        
+        function decreaseQty() {
+            const quantity = document.getElementById('quantity');
+            if (quantity.value > 1) {
+                quantity.value = parseInt(quantity.value) - 1;
+                updatePrice();
+            }
+        }
+
+        function directWhatsAppOrder() {
+            const packageSelect = document.getElementById('packageSelect');
+            const quantity = document.getElementById('quantity');
+            const selectedOption = packageSelect.options[packageSelect.selectedIndex];
+            const packageName = selectedOption.text;
+            const qty = quantity.value;
+            const total = document.getElementById('totalPrice').textContent;
+            
+            const message = `Merhaba! Kişiye özel şarkı sipariş etmek istiyorum.
+            
+📦 Paket: ${packageName}
+🔢 Adet: ${qty}
+💰 Toplam: ${total}
+
+Sipariş detayları için görüşelim.`;
+            
+            const whatsappUrl = `https://wa.me/908503466172?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePrice();
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile Navigation - DÜZELTME
+        const navToggle = document.getElementById('nav-toggle');
+        const nav = document.getElementById('nav');
+        const navOverlay = document.getElementById('nav-overlay');
+
+        if (navToggle && nav) {
+            navToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                
+                navToggle.setAttribute('aria-expanded', !isExpanded);
+                nav.setAttribute('aria-hidden', isExpanded);
+                
+                navToggle.classList.toggle('active');
+                nav.classList.toggle('active');
+                document.body.classList.toggle('nav-open');
+                
+                console.log('Navigasyon menüsü:', !isExpanded ? 'açıldı' : 'kapandı');
+            });
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('aria-hidden', 'true');
+                });
+            });
+
+            // Close menu when clicking overlay
+            if (navOverlay) {
+                navOverlay.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('aria-hidden', 'true');
+                });
+            }
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navToggle.contains(e.target) && !nav.contains(e.target)) {
+                    navToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('aria-hidden', 'true');
+                }
+            });
+
+            // ESC tuşu ile menüyü kapat
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.classList.contains('active')) {
+                    navToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    document.body.classList.remove('nav-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('aria-hidden', 'true');
+                    navToggle.focus();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

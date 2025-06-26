@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Ana Sayfa -->
+  <url>
+    <loc>https://hayalicizgili.com/</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://hayalicizgili.com/images/logo.png</image:loc>
+      <image:title>Hayali Çizgili Logo</image:title>
+    </image:image>
+  </url>
+
+  <!-- Ana Sayfa (index.html) -->
+  <url>
+    <loc>https://hayalicizgili.com/index.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Kişiye Özel Ani Boyama Kitabı -->
+  <url>
+    <loc>https://hayalicizgili.com/urun1.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hayalicizgili.com/images/boyama-kitabi-main.jpg</image:loc>
+      <image:title>Kişiye Özel Ani Boyama Kitabı</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hayalicizgili.com/images/boyama-kitabi-2.jpg</image:loc>
+      <image:title>Boyama Kitabı Örnek 2</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hayalicizgili.com/images/boyama-kitabi-3.jpg</image:loc>
+      <image:title>Boyama Kitabı Örnek 3</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hayalicizgili.com/images/boyama-kitabi-4.jpg</image:loc>
+      <image:title>Boyama Kitabı Örnek 4</image:title>
+    </image:image>
+  </url>
+
+  <!-- Kişiye Özel Şarkı -->
+  <url>
+    <loc>https://hayalicizgili.com/urun2.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Mobil Optimized Ürün Sayfası -->
+  <url>
+    <loc>https://hayalicizgili.com/urun-mobil-optimized.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CSS Dosyaları (SEO için önemli) -->
+  <url>
+    <loc>https://hayalicizgili.com/styles.css</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- JavaScript Dosyaları -->
+  <url>
+    <loc>https://hayalicizgili.com/script.js</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- PWA Manifest -->
+  <url>
+    <loc>https://hayalicizgili.com/manifest.json</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+</urlset>

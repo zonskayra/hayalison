@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sık Sorulan Sorular - Hayali Çizgili</title>
+    <meta name="description" content="Kişiye özel boyama kitabı siparişi hakkında merak ettiğiniz tüm sorular ve cevaplar.">
+    <link rel="canonical" href="https://hayalicizgili.com/sss.html">
+    
+    <!-- Favicon Set -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .faq-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 50px;
+        }
+
+        .faq-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .faq-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .faq-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+        }
+
+        .category-card.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .category-card.active .category-icon {
+            color: white;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .category-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .faq-content {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .faq-section {
+            display: none;
+            padding: 30px;
+        }
+
+        .faq-section.active {
+            display: block;
+        }
+
+        .faq-section h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 20px 0;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #667eea;
+        }
+
+        .faq-question.active {
+            color: #667eea;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 0 20px 0;
+        }
+
+        .faq-answer-content {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        .faq-answer-content strong {
+            color: #333;
+        }
+
+        .faq-answer-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .faq-answer-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .contact-cta {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            margin-top: 40px;
+            border-radius: 15px;
+        }
+
+        .contact-cta h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .contact-cta p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .faq-header h1 {
+                font-size: 2rem;
+            }
+            
+            .faq-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-content {
+                margin: 0 -10px;
+            }
+            
+            .faq-section {
+                padding: 20px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="faq-header">
+        <div class="container">
+            <h1>Sık Sorulan Sorular</h1>
+            <p>Kişiye özel boyama kitabı hakkında merak ettikleriniz</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            Ana Sayfaya Dön
+        </a>
+
+        <div class="faq-categories">
+            <div class="category-card active" data-category="general">
+                <div class="category-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3 class="category-title">Genel Bilgiler</h3>
+                <p class="category-desc">Temel sorular ve hizmet bilgileri</p>
+            </div>
+            
+            <div class="category-card" data-category="order">
+                <div class="category-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3 class="category-title">Sipariş Süreci</h3>
+                <p class="category-desc">Nasıl sipariş verilir, süreç nasıl işler</p>
+            </div>
+            
+            <div class="category-card" data-category="product">
+                <div class="category-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3 class="category-title">Ürün Detayları</h3>
+                <p class="category-desc">Boyama kitabı özellikleri ve kalite</p>
+            </div>
+            
+            <div class="category-card" data-category="delivery">
+                <div class="category-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="category-title">Teslimat & Ödeme</h3>
+                <p class="category-desc">Kargo, ödeme ve teslimat bilgileri</p>
+            </div>
+        </div>
+
+        <div class="faq-content">
+            <!-- Genel Bilgiler -->
+            <div class="faq-section active" id="general">
+                <h2>Genel Bilgiler</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Hayali Çizgili nedir ve nasıl çalışır?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Hayali Çizgili, sevdiklerinizin fotoğraflarını profesyonel çizim sanatına dönüştürerek kişiye özel boyama kitapları hazırlayan bir platformdur. Süreç şu şekilde işler:</p>
+                            <ul>
+                                <li>WhatsApp üzerinden fotoğraflarınızı gönderiyorsunuz</li>
+                                <li>Uzman sanatçılarımız fotoğrafları çizim haline dönüştürüyor</li>
+                                <li>Boyama kitabınız hazırlanıp size özel olarak basılıyor</li>
+                                <li>ÜCRETSİZ kargo ile elinize ulaşıyor</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Hangi özel günler için uygun?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Kişiye özel boyama kitaplarımız tüm özel günler için mükemmel hediye seçenekleridir:</p>
+                            <ul>
+                                <li><strong>Doğum günleri</strong> (çocuk, yetişkin)</li>
+                                <li><strong>Yıldönümleri</strong> (evlilik, sevgililik)</li>
+                                <li><strong>Anneler/Babalar Günü</strong></li>
+                                <li><strong>Sevgililer Günü</strong></li>
+                                <li><strong>Mezuniyet</strong> törenleri</li>
+                                <li><strong>Yeni doğum</strong> hediyesi</li>
+                                <li><strong>Öğretmenler Günü</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Yaş sınırı var mı?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Hayır, yaş sınırı yoktur! Boyama kitaplarımız her yaştan insan için uygundur:</p>
+                            <ul>
+                                <li><strong>3-7 yaş:</strong> Basit çizgiler, büyük alanlar</li>
+                                <li><strong>8-15 yaş:</strong> Orta seviye detay</li>
+                                <li><strong>16+ yaş:</strong> Detaylı ve karmaşık çizimler</li>
+                                <li><strong>Yetişkinler:</strong> Stres atma ve rahatlama için</li>
+                            </ul>
+                            <p>Sipariş verirken yaş aralığını belirtirseniz, çizim detayını ona göre ayarlıyoruz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sipariş Süreci -->
+            <div class="faq-section" id="order">
+                <h2>Sipariş Süreci</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Nasıl sipariş verebilirim?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Sipariş vermek çok kolay! Şu adımları takip edin:</p>
+                            <ul>
+                                <li><strong>1. WhatsApp İletişim:</strong> +90 850 346 6172 numarasına mesaj gönderin</li>
+                                <li><strong>2. Fotoğraf Gönderimi:</strong> En sevdiğiniz fotoğrafları paylaşın</li>
+                                <li><strong>3. Detayları Belirtin:</strong> Sayfa sayısı, yaş grubu, özel istekler</li>
+                                <li><strong>4. Ödeme:</strong> IBAN transferi ile ödemenizi yapın</li>
+                                <li><strong>5. Üretim:</strong> Sanatçılarımız çalışmaya başlar</li>
+                                <li><strong>6. Teslimat:</strong> 5-7 iş günü içinde ücretsiz kargo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Hangi fotoğraf formatlarını kabul ediyorsunuz?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Tüm yaygın fotoğraf formatlarını kabul ediyoruz:</p>
+                            <ul>
+                                <li><strong>Format:</strong> JPG, PNG, HEIC (iPhone)</li>
+                                <li><strong>Kalite:</strong> Minimum 800x600 piksel</li>
+                                <li><strong>Boyut:</strong> Maksimum 25MB</li>
+                                <li><strong>Gönderim:</strong> WhatsApp, e-posta veya Google Drive</li>
+                            </ul>
+                            <div class="highlight-box">
+                                <strong>💡 İpucu:</strong> Net, odaklanmış ve yüksek çözünürlüklü fotoğraflar en iyi sonucu verir.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Sipariş sonrası değişiklik yapabilir miyim?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Evet, belirli koşullar altında değişiklik mümkündür:</p>
+                            <ul>
+                                <li><strong>Üretim Öncesi:</strong> Üretim başlamadan önce tüm değişiklikler ücretsiz</li>
+                                <li><strong>Fotoğraf Değişimi:</strong> 24 saat içinde ücretsiz</li>
+                                <li><strong>Sayfa Sayısı:</strong> Fark ücreti ile artırma mümkün</li>
+                                <li><strong>Üretim Sonrası:</strong> Maalesef değişiklik mümkün değil</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ürün Detayları -->
+            <div class="faq-section" id="product">
+                <h2>Ürün Detayları</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Boyama kitabı hangi özelliklerde hazırlanıyor?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Boyama kitaplarımız en yüksek kalitede hazırlanmaktadır:</p>
+                            <ul>
+                                <li><strong>Kağıt:</strong> 120 gr/m² özel boyama kağıdı</li>
+                                <li><strong>Boyut:</strong> A4 (21x29.7 cm)</li>
+                                <li><strong>Kapak:</strong> 300 gr karton, mat laminat</li>
+                                <li><strong>Ciltleme:</strong> Spiral cilt (kolay çevirme)</li>
+                                <li><strong>Baskı:</strong> Profesyonel offset baskı</li>
+                                <li><strong>Çizgiler:</strong> Net, kalın sınırlar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Kaç sayfa boyama kitabı alabilirim?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Farklı sayfa seçeneklerimiz mevcuttur:</p>
+                            <ul>
+                                <li><strong>8 Sayfa:</strong> 249₺ (4 fotoğraf)</li>
+                                <li><strong>12 Sayfa:</strong> 299₺ (6 fotoğraf)</li>
+                                <li><strong>16 Sayfa:</strong> 349₺ (8 fotoğraf)</li>
+                                <li><strong>20 Sayfa:</strong> 399₺ (10 fotoğraf)</li>
+                                <li><strong>24 Sayfa:</strong> 449₺ (12 fotoğraf)</li>
+                            </ul>
+                            <div class="highlight-box">
+                                <strong>🎁 Bonus:</strong> Tüm kitaplarda kapak tasarımı ve boş sayfalar ücretsizdir!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Hangi boyama araçları öneriyorsunuz?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>En iyi sonuç için şu malzemeleri öneriyoruz:</p>
+                            <ul>
+                                <li><strong>Kuru Boya:</strong> Faber-Castell, Staedtler marka</li>
+                                <li><strong>Keçeli Kalem:</strong> İnce uçlu, su bazlı</li>
+                                <li><strong>Sulu Boya:</strong> Hafif ton için</li>
+                                <li><strong>Pastel:</strong> Yumuşak geçişler için</li>
+                                <li><strong>Jel Kalem:</strong> Detay çalışması için</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Teslimat & Ödeme -->
+            <div class="faq-section" id="delivery">
+                <h2>Teslimat & Ödeme</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Kargo ücreti ne kadar?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <div class="highlight-box">
+                                <h4><i class="fas fa-gift"></i> MÜJDE!</h4>
+                                <p><strong>Kargo tamamen ÜCRETSİZ!</strong> Türkiye'nin her yerine ücretsiz gönderiyor, hiçbir ek ücret almıyoruz.</p>
+                            </div>
+                            <ul>
+                                <li><strong>Türkiye geneli:</strong> Ücretsiz kargo</li>
+                                <li><strong>İstanbul içi:</strong> Elden teslimat seçeneği</li>
+                                <li><strong>Teslimat süresi:</strong> 5-7 iş günü</li>
+                                <li><strong>Acil teslimat:</strong> 2-3 iş günü (+50₺)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Hangi ödeme yöntemlerini kabul ediyorsunuz?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Güvenli ve kolay ödeme seçeneklerimiz:</p>
+                            <ul>
+                                <li><strong>IBAN Transferi:</strong> Tüm bankalardan</li>
+                                <li><strong>EFT/Havale:</strong> Aynı gün işlem</li>
+                                <li><strong>Mobil Bankacılık:</strong> Anında transfer</li>
+                                <li><strong>ATM:</strong> Para transferi</li>
+                            </ul>
+                            <p><strong>Ödeme şekli:</strong> %100 peşin ödeme sistemi. Ödeme alındıktan sonra üretim başlar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        İade veya değişim yapabilir miyim?
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Kişiye özel üretim olduğu için genel iade kabul etmiyoruz. Ancak:</p>
+                            <ul>
+                                <li><strong>Üretim hatası:</strong> %100 yeniden üretim</li>
+                                <li><strong>Hasarlı teslimat:</strong> Anında değişim</li>
+                                <li><strong>Kalite problemi:</strong> Ücretsiz yenileme</li>
+                                <li><strong>Müşteri memnuniyetsizliği:</strong> Çözüm odaklı yaklaşım</li>
+                            </ul>
+                            <div class="highlight-box">
+                                <strong>💝 Garantimiz:</strong> %100 müşteri memnuniyeti garantisi veriyoruz!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-cta">
+            <h3>Sorunuz çözülmedi mi?</h3>
+            <p>7/24 WhatsApp üzerinden size yardımcı olmaktan mutluluk duyarız!</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/908503466172?text=Merhaba! Boyama kitabı hakkında sorum var." class="cta-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp'ta Sor
+                </a>
+                <a href="mailto:hayalicizgili@gmail.com" class="cta-btn">
+                    <i class="fas fa-envelope"></i>
+                    E-posta Gönder
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Category switching
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active from all cards
+                document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.faq-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active to clicked card
+                this.classList.add('active');
+                const category = this.dataset.category;
+                document.getElementById(category).classList.add('active');
+                
+                // Close all open FAQ items
+                document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+            });
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+                
+                // Toggle current item
+                if (!isActive) {
+                    this.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll to sections
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-open first FAQ item
+            const firstQuestion = document.querySelector('.faq-section.active .faq-question');
+            if (firstQuestion) {
+                firstQuestion.click();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişiye Özel Boyama Kitabı - Mobil Optimized</title>
+    <meta name="description" content="Mobil-first tasarımla optimize edilmiş kişiye özel boyama kitabı ürün sayfası">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* ===== MOBİL-FIRST RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #ec4899;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #94a3b8;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            /* Mobile-first Typography */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            
+            /* Mobile-first Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--bg-light);
+            padding-top: 80px; /* Fixed header space */
+        }
+
+        /* ===== MOBİL HEADER ===== */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: var(--space-4) var(--space-4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: var(--text-xl);
+            padding: var(--space-2);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .header-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--dark);
+            text-align: center;
+            flex: 1;
+            margin: 0 var(--space-4);
+        }
+
+        .share-btn {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: var(--text-lg);
+            padding: var(--space-2);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .share-btn:hover {
+            color: var(--primary-color);
+        }
+
+        /* ===== MOBİL-FIRST PRODUCT LAYOUT ===== */
+        .mobile-container {
+            max-width: 100%;
+            padding: 0 var(--space-4);
+            margin: 0 auto;
+        }
+
+        /* Product Images - Mobile Optimized */
+        .product-gallery {
+            margin-bottom: var(--space-6);
+        }
+
+        .main-image-container {
+            position: relative;
+            aspect-ratio: 1.2/1;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--space-4);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--gray);
+        }
+
+        .placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-2);
+        }
+
+        .placeholder-text {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-1);
+            text-align: center;
+        }
+
+        .placeholder-subtitle {
+            font-size: var(--text-sm);
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* Thumbnail Images */
+        .thumbnail-row {
+            display: flex;
+            gap: var(--space-3);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== PRODUCT INFO - MOBİL STACK LAYOUT ===== */
+        .product-info {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-header {
+            margin-bottom: var(--space-6);
+        }
+
+        .product-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: var(--space-2);
+            line-height: 1.3;
+        }
+
+        .product-category {
+            color: var(--primary-color);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-4);
+        }
+
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: var(--text-lg);
+        }
+
+        .rating-text {
+            color: var(--gray);
+            font-size: var(--text-sm);
+        }
+
+        .price-section {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        .current-price {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .price-suffix {
+            color: var(--gray);
+            font-size: var(--text-base);
+            font-weight: 500;
+        }
+
+        .old-price {
+            color: var(--light-gray);
+            text-decoration: line-through;
+            font-size: var(--text-lg);
+        }
+
+        /* ===== PRODUCT FEATURES - MOBİL STACK ===== */
+        .features-section {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .section-icon {
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .feature-icon {
+            color: var(--primary-color);
+            font-size: var(--text-lg);
+            margin-top: var(--space-1);
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: var(--space-1);
+        }
+
+        .feature-content p {
+            font-size: var(--text-sm);
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* ===== PROCESS SECTION - MOBİL VERTICAL ===== */
+        .process-section {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-md);
+        }
+
+        .process-steps {
+            display: grid;
+            gap: var(--space-5);
+        }
+
+        .step {
+            display: flex;
+            gap: var(--space-4);
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: var(--text-base);
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: var(--space-2);
+        }
+
+        .step-content p {
+            font-size: var(--text-base);
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ===== OPTIONS SECTION - MOBİL STACK ===== */
+        .options-section {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-md);
+        }
+
+        .options-grid {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .option-card {
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: var(--white);
+        }
+
+        .option-card.recommended {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 100%);
+        }
+
+        .option-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: -8px;
+            right: var(--space-4);
+            background: linear-gradient(135deg, var(--secondary-color), #ef4444);
+            color: var(--white);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+        }
+
+        .page-count {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .option-price {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .option-details {
+            display: grid;
+            gap: var(--space-2);
+        }
+
+        .option-description {
+            font-size: var(--text-base);
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .option-savings {
+            font-size: var(--text-sm);
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .option-info {
+            margin-top: var(--space-4);
+            padding-top: var(--space-4);
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+            font-size: var(--text-sm);
+            color: var(--gray);
+        }
+
+        .info-icon {
+            color: var(--primary-color);
+            font-size: var(--text-sm);
+            flex-shrink: 0;
+        }
+
+        /* ===== PURCHASE SECTION - MOBİL STICKY ===== */
+        .purchase-section {
+            position: sticky;
+            bottom: 0;
+            background: var(--white);
+            padding: var(--space-5) var(--space-4);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .quantity-label {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--white);
+            border: none;
+            color: var(--primary-color);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .qty-input {
+            width: 60px;
+            height: 44px;
+            border: none;
+            background: var(--bg-light);
+            text-align: center;
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+            padding: var(--space-4);
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
+        }
+
+        .total-label {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .total-price {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border: none;
+            padding: var(--space-5);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            box-shadow: var(--shadow-lg);
+            /* Touch-friendly minimum */
+            min-height: 56px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* ===== FLOATING ACTIONS ===== */
+        .floating-actions {
+            position: fixed;
+            bottom: var(--space-4);
+            right: var(--space-4);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .floating-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            color: var(--white);
+            font-size: var(--text-xl);
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20ba5a;
+            transform: scale(1.1);
+        }
+
+        .back-to-top {
+            background: var(--primary-color);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* ===== TABLET+ RESPONSIVE ENHANCEMENTS ===== */
+        @media (min-width: 768px) {
+            .mobile-container {
+                max-width: 600px;
+                padding: 0 var(--space-6);
+            }
+
+            .product-title {
+                font-size: var(--text-3xl);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-container {
+                max-width: 800px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* ===== LOADING & ANIMATION UTILITIES ===== */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.4s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="back-btn" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="header-title">Ürün Detayı</h1>
+        <button class="share-btn" onclick="shareProduct()">
+            <i class="fas fa-share-alt"></i>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mobile-container">
+        <!-- Product Gallery -->
+        <section class="product-gallery fade-in">
+            <div class="main-image-container">
+                <div class="image-placeholder">
+                    <div class="placeholder-icon">🎨</div>
+                    <div class="placeholder-text">Kişiye Özel Boyama Kitabı</div>
+                    <div class="placeholder-subtitle">Fotoğraflarınızdan özel tasarımlar</div>
+                </div>
+                <img src="images/boyama-kitabi-main.jpg" alt="Kişiye Özel Boyama Kitabı" class="main-image" id="mainImage" style="display: none;" onload="this.style.display='block'; this.parentElement.querySelector('.image-placeholder').style.display='none';" onerror="this.style.display='none';">
+            </div>
+            
+            <div class="thumbnail-row">
+                <div class="thumbnail active">
+                    <img src="images/boyama-kitabi-main.jpg" alt="Ana görsel" onclick="changeMainImage(this)">
+                </div>
+                <div class="thumbnail">
+                    <img src="images/boyama-kitabi-2.jpg" alt="Örnek sayfa 1" onclick="changeMainImage(this)">
+                </div>
+                <div class="thumbnail">
+                    <img src="images/boyama-kitabi-3.jpg" alt="Örnek sayfa 2" onclick="changeMainImage(this)">
+                </div>
+                <div class="thumbnail">
+                    <img src="images/boyama-kitabi-4.jpg" alt="Örnek sayfa 3" onclick="changeMainImage(this)">
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Info -->
+        <section class="product-info fade-in">
+            <div class="product-header">
+                <h2 class="product-title">Kişiye Özel Boyama Kitabı</h2>
+                <div class="product-category">Özel Tasarım</div>
+                
+                <div class="rating-section">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-text">4.9 (156 değerlendirme)</span>
+                </div>
+
+                <div class="price-section">
+                    <span class="current-price">₺250</span>
+                    <span class="price-suffix">'den başlayan fiyatlarla</span>
+                    <span class="old-price">₺350</span>
+                </div>
+            </div>
+
+            <p style="font-size: var(--text-lg); color: var(--gray); line-height: 1.6; margin-bottom: var(--space-4);">
+                Sevdiklerinizin fotoğraflarından kişiye özel boyama kitapları oluşturun. 
+                Profesyonel çizerlerimiz her detayı özenle işleyerek unutulmaz anılar yaratır.
+            </p>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section fade-in">
+            <h3 class="section-title">
+                <i class="fas fa-star section-icon"></i>
+                Ürün Özellikleri
+            </h3>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-palette feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Profesyonel Çizim</h4>
+                        <p>Uzman çizerlerimiz fotoğraflarınızı sanatsal boyama formuna dönüştürür</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-file-alt feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Kaliteli Kağıt</h4>
+                        <p>Boya geçirmez, 160gsm kaliteli sayfalar ile uzun ömürlü kullanım</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-gift feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>6'lı Boya Hediye</h4>
+                        <p>Kaliteli kuru boya kalemi seti ücretsiz hediye</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-truck feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Hızlı Teslimat</h4>
+                        <p>2-3 gün içinde hazır, ücretsiz kargo</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Gizlilik Garantisi</h4>
+                        <p>Fotoğraflarınız güvenli şekilde işlenir ve korunur</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-heart feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Özel Kapak Tasarımı</h4>
+                        <p>Ücretsiz kişiye özel kapak tasarımı dahil</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section fade-in">
+            <h3 class="section-title">
+                <i class="fas fa-cogs section-icon"></i>
+                Sipariş Süreci
+            </h3>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Fotoğraf Seçimi</h4>
+                        <p>8-24 arası en sevdiğiniz fotoğrafları WhatsApp üzerinden gönderin. Yüksek çözünürlüklü fotoğraflar en iyi sonucu verir.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Profesyonel Çizim</h4>
+                        <p>Uzman çizerlerimiz fotoğraflarınızı boyama formuna çevirir. Her detay özenle işlenir ve onayınız alınır.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Kaliteli Baskı</h4>
+                        <p>Özel kağıda baskı yapılır, kapak tasarımı eklenir ve 2-3 günde kargoya verilir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Options Section -->
+        <section class="options-section fade-in">
+            <h3 class="section-title">
+                <i class="fas fa-list-alt section-icon"></i>
+                Sayfa Seçenekleri
+            </h3>
+            
+            <div class="options-grid">
+                <div class="option-card" onclick="selectOption(this, 8, 250)">
+                    <div class="option-header">
+                        <span class="page-count">8 Sayfa</span>
+                        <span class="option-price">₺250</span>
+                    </div>
+                    <div class="option-details">
+                        <div class="option-description">Sevdiklerinizin en özel anlarını boyama kitabına dönüştürün</div>
+                        <div class="option-savings">Temel paket</div>
+                    </div>
+                    <div class="option-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock info-icon"></i>
+                            <span>8-24 arası fotoğraf</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-palette info-icon"></i>
+                            <span>WhatsApp üzerinden gönderim</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="option-card recommended" onclick="selectOption(this, 12, 350)">
+                    <div class="recommended-badge">ÖNERİLEN</div>
+                    <div class="option-header">
+                        <span class="page-count">12 Sayfa</span>
+                        <span class="option-price">₺350</span>
+                    </div>
+                    <div class="option-details">
+                        <div class="option-description">Daha fazla anı, daha fazla boyama keyfi</div>
+                        <div class="option-savings">₺50 tasarruf!</div>
+                    </div>
+                    <div class="option-info">
+                        <div class="info-item">
+                            <i class="fas fa-star info-icon"></i>
+                            <span>En popüler seçim</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-gift info-icon"></i>
+                            <span>Ekstra hediyeler</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="option-card" onclick="selectOption(this, 16, 400)">
+                    <div class="option-header">
+                        <span class="page-count">16 Sayfa</span>
+                        <span class="option-price">₺400</span>
+                    </div>
+                    <div class="option-details">
+                        <div class="option-description">Geniş koleksiyon için ideal</div>
+                        <div class="option-savings">₺100 tasarruf!</div>
+                    </div>
+                    <div class="option-info">
+                        <div class="info-item">
+                            <i class="fas fa-book info-icon"></i>
+                            <span>Geniş sayfa sayısı</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-heart info-icon"></i>
+                            <span>Özel koleksiyon</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="option-card" onclick="selectOption(this, 24, 500)">
+                    <div class="option-header">
+                        <span class="page-count">24 Sayfa</span>
+                        <span class="option-price">₺500</span>
+                    </div>
+                    <div class="option-details">
+                        <div class="option-description">Maksimum anı ve boyama deneyimi</div>
+                        <div class="option-savings">₺200 tasarruf!</div>
+                    </div>
+                    <div class="option-info">
+                        <div class="info-item">
+                            <i class="fas fa-crown info-icon"></i>
+                            <span>Premium paket</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-medal info-icon"></i>
+                            <span>En değerli seçim</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Purchase Section (Sticky Bottom) -->
+    <section class="purchase-section">
+        <div class="quantity-selector">
+            <span class="quantity-label">Adet:</span>
+            <div class="quantity-controls">
+                <button class="qty-btn" onclick="decreaseQuantity()">-</button>
+                <input type="number" class="qty-input" id="quantity" value="1" min="1" max="10" readonly>
+                <button class="qty-btn" onclick="increaseQuantity()">+</button>
+            </div>
+        </div>
+        
+        <div class="total-section">
+            <span class="total-label">Toplam:</span>
+            <span class="total-price" id="totalPrice">₺350</span>
+        </div>
+        
+        <button class="cta-button" onclick="orderNow()">
+            <i class="fab fa-whatsapp"></i>
+            Hemen Sipariş Ver
+        </button>
+    </section>
+
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <button class="floating-btn whatsapp-btn" onclick="contactWhatsApp()">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+        <button class="floating-btn back-to-top" onclick="scrollToTop()" style="display: none;" id="backToTopBtn">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <script>
+        // Global variables
+        let selectedPages = 12;
+        let selectedPrice = 350;
+        let quantity = 1;
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotalPrice();
+            initializeScrollEffects();
+            addFadeInAnimation();
+        });
+
+        // Image gallery functions
+        function changeMainImage(thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            // Remove active class from all thumbnails
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            
+            // Add active class to clicked thumbnail
+            thumbnail.parentElement.classList.add('active');
+            
+            // Change main image with fade effect
+            mainImage.style.opacity = '0.5';
+            setTimeout(() => {
+                mainImage.src = thumbnail.src;
+                mainImage.style.opacity = '1';
+            }, 200);
+        }
+
+        // Option selection
+        function selectOption(card, pages, price) {
+            // Remove active class from all cards
+            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to selected card
+            card.classList.add('active');
+            
+            // Update global variables
+            selectedPages = pages;
+            selectedPrice = price;
+            
+            // Update total price
+            updateTotalPrice();
+            
+            // Add scale animation
+            card.classList.add('scale-in');
+            setTimeout(() => card.classList.remove('scale-in'), 400);
+        }
+
+        // Quantity controls
+        function increaseQuantity() {
+            const qtyInput = document.getElementById('quantity');
+            if (quantity < 10) {
+                quantity++;
+                qtyInput.value = quantity;
+                updateTotalPrice();
+            }
+        }
+
+        function decreaseQuantity() {
+            const qtyInput = document.getElementById('quantity');
+            if (quantity > 1) {
+                quantity--;
+                qtyInput.value = quantity;
+                updateTotalPrice();
+            }
+        }
+
+        // Price calculation
+        function updateTotalPrice() {
+            const totalPrice = selectedPrice * quantity;
+            document.getElementById('totalPrice').textContent = `₺${totalPrice.toLocaleString('tr-TR')}`;
+            
+            // Add animation effect
+            const priceElement = document.getElementById('totalPrice');
+            priceElement.style.transform = 'scale(1.1)';
+            priceElement.style.transition = 'transform 0.2s ease';
+            setTimeout(() => {
+                priceElement.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Order functions
+        function orderNow() {
+            const message = `Merhaba! Kişiye özel boyama kitabı sipariş etmek istiyorum.
+            
+📖 Seçilen Paket: ${selectedPages} Sayfa
+💰 Fiyat: ₺${selectedPrice}
+📦 Adet: ${quantity}
+💵 Toplam: ₺${selectedPrice * quantity}
+
+Fotoğraflarımı göndererek sipariş vermek istiyorum.`;
+            
+            const whatsappUrl = `https://wa.me/905055555555?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function contactWhatsApp() {
+            const message = `Merhaba! Kişiye özel boyama kitabı hakkında bilgi almak istiyorum.`;
+            const whatsappUrl = `https://wa.me/905055555555?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Share function
+        function shareProduct() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Kişiye Özel Boyama Kitabı',
+                    text: 'Fotoğraflarınızdan özel boyama kitabı!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link kopyalandı!');
+                });
+            }
+        }
+
+        // Scroll effects
+        function initializeScrollEffects() {
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 500) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Animation utilities
+        function addFadeInAnimation() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+
+            document.querySelectorAll('section').forEach((section) => {
+                observer.observe(section);
+            });
+        }
+
+        // Auto-select recommended option on load
+        window.addEventListener('load', () => {
+            const recommendedCard = document.querySelector('.option-card.recommended');
+            if (recommendedCard) {
+                selectOption(recommendedCard, 12, 350);
+            }
+        });
+    </script>
+</body>
+</html>

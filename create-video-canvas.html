@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Video Oluşturucu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        canvas {
+            border: 2px solid white;
+            border-radius: 10px;
+            margin: 20px 0;
+            background: #000;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Canvas Video Oluşturucu</h1>
+        <p>Programmatic video efekti oluşturup kaydedin</p>
+        
+        <canvas id="videoCanvas" width="640" height="360"></canvas>
+        
+        <div class="controls">
+            <button onclick="startAnimation()">🎬 Animasyonu Başlat</button>
+            <button onclick="stopAnimation()">⏹️ Durdur</button>
+            <button onclick="downloadVideo()">💾 Video İndir</button>
+        </div>
+        
+        <div class="info">
+            <h3>🎯 Özellikler:</h3>
+            <ul style="text-align: left; display: inline-block;">
+                <li>✨ Dinamik gradient animasyonu</li>
+                <li>🌊 Akışkan parçacık efektleri</li>
+                <li>🎨 Renk geçişleri</li>
+                <li>💫 Modern tasarım</li>
+                <li>📹 WebM formatında kayıt</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('videoCanvas');
+        const ctx = canvas.getContext('2d');
+        let animationId;
+        let recorder;
+        let chunks = [];
+        
+        // Animasyon değişkenleri
+        let time = 0;
+        let particles = [];
+        
+        // Parçacık sınıfı
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.size = Math.random() * 4 + 1;
+                this.hue = Math.random() * 360;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                
+                this.hue += 1;
+                if (this.hue > 360) this.hue = 0;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = 0.7;
+                ctx.fillStyle = `hsl(${this.hue}, 100%, 50%)`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+        
+        // Parçacıkları başlat
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        // Ana animasyon fonksiyonu
+        function animate() {
+            time += 0.02;
+            
+            // Gradient arka plan
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            const hue1 = (time * 50) % 360;
+            const hue2 = (time * 50 + 180) % 360;
+            
+            gradient.addColorStop(0, `hsl(${hue1}, 70%, 50%)`);
+            gradient.addColorStop(0.5, `hsl(${(hue1 + hue2) / 2}, 80%, 40%)`);
+            gradient.addColorStop(1, `hsl(${hue2}, 70%, 50%)`);
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Dalga efekti
+            ctx.save();
+            ctx.globalAlpha = 0.3;
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            for (let x = 0; x < canvas.width; x += 5) {
+                const y = canvas.height / 2 + Math.sin(x * 0.01 + time * 3) * 50;
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            ctx.restore();
+            
+            // Parçacıkları güncelle ve çiz
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // Merkez logo/text
+            ctx.save();
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.font = 'bold 48px Arial';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.lineWidth = 2;
+            ctx.strokeText('Artisan', canvas.width / 2, canvas.height / 2);
+            ctx.fillText('Artisan', canvas.width / 2, canvas.height / 2);
+            
+            ctx.font = 'bold 20px Arial';
+            ctx.fillText('Boyama Kitapları', canvas.width / 2, canvas.height / 2 + 60);
+            ctx.restore();
+            
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        function startAnimation() {
+            if (!animationId) {
+                initParticles();
+                animate();
+                
+                // Kayıt başlat
+                const stream = canvas.captureStream(30);
+                recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+                
+                recorder.ondataavailable = (e) => {
+                    if (e.data.size > 0) {
+                        chunks.push(e.data);
+                    }
+                };
+                
+                recorder.start();
+                console.log('🎬 Video kaydı başladı...');
+            }
+        }
+        
+        function stopAnimation() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+                
+                if (recorder && recorder.state === 'recording') {
+                    recorder.stop();
+                    console.log('⏹️ Video kaydı durduruldu');
+                }
+            }
+        }
+        
+        function downloadVideo() {
+            if (chunks.length > 0) {
+                const blob = new Blob(chunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'artisan-video.webm';
+                a.click();
+                
+                URL.revokeObjectURL(url);
+                console.log('💾 Video indirildi!');
+                
+                // Chunks temizle
+                chunks = [];
+            } else {
+                alert('Önce animasyonu başlatıp durdurun!');
+            }
+        }
+        
+        // Başlangıçta parçacıkları hazırla
+        initParticles();
+        
+        console.log('🎨 Canvas Video Oluşturucu hazır!');
+    </script>
+</body>
+</html>
