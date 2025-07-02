@@ -740,6 +740,39 @@ const trendyolLinks = {
     '24': 'https://www.trendyol.com/pd/hayali-cizgili/24-fotograf-ozel-tasarim-boyama-kitabi-her-yasa-ozel-cocuk-gelisimi-dogum-gunu-hediye-p-945316075?boutiqueId=61&merchantId=669103&filterOverPriceListings=false&sav=true'
 };
 
+// ===== ÇİÇEKSEPETİ DİNAMİK LİNK SİSTEMİ =====
+const ciceksepetiLinks = {
+    '8': 'https://www.ciceksepeti.com/8-fotograf-ozel-tasarim-boyama-kitabi-her-yasa-ozel-cocuk-gelisimi-dogum-gunu-hediye-kcm4642802',
+    '12': 'https://www.ciceksepeti.com/12-fotograf-ozel-tasarim-boyama-kitabi-her-yasa-ozel-cocuk-gelisimi-dogum-gunu-hediye-kcm64084183'
+};
+
+// Çiçeksepeti linkini güncelle
+function updateCiceksepetiLink() {
+    const pageSelect = document.getElementById('pageSelect');
+    const ciceksepetiButton = document.getElementById('ciceksepetiBtn');
+    
+    if (pageSelect && ciceksepetiButton) {
+        const selectedPages = pageSelect.value;
+        const ciceksepetiLink = ciceksepetiLinks[selectedPages];
+        
+        if (ciceksepetiLink) {
+            // 8 ve 12 sayfa için butonu göster
+            ciceksepetiButton.style.display = 'inline-flex';
+            ciceksepetiButton.setAttribute('onclick', `openCiceksepetiLink('${selectedPages}')`);
+            console.log(`🌸 Çiçeksepeti linki güncellendi: ${selectedPages} sayfa`);
+        } else {
+            // Diğer sayfa sayıları için butonu gizle
+            ciceksepetiButton.style.display = 'none';
+            console.log(`🌸 Çiçeksepeti ${selectedPages} sayfa için mevcut değil`);
+        }
+    }
+}
+
+// Çiçeksepeti linkini aç (modal sistemi ile)
+function openCiceksepetiLink(pages) {
+    showCiceksepetiModal(pages);
+}
+
 // Trendyol linkini güncelle
 function updateTrendyolLink() {
     const pageSelect = document.getElementById('pageSelect');
@@ -777,7 +810,7 @@ function showTrendyolModal(pages = null) {
     const whatsappTotal = unitPrice * qty;
     // 8 sayfa için 150 TL, diğerleri için 100 TL fark
     const is8Pages = pages === '8';
-    const trendyolTotal = whatsappTotal + (is8Pages ? 150 : 100);
+    const trendyolTotal = whatsappTotal + 100;
     
     // Modal fiyatlarını güncelle
     document.getElementById('modalWhatsappPrice').textContent = `₺${whatsappTotal.toLocaleString('tr-TR')},00`;
@@ -835,6 +868,71 @@ function continueWithTrendyol() {
     closeTrendyolModal();
 }
 
+// ===== ÇİÇEKSEPETİ MODAL SİSTEMİ =====
+// ÇiçekSepeti modalını aç
+function openCiceksepetiModal(pages) {
+    showCiceksepetiModal(pages);
+}
+
+// ÇiçekSepeti modalını göster
+function showCiceksepetiModal(pages = null) {
+    if (!pages) {
+        const pageSelect = document.getElementById('pageSelect');
+        pages = pageSelect ? pageSelect.value : '8';
+    }
+    
+    // Fiyatları hesapla
+    const pageSelect = document.getElementById('pageSelect');
+    const quantity = document.getElementById('quantity');
+    const selectedOption = pageSelect.options[pageSelect.selectedIndex];
+    const unitPrice = parseInt(selectedOption.getAttribute('data-price'));
+    const qty = parseInt(quantity.value);
+    const whatsappTotal = unitPrice * qty;
+    // 8 sayfa için 100 TL, 12 sayfa için 100 TL fark (8 sayfa: 300+100=400, 12 sayfa: 350+100=450)
+    const is8Pages = pages === '8';
+    const ciceksepetiTotal = whatsappTotal + 100;
+    
+    // Modal fiyatlarını güncelle
+    document.getElementById('modalWhatsappPriceCicek').textContent = `₺${whatsappTotal.toLocaleString('tr-TR')},00`;
+    document.getElementById('modalCiceksepetiPrice').textContent = `₺${ciceksepetiTotal.toLocaleString('tr-TR')},00`;
+    document.getElementById('whatsappBtnPriceCicek').textContent = `₺${whatsappTotal.toLocaleString('tr-TR')},00`;
+    document.getElementById('ciceksetepiBtnPrice').textContent = `₺${ciceksepetiTotal.toLocaleString('tr-TR')},00`;
+    
+    // Modalı göster
+    const modal = document.getElementById('ciceksepetiModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Seçilen sayfa sayısını sakla
+    modal.setAttribute('data-pages', pages);
+    
+    console.log(`🌸 ÇiçekSepeti modal açıldı - ${pages} sayfa için`);
+}
+
+// ÇiçekSepeti modalını kapat
+function closeCiceksepetiModal() {
+    const modal = document.getElementById('ciceksepetiModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    console.log(`❌ ÇiçekSepeti modal kapatıldı`);
+}
+
+// ÇiçekSepeti ile devam et
+function continueWithCiceksepeti() {
+    const modal = document.getElementById('ciceksepetiModal');
+    const pages = modal.getAttribute('data-pages');
+    const link = ciceksepetiLinks[pages];
+    
+    if (link) {
+        window.open(link, '_blank');
+        console.log(`🌸 ÇiçekSepeti ${pages} sayfa ürünü açıldı`);
+    } else {
+        console.error(`❌ ${pages} sayfa için ÇiçekSepeti linki bulunamadı`);
+    }
+    
+    closeCiceksepetiModal();
+}
+
 // Modal overlay'e tıklayınca kapat
 document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('trendyolModal');
@@ -849,6 +947,23 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeTrendyolModal();
+            }
+        });
+    }
+    
+    // ÇiçekSepeti Modal Event Listeners
+    const ciceksepetiModal = document.getElementById('ciceksepetiModal');
+    if (ciceksepetiModal) {
+        ciceksepetiModal.addEventListener('click', function(e) {
+            if (e.target === ciceksepetiModal || e.target.classList.contains('modal-overlay')) {
+                closeCiceksepetiModal();
+            }
+        });
+        
+        // ESC tuşu ile ÇiçekSepeti modal kapat
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && ciceksepetiModal.classList.contains('active')) {
+                closeCiceksepetiModal();
             }
         });
     }
@@ -868,7 +983,12 @@ function directWhatsAppOrder() {
 
 // Global fonksiyonları erişilebilir yap
 window.updateTrendyolLink = updateTrendyolLink;
+window.updateCiceksepetiLink = updateCiceksepetiLink;
 window.openTrendyolLink = openTrendyolLink;
+window.openCiceksepetiLink = openCiceksepetiLink;
+window.openCiceksepetiModal = openCiceksepetiModal;
+window.closeCiceksepetiModal = closeCiceksepetiModal;
+window.continueWithCiceksepeti = continueWithCiceksepeti;
 window.directWhatsAppOrder = directWhatsAppOrder;
 // ===== GLOBAL FUNCTIONS FOR HTML =====
 window.changeTestimonial = function(direction) {

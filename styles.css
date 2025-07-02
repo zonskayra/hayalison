@@ -8757,7 +8757,142 @@ a:focus-visible,
     .alternative-purchase {
         margin-top: 15px;
     }
+}
+
+/* ===== ÇİÇEKSEPETİ BUTTON STYLES ===== */
+.btn-ciceksepeti {
+    width: 100%;
+    padding: 16px 24px;
+    background: #52a13a;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(82, 161, 58, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 12px;
+    text-decoration: none;
+}
+
+.btn-ciceksepeti:hover {
+    background: #478f33;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(82, 161, 58, 0.4);
+}
+
+.btn-ciceksepeti:active {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+}
+
+.btn-ciceksepeti::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: var(--transition-base);
+}
+
+.btn-ciceksepeti:hover::before {
+    left: 100%;
+}
+
+.btn-ciceksepeti .ciceksepeti-logo {
+    height: 20px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.btn-ciceksepeti:hover i {
+    animation: flowerBounce 0.6s ease;
+}
+
+@keyframes flowerBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2) rotate(5deg); }
+}
+
+/* ÇiçekSepeti buton için özel çiçek efekti */
+.btn-ciceksepeti::after {
+    content: '🌸';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.btn-ciceksepeti:hover::after {
+    transform: translateY(-50%) rotate(360deg) scale(1.2);
+    opacity: 1;
+}
+
+/* Mobile responsive for ÇiçekSepeti button */
+@media (max-width: 768px) {
+    .btn-ciceksepeti {
+        padding: 14px 20px;
+        font-size: 15px;
+        margin-top: 10px;
+    }
     
+    .btn-ciceksepeti::after {
+        right: 12px;
+        font-size: 14px;
+    }
+}
+
+/* ===== ÇİÇEKSEPETİ MODAL STYLES ===== */
+.ciceksepeti-price {
+    background: rgba(82, 161, 58, 0.1);
+    color: #2d4a22;
+    border: 1px solid rgba(82, 161, 58, 0.3);
+    border-radius: 8px;
+}
+
+.ciceksepeti-price i {
+    color: white;
+}
+
+.modal-btn.ciceksepeti-btn {
+    background: linear-gradient(135deg, #52a13a, #478f33);
+    color: white;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.modal-btn.ciceksepeti-btn:hover {
+    background: linear-gradient(135deg, #478f33, #3d7829);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(82, 161, 58, 0.4);
+}
+
+.modal-btn.ciceksepeti-btn .ciceksepeti-logo-small {
+    height: 16px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+.ciceksepeti-price .ciceksepeti-logo-small {
+    height: 16px;
+    width: auto;
+    /* Logo orijinal renklerinde kalacak */
+}
+
+@media (max-width: 768px) {
     .divider-text {
         margin: 16px 0;
     }

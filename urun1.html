@@ -18,21 +18,21 @@
     <!-- OpenGraph / Facebook -->
     <meta property="og:type" content="product">
     <meta property="og:title" content="Kişiye Özel Boyama Kitabı | Fotoğraflardan Anılar - Hayali Çizgili">
-    <meta property="og:description" content="Sevdiklerinizin fotoğraflarından hazırlanan kişiye özel boyama kitabıyla özel anları ölümsüzleştirin. 250₺'den başlayan fiyatlarla.">
+    <meta property="og:description" content="Sevdiklerinizin fotoğraflarından hazırlanan kişiye özel boyama kitabıyla özel anları ölümsüzleştirin. 300₺'den başlayan fiyatlarla.">
     <meta property="og:url" content="https://hayalicizgili.com/urun1.html">
     <meta property="og:site_name" content="Hayali Çizgili">
     <meta property="og:image" content="https://hayalicizgili.com/images/boyama-kitabi-main.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Kişiye özel boyama kitabı örnekleri">
-    <meta property="product:price:amount" content="250.00">
+    <meta property="product:price:amount" content="300.00">
     <meta property="product:price:currency" content="TRY">
     <meta property="product:availability" content="in stock">
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kişiye Özel Boyama Kitabı - Hayali Çizgili">
-    <meta name="twitter:description" content="Fotoğraflarınızdan özel boyama kitabı yapıyoruz. 250₺'den başlayan fiyatlarla.">
+    <meta name="twitter:description" content="Fotoğraflarınızdan özel boyama kitabı yapıyoruz. 300₺'den başlayan fiyatlarla.">
     <meta name="twitter:image" content="https://hayalicizgili.com/images/boyama-kitabi-main.jpg">
     
     <!-- Product Schema.org Structured Data -->
@@ -60,7 +60,7 @@
         "@type": "Offer",
         "url": "https://hayalicizgili.com/urun1.html",
         "priceCurrency": "TRY",
-        "price": "250.00",
+        "price": "300.00",
         "priceValidUntil": "2025-12-31",
         "availability": "https://schema.org/InStock",
         "seller": {
@@ -107,12 +107,12 @@
     </script>
     
     <!-- Favicon Set -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/logo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/logo.png">
     <link rel="manifest" href="/manifest.json">
     
     <!-- Fonts -->
@@ -232,7 +232,7 @@
                     </div>
 
                     <div class="product-price">
-                        <span class="price-current">₺250,00</span>
+                        <span class="price-current">₺300,00</span>
                         <span class="price-text">'den başlayan fiyatlarla</span>
                     </div>
 
@@ -245,8 +245,8 @@
                 <div class="product-variants">
                     <div class="variant-group">
                         <label class="variant-label">Sayfa Sayısı:</label>
-                        <select class="variant-select" id="pageSelect" onchange="updatePrice(); updateTrendyolLink();">
-                            <option value="8" data-price="250">8 Sayfa - ₺250,00</option>
+                        <select class="variant-select" id="pageSelect" onchange="updatePrice(); updateTrendyolLink(); updateCiceksepetiLink();">
+                            <option value="8" data-price="300">8 Sayfa - ₺300,00</option>
                             <option value="12" data-price="350">12 Sayfa - ₺350,00</option>
                             <option value="16" data-price="400">16 Sayfa - ₺400,00</option>
                             <option value="20" data-price="450">20 Sayfa - ₺450,00</option>
@@ -268,7 +268,7 @@
                 <div class="purchase-section">
                     <div class="total-price">
                         <span class="total-label">Toplam:</span>
-                        <span class="total-amount" id="totalPrice">₺250,00</span>
+                        <span class="total-amount" id="totalPrice">₺300,00</span>
                     </div>
                     
                     <div class="action-buttons">
@@ -285,6 +285,12 @@
                             <button class="btn-trendyol" onclick="openTrendyolLink('8')">
                                 <i class="fas fa-store"></i>
                                 Trendyol'da Satın Al
+                            </button>
+                            
+                            <!-- Çiçeksepeti Satış Butonu -->
+                            <button class="btn-ciceksepeti" id="ciceksepetiBtn" onclick="openCiceksepetiModal()" style="display: none;">
+                                <img src="images/ciceksepetilogo.png" alt="ÇiçekSepeti Logo" class="ciceksepeti-logo">
+                                ÇiçekSepeti'nde Satın Al
                             </button>
                         </div>
                     </div>
@@ -488,12 +494,12 @@
                         <div class="price-option whatsapp-price">
                             <i class="fab fa-whatsapp"></i>
                             <span class="price-label">WhatsApp Fiyatı</span>
-                            <span class="price-value" id="modalWhatsappPrice">₺250,00</span>
+                            <span class="price-value" id="modalWhatsappPrice">₺300,00</span>
                         </div>
                         <div class="price-option trendyol-price">
                             <i class="fas fa-store"></i>
                             <span class="price-label">Trendyol Fiyatı</span>
-                            <span class="price-value" id="modalTrendyolPrice">₺280,00</span>
+                            <span class="price-value" id="modalTrendyolPrice">₺400,00</span>
                         </div>
                     </div>
                 </div>
@@ -505,12 +511,63 @@
                 <button class="modal-btn whatsapp-btn" onclick="continueWithWhatsApp()">
                     <i class="fab fa-whatsapp"></i>
                     WhatsApp'ta Al
-                    <span class="btn-price" id="whatsappBtnPrice">₺250,00</span>
+                    <span class="btn-price" id="whatsappBtnPrice">₺300,00</span>
                 </button>
                 <button class="modal-btn trendyol-btn" onclick="continueWithTrendyol()">
                     <i class="fas fa-store"></i>
                     Trendyol'dan Al
-                    <span class="btn-price" id="trendyolBtnPrice">₺280,00</span>
+                    <span class="btn-price" id="trendyolBtnPrice">₺400,00</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÇiçekSepeti Modal -->
+    <div class="trendyol-modal" id="ciceksepetiModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3>Sipariş Seçenekleri</h3>
+                <button class="modal-close" onclick="closeCiceksepetiModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="price-info">
+                    <div class="price-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p><strong>Önemli Bilgi:</strong> ÇiçekSepeti'nde komisyon sebebiyle fiyat farkı bulunmaktadır.</p>
+                    </div>
+                    <div class="price-comparison">
+                        <div class="price-option whatsapp-price">
+                            <i class="fab fa-whatsapp"></i>
+                            <span class="price-label">WhatsApp Fiyatı</span>
+                            <span class="price-value" id="modalWhatsappPriceCicek">₺300,00</span>
+                        </div>
+                        <div class="price-option ciceksepeti-price">
+                            <img src="images/ciceksepetilogo.png" alt="ÇiçekSepeti Logo" class="ciceksepeti-logo-small">
+                            <span class="price-label">ÇiçekSepeti Fiyatı</span>
+                            <span class="price-value" id="modalCiceksepetiPrice">₺400,00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-message">
+                    <p>Size uygun olan sipariş yöntemini seçin:</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn whatsapp-btn" onclick="continueWithWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp'ta Al
+                    <span class="btn-price" id="whatsappBtnPriceCicek">₺300,00</span>
+                </button>
+                <button class="modal-btn ciceksepeti-btn" onclick="continueWithCiceksepeti()">
+                    <img src="images/ciceksepetilogo.png" alt="ÇiçekSepeti Logo" class="ciceksepeti-logo-small">
+                    ÇiçekSepeti'nden Al
+                    <span class="btn-price" id="ciceksetepiBtnPrice">₺400,00</span>
                 </button>
             </div>
         </div>
@@ -793,6 +850,7 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updatePrice();
+            updateCiceksepetiLink(); // Çiçeksepeti butonunu başlangıçta ayarla
         });
 
         // Back to Top Button
