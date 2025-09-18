@@ -1876,6 +1876,7 @@ class ProductShowcaseCarousel {
         this.isDragging = false;
         this.minSwipeDistance = 50;
         this.isAnimating = false;
+        this.hasUserInteracted = false;
         
         // Performance optimizations
         this.useIntersectionObserver = 'IntersectionObserver' in window;
@@ -1934,14 +1935,32 @@ class ProductShowcaseCarousel {
     }
     
     setupEventListeners() {
-        // Enhanced Indicator click events with accessibility
+        // Enhanced Indicator click events with mobile optimization
         this.indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (this.isAnimating) return;
-                this.goToSlide(index);
-                this.resetAutoplay();
-            });
+            // Mobile-first approach: use touchend for better responsiveness
+            if (this.isMobile) {
+                indicator.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (this.isDragging || this.isAnimating) return;
+                    this.goToSlide(index);
+                    this.resetAutoplay();
+                }, { passive: false });
+                
+                // Prevent click event on mobile to avoid double firing
+                indicator.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }, { passive: false });
+            } else {
+                // Desktop click events
+                indicator.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (this.isAnimating) return;
+                    this.goToSlide(index);
+                    this.resetAutoplay();
+                });
+            }
             
             // Keyboard support for indicators
             indicator.addEventListener('keydown', (e) => {
@@ -2179,13 +2198,41 @@ class ProductShowcaseCarousel {
             item.classList.toggle('active', isActive);
             
             if (video && img) {
-                if (isActive && this.isMobile) {
-                    // Mobile'da aktif slide'da video'yu lazy load et
+                if (isActive) {
+                    // Aktif slide'da video'yu hazırla
                     if (video.preload !== 'metadata') {
                         video.preload = 'metadata';
                         video.load();
                     }
-                } else if (!isActive) {
+                    
+                    // Mobile'da user interaction sonrası video oynat
+                    if (this.isMobile && !this.hasUserInteracted) {
+                        // İlk user interaction'ı bekle
+                        const playVideo = () => {
+                            if (video.readyState >= 2) {
+                                video.play().catch(() => {
+                                    // Autoplay failed, video will remain as image
+                                });
+                            }
+                            document.removeEventListener('touchend', playVideo, { once: true });
+                        };
+                        document.addEventListener('touchend', playVideo, { once: true });
+                        this.hasUserInteracted = true;
+                    } else if (!this.isMobile) {
+                        // Desktop'da hover ile oynat
+                        item.addEventListener('mouseenter', () => {
+                            if (video.readyState >= 2) {
+                                video.play().catch(() => {
+                                    // Video play error - ignore
+                                });
+                            }
+                        });
+                        item.addEventListener('mouseleave', () => {
+                            video.pause();
+                            video.currentTime = 0;
+                        });
+                    }
+                } else {
                     // Aktif olmayan slide'larda video'yu durdur
                     video.pause();
                     video.currentTime = 0;
@@ -2196,10 +2243,10 @@ class ProductShowcaseCarousel {
         // Performance: lazy load adjacent images
         this.lazyLoadAdjacentImages(index);
         
-        // Reset animation flag after transition
+        // Reset animation flag after transition (reduced delay for better responsiveness)
         setTimeout(() => {
             this.isAnimating = false;
-        }, 600);
+        }, 300);
         
         // Analytics tracking
         this.trackSlideChange(index);
