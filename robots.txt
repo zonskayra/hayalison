@@ -13,9 +13,10 @@ Allow: /script.js
 # Sitemap location
 Sitemap: https://hayalicizgili.com/sitemap.xml
 
+# Crawl delay
+Crawl-delay: 1
+
 # Block unnecessary crawling
-Disallow: /sw.js
-Disallow: /manifest.json
 Disallow: /*?utm_*
 Disallow: /*?fbclid=*
 Disallow: /*?gclid=*

@@ -15,7 +15,7 @@ class DesktopInteractions {
     init() {
         if (!this.isDesktop) return;
         
-        console.log('🖱️ Desktop Interactions System başlatılıyor...');
+        
         
         // Core interaction systems
         this.setupAdvancedMouseEffects();
@@ -29,12 +29,12 @@ class DesktopInteractions {
         this.setupTooltipSystem();
         this.setupModalInteractions();
         
-        console.log('✅ Desktop Interactions System aktif');
+        
     }
 
     // ===== ADVANCED MOUSE EFFECTS =====
     setupAdvancedMouseEffects() {
-        console.log('🎨 Advanced mouse effects aktifleştiriliyor...');
+        
         
         // Magnetic cursor effects
         this.setupMagneticEffects();
@@ -209,7 +209,7 @@ class DesktopInteractions {
 
     // ===== KEYBOARD SHORTCUTS SYSTEM =====
     setupKeyboardShortcuts() {
-        console.log('⌨️ Keyboard shortcuts system aktifleştiriliyor...');
+        
         
         // Register default shortcuts
         this.registerShortcut('alt+h', () => window.location.href = '/');
@@ -324,7 +324,7 @@ class DesktopInteractions {
 
     // ===== FOCUS MANAGEMENT =====
     setupFocusManagement() {
-        console.log('🎯 Focus management system aktifleştiriliyor...');
+        
         
         // Focus trap for modals
         this.setupFocusTrap();
@@ -421,7 +421,7 @@ class DesktopInteractions {
 
     // ===== HOVER ANIMATIONS =====
     setupHoverAnimations() {
-        console.log('✨ Hover animations aktifleştiriliyor...');
+        
         
         // Card hover effects
         this.setupCardHoverEffects();
@@ -521,7 +521,7 @@ class DesktopInteractions {
 
     // ===== CLICK EFFECTS =====
     setupClickEffects() {
-        console.log('👆 Click effects aktifleştiriliyor...');
+        
         
         // Global click tracking
         document.addEventListener('click', (e) => {
@@ -628,7 +628,7 @@ class DesktopInteractions {
 
     openCommandPalette() {
         // Command palette implementation
-        console.log('🎮 Command palette açılıyor...');
+        
         // This would open a command palette interface
     }
 
@@ -641,7 +641,7 @@ class DesktopInteractions {
             timestamp: Date.now()
         };
         
-        console.log(`🖱️ Interaction: ${type}`, interactionData);
+        
         
         // Send to analytics
         if (typeof gtag !== 'undefined') {

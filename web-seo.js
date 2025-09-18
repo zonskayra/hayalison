@@ -13,7 +13,7 @@ class DesktopSEO {
     }
 
     init() {
-        console.log('🔍 Desktop SEO System başlatılıyor...');
+        
         
         // Core SEO optimizations
         this.setupStructuredData();
@@ -28,12 +28,12 @@ class DesktopSEO {
         this.setupRichSnippets();
         this.setupLocalSEO();
         
-        console.log('✅ Desktop SEO System aktif');
+        
     }
 
     // ===== STRUCTURED DATA (SCHEMA.ORG) =====
     setupStructuredData() {
-        console.log('📋 Structured data (Schema.org) oluşturuluyor...');
+        
         
         // Organization schema
         this.addOrganizationSchema();
@@ -315,7 +315,7 @@ class DesktopSEO {
 
     // ===== OPEN GRAPH OPTIMIZATION =====
     setupOpenGraphTags() {
-        console.log('📱 Open Graph tags optimize ediliyor...');
+        
         
         const ogTags = {
             'og:site_name': 'Hayali Çizgili',
@@ -349,7 +349,7 @@ class DesktopSEO {
 
     // ===== TWITTER CARDS =====
     setupTwitterCards() {
-        console.log('🐦 Twitter Cards optimize ediliyor...');
+        
         
         const twitterTags = {
             'twitter:card': 'summary_large_image',
@@ -377,7 +377,7 @@ class DesktopSEO {
 
     // ===== CANONICAL TAGS =====
     setupCanonicalTags() {
-        console.log('🔗 Canonical tags oluşturuluyor...');
+        
         
         // Remove existing canonical
         const existingCanonical = document.querySelector('link[rel="canonical"]');
@@ -411,7 +411,7 @@ class DesktopSEO {
 
     // ===== META OPTIMIZATION =====
     setupMetaOptimization() {
-        console.log('🏷️ Meta tags optimize ediliyor...');
+        
         
         const metaTags = {
             'description': this.generateMetaDescription(),
@@ -478,7 +478,7 @@ class DesktopSEO {
 
     // ===== CONTENT ANALYSIS =====
     setupContentAnalysis() {
-        console.log('📝 Content analysis yapılıyor...');
+        
         
         this.analyzeReadingTime();
         this.analyzeContentStructure();
@@ -517,7 +517,7 @@ class DesktopSEO {
             hasProperStructure: this.validateHeadingStructure(headings)
         };
         
-        console.log('📊 Content Structure Analysis:', structure);
+        
         
         // Add structured data for better SEO
         if (structure.hasProperStructure) {
@@ -587,7 +587,8 @@ class DesktopSEO {
             if (!img.alt) analysis.missingAlt++;
             if (!img.title) analysis.missingTitle++;
             if (img.naturalWidth > 1920) analysis.largeImages++;
-            if (!img.src.includes('.webp') && !img.src.includes('data:')) analysis.unoptimized++;
+            // WEBP CHECK DISABLED - Prevent false positives since we don't use WebP
+            // if (!img.src.includes('.webp') && !img.src.includes('data:')) analysis.unoptimized++;
             
             // Auto-fix missing alt attributes
             if (!img.alt && img.src) {
@@ -596,7 +597,7 @@ class DesktopSEO {
             }
         });
         
-        console.log('🖼️ Image Optimization Analysis:', analysis);
+        
     }
 
     analyzeInternalLinks() {
@@ -625,12 +626,12 @@ class DesktopSEO {
             if (link.rel.includes('nofollow')) analysis.noFollow++;
         });
         
-        console.log('🔗 Internal Links Analysis:', analysis);
+        
     }
 
     // ===== SOCIAL SHARING =====
     setupSocialSharing() {
-        console.log('📤 Social sharing optimization aktifleştiriliyor...');
+        
         
         this.addSocialShareButtons();
         this.trackSocialShares();
@@ -712,7 +713,7 @@ class DesktopSEO {
             timestamp: Date.now()
         };
         
-        console.log(`📤 Social Share: ${platform}`, shareData);
+        
         
         // Send to analytics
         if (typeof gtag !== 'undefined') {
@@ -735,7 +736,7 @@ class DesktopSEO {
 
     // ===== SITEMAP GENERATION =====
     setupSitemapGeneration() {
-        console.log('🗺️ Sitemap optimization aktifleştiriliyor...');
+        
         
         this.generateDynamicSitemap();
         this.addSitemapReference();
@@ -779,7 +780,7 @@ class DesktopSEO {
     addSitemapReference() {
         // Add sitemap reference to robots.txt (conceptually)
         const sitemapUrl = `${window.location.origin}/sitemap.xml`;
-        console.log(`🤖 Sitemap URL: ${sitemapUrl}`);
+        
     }
 
     // ===== UTILITY METHODS =====
@@ -909,7 +910,7 @@ class DesktopSEO {
             suggestions.push('Yapılandırılmış veri eksik');
         }
         
-        console.log('💡 SEO Önerileri:', suggestions);
+        
         return suggestions;
     }
 

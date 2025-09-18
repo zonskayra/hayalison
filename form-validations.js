@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return window.formValidator.validateForm(form);
     };
     
-    console.log('✅ Form Validation System initialized');
+    
 });
 
 // Export for module usage

@@ -17,7 +17,7 @@ class DeviceManager {
     }
     
     init() {
-        console.log('🚀 Device Manager başlatılıyor...');
+        
         
         // Detect device type
         this.detectDevice();
@@ -37,7 +37,7 @@ class DeviceManager {
         // Setup event listeners
         this.setupEventListeners();
         
-        console.log(`✅ Cihaz Algılandı: ${this.getDeviceType()}`);
+        
     }
     
     /**
@@ -130,12 +130,12 @@ class DeviceManager {
         link.id = 'mobile-styles';
         
         link.onload = () => {
-            console.log('📱 Mobil stiller yüklendi');
+            
             this.onStylesLoaded();
         };
         
         link.onerror = () => {
-            console.error('❌ Mobil stiller yüklenemedi');
+            
             this.loadFallbackStyles();
         };
         
@@ -156,13 +156,13 @@ class DeviceManager {
         link.id = 'web-styles';
         
         link.onload = () => {
-            console.log('🖥️ Web stiller yüklendi');
+            
             this.loadWebOptimizations();
             this.onStylesLoaded();
         };
         
         link.onerror = () => {
-            console.error('❌ Web stiller yüklenemedi');
+            
             this.loadFallbackStyles();
         };
         
@@ -181,7 +181,7 @@ class DeviceManager {
         criticalLink.media = 'all';
         
         criticalLink.onload = () => {
-            console.log('⚡ Web critical CSS yüklendi');
+            
         };
         
         document.head.appendChild(criticalLink);
@@ -193,7 +193,7 @@ class DeviceManager {
     loadWebOptimizations() {
         if (this.webOptimizationsLoaded) return;
         
-        console.log('🚀 Web optimizasyonları yükleniyor...');
+        
         
         // Load JavaScript optimizations
         this.loadWebPerformanceJS();
@@ -202,7 +202,7 @@ class DeviceManager {
         this.loadWebAnalyticsJS();
         
         this.webOptimizationsLoaded = true;
-        console.log('✅ Tüm web optimizasyonları yüklendi');
+        
     }
     
     /**
@@ -213,7 +213,7 @@ class DeviceManager {
         script.src = 'web-performance.js';
         script.type = 'text/javascript';
         script.async = true;
-        script.onload = () => console.log('⚡ Web Performance JS yüklendi');
+        script.onload = () => 
         document.head.appendChild(script);
     }
     
@@ -225,7 +225,7 @@ class DeviceManager {
         script.src = 'web-interactions.js';
         script.type = 'text/javascript';
         script.async = true;
-        script.onload = () => console.log('🖱️ Web Interactions JS yüklendi');
+        script.onload = () => 
         document.head.appendChild(script);
     }
     
@@ -237,7 +237,7 @@ class DeviceManager {
         script.src = 'web-seo.js';
         script.type = 'text/javascript';
         script.async = true;
-        script.onload = () => console.log('🔍 Web SEO JS yüklendi');
+        script.onload = () => 
         document.head.appendChild(script);
     }
     
@@ -249,7 +249,7 @@ class DeviceManager {
         script.src = 'web-analytics.js';
         script.type = 'text/javascript';
         script.async = true;
-        script.onload = () => console.log('📊 Web Analytics JS yüklendi');
+        script.onload = () => 
         document.head.appendChild(script);
     }
     
@@ -262,7 +262,7 @@ class DeviceManager {
         link.href = 'styles.css';
         link.id = 'fallback-styles';
         document.head.appendChild(link);
-        console.log('🔄 Fallback stiller yüklendi');
+        
         this.onStylesLoaded();
     }
     
@@ -270,7 +270,7 @@ class DeviceManager {
      * DOM içeriğini ayarla
      */
     setupContent() {
-        console.log('📝 İçerik ayarlanıyor...');
+        
         
         // Show/hide appropriate content based on device
         if (this.isMobile || this.isTablet) {
@@ -293,7 +293,7 @@ class DeviceManager {
             this.initializeIOSFixes();
         }
         
-        console.log('✅ İçerik ayarlandı');
+        
     }
     
     /**
@@ -318,7 +318,7 @@ class DeviceManager {
         setTimeout(() => {
             this.screenWidth = window.innerWidth;
             this.screenHeight = window.innerHeight;
-            console.log('🔄 Orientasyon değişti');
+            
             
             // Re-detect if needed
             this.detectDevice();
@@ -339,7 +339,7 @@ class DeviceManager {
         const newType = this.getDeviceType();
         
         if (oldType !== newType) {
-            console.log(`🔄 Cihaz türü değişti: ${oldType} → ${newType}`);
+            
             this.loadStyles();
             this.setupContent();
         }
@@ -357,7 +357,7 @@ class DeviceManager {
         if (this.isTablet) document.body.classList.add('tablet');
         if (this.isDesktop) document.body.classList.add('desktop');
         
-        console.log('🎨 Stiller ve cihaz sınıfları uygulandı');
+        
     }
     
     /**
@@ -372,7 +372,7 @@ class DeviceManager {
         const mobileElements = document.querySelectorAll('.mobile-only');
         mobileElements.forEach(el => el.style.display = 'block');
         
-        console.log('📱 Mobil içerik gösteriliyor');
+        
     }
     
     /**
@@ -387,7 +387,7 @@ class DeviceManager {
         const desktopElements = document.querySelectorAll('.desktop-only, .web-only');
         desktopElements.forEach(el => el.style.display = 'block');
         
-        console.log('🖥️ Web içerik gösteriliyor');
+        
     }
     
     /**
@@ -472,31 +472,31 @@ class DeviceManager {
             }
         }, { passive: true });
         
-        console.log('👆 Touch gestures aktif');
+        
     }
     
     /**
      * Swipe handlers
      */
     handleSwipeLeft() {
-        console.log('👈 Sol swipe algılandı');
+        
         // Navigate to next page/section
         this.navigateNext();
     }
     
     handleSwipeRight() {
-        console.log('👉 Sağ swipe algılandı');
+        
         // Navigate to previous page/section
         this.navigatePrevious();
     }
     
     handleSwipeUp() {
-        console.log('👆 Yukarı swipe algılandı');
+        
         // Scroll to top or close modal
     }
     
     handleSwipeDown() {
-        console.log('👇 Aşağı swipe algılandı');
+        
         // Refresh or show menu
     }
     
@@ -512,7 +512,7 @@ class DeviceManager {
             });
         });
         
-        console.log('🖼️ Gallery navigation aktif');
+        
     }
     
     /**
@@ -532,7 +532,7 @@ class DeviceManager {
         // iOS scroll fix
         document.body.style.webkitOverflowScrolling = 'touch';
         
-        console.log('🍎 iOS optimizasyonları aktif');
+        
     }
     
     /**
@@ -550,17 +550,17 @@ class DeviceManager {
     
     openImageModal(img) {
         // Simple modal implementation
-        console.log('🖼️ Image modal:', img.src);
+        
     }
     
     navigateNext() {
         // Navigate to next section
-        console.log('➡️ Next navigation');
+        
     }
     
     navigatePrevious() {
         // Navigate to previous section  
-        console.log('⬅️ Previous navigation');
+        
     }
     
     debounce(func, wait) {
@@ -582,4 +582,3 @@ const deviceManager = new DeviceManager();
 // Global access
 window.deviceManager = deviceManager;
 
-console.log('🌟 Device Manager tamamen yüklendi ve hazır!');

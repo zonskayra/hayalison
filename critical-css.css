@@ -4,8 +4,8 @@
 
 /* CSS Variables - Critical */
 :root {
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
+    --primary: #334155;
+    --primary-dark: #1e293b;
     --text-primary: #111827;
     --text-secondary: #6b7280;
     --bg-white: #ffffff;
@@ -82,7 +82,9 @@ body {
 .hamburger-line {
     width: 24px;
     height: 3px;
-    background: var(--text-primary);
+    background: #1e293b;
+    display: block;
+    transition: all 0.3s ease;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
@@ -92,8 +94,8 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    color: white;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #1e293b;
     padding-top: 70px;
 }
 
@@ -132,8 +134,15 @@ body {
 }
 
 .btn-primary {
-    background: white;
-    color: var(--primary);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
 }
 
 .btn-outline {
@@ -145,7 +154,43 @@ body {
 /* Mobile Styles - Critical */
 @media (max-width: 768px) {
     .nav-toggle {
-        display: flex;
+        display: flex !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 2px solid rgba(30, 41, 59, 0.2) !important;
+        border-radius: 8px !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 48px !important;
+        height: 48px !important;
+        padding: 10px !important;
+        z-index: 10003 !important;
+        position: relative !important;
+        cursor: pointer !important;
+        gap: 4px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .nav-toggle:hover,
+    .nav-toggle:focus {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: var(--primary) !important;
+        transform: scale(1.05) !important;
+    }
+    
+    .hamburger-line {
+        display: block !important;
+        width: 28px !important;
+        height: 3px !important;
+        background: #1e293b !important;
+        border-radius: 2px !important;
+        transition: all 0.3s ease !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
     }
     
     .nav {

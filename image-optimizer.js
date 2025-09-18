@@ -4,7 +4,7 @@
 
 class ImageOptimizer {
     constructor() {
-        this.webpSupported = this.checkWebPSupport();
+        this.webpSupported = false; // DISABLED - Prevent console errors
         this.lazyLoadObserver = null;
         this.init();
     }
@@ -13,12 +13,12 @@ class ImageOptimizer {
      * Initialize image optimization
      */
     init() {
-        console.log('🖼️ Image optimizer başlatılıyor...');
+        
         
         // Check WebP support
         this.checkWebPSupport().then(supported => {
             this.webpSupported = supported;
-            console.log(`📸 WebP desteği: ${supported ? 'VAR' : 'YOK'}`);
+            
         });
         
         // Initialize lazy loading
@@ -30,7 +30,7 @@ class ImageOptimizer {
         // Setup responsive images
         this.setupResponsiveImages();
         
-        console.log('✅ Image optimization sistemi aktif');
+        
     }
     
     /**
@@ -71,7 +71,7 @@ class ImageOptimizer {
             this.loadAllImages();
         }
         
-        console.log('🔍 Lazy loading sistem aktif');
+        
     }
     
     /**
@@ -105,7 +105,7 @@ class ImageOptimizer {
         }
         
         element.classList.add('loaded');
-        console.log('📸 Image yüklendi:', element.src || element.dataset.src);
+        
     }
     
     /**
@@ -150,7 +150,7 @@ class ImageOptimizer {
             img.style.display = 'none';
         }
         
-        console.warn('❌ Image yüklenemedi:', img.src);
+        
     }
     
     /**
@@ -224,12 +224,8 @@ class ImageOptimizer {
     generateWebPSrcset(src) {
         const baseName = src.substring(0, src.lastIndexOf('.'));
         
-        return [
-            `${baseName}-400w.webp 400w`,
-            `${baseName}-800w.webp 800w`,
-            `${baseName}-1200w.webp 1200w`,
-            `${baseName}.webp 1600w`
-        ].join(', ');
+        // WEBP DISABLED - Return empty to prevent 404 errors
+        return '';
     }
     
     /**
@@ -273,7 +269,7 @@ class ImageOptimizer {
             document.head.appendChild(link);
         });
         
-        console.log('⚡ Critical images preloaded');
+        
     }
     
     /**

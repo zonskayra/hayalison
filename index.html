@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sevdikleriniz için unutulmaz, kişiye özel hediyeler! Fotoğraflarınızdan özel boyama kitapları ve şarkılar yaratıyoruz. Çocuklar, aile ve arkadaşlar için doğum günü, yıldönümü ve tüm özel günlere uygun.">
-    <meta name="keywords" content="kişiye özel hediye, fotoğraftan hediye, boyama kitabı, özel şarkı, doğum günü hediyesi, yıldönümü hediyesi, çocuk hediyesi, aile hediyesi">
-    <title>Hayali Çizgili - Kişiye Özel Hediyeler | Fotoğraflarınızdan Anılar Yaratın</title>
+    <meta name="description" content="Fotoğraflarınızdan profesyonel boyama kitabı ve masal kitabı yaptırın! ⭐ 2-3 gün teslimat ⭐ WhatsApp siparişi ⭐ %100 memnuniyet garantisi">
+    <meta name="keywords" content="kişiye özel hediye, fotoğraftan hediye, boyama kitabı, özel şarkı, doğum günü hediyesi, yıldönümü hediyesi, çocuk hediyesi, aile hediyesi, fotoğraftan boyama kitabı, çocuk fotoğrafı boyama kitabı, kişiselleştirilmiş çocuk kitabı, custom boyama sayfası">
+    <title>Fotoğraftan Boyama Kitabı & Masal Kitabı | Kişiye Özel Çizim Hizmeti 2024</title>
     
     <!-- SEO Meta Tags -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -36,7 +36,7 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Kişiye özel boyama kitabı ve hediye örnekleri">
     <meta property="og:locale" content="tr_TR">
-    <meta property="fb:app_id" content=""> <!-- Facebook App ID eklenecek -->
+   <!-- fb:app_id meta removed until a valid app id is provided -->
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
@@ -69,6 +69,66 @@
     }
     </script>
     
+    <!-- WebSite + SearchAction Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Hayali Çizgili",
+      "url": "https://hayalicizgili.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://hayalicizgili.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <!-- Products Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Product",
+          "name": "Kişiye Özel Anı Boyama Kitabı",
+          "description": "Değerli anılarınızdan özel çizimler. Kişiye özel anı boyama kitabı.",
+          "image": "https://hayalicizgili.com/images/boyama-kitabi.jpg",
+          "brand": { "@type": "Brand", "name": "Hayali Çizgili" },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "24"
+          },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "TRY",
+            "price": "250.00",
+            "availability": "https://schema.org/InStock",
+            "url": "https://hayalicizgili.com/urun1.html"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Kişiye Özel Masal Kitabı",
+          "description": "Çocuğunuza özel yazılan masallar. Kelimeleri gönder, masalını yazmaya başlarım!",
+          "image": "https://hayalicizgili.com/images/kaynak/1.jpg",
+          "brand": { "@type": "Brand", "name": "Hayali Çizgili" },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "12"
+          },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "TRY",
+            "price": "550.00",
+            "availability": "https://schema.org/InStock",
+            "url": "https://hayalicizgili.com/urun2.html"
+          }
+        }
+      ]
+    }
+    </script>
     <!-- Favicon Set -->
     <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
@@ -89,27 +149,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.google-analytics.com">
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="analytics-config.js" as="script">
+    <!-- CRITICAL RESOURCE PRELOADS - ERROR-FREE VERSION -->
     <link rel="preload" href="script.js" as="script">
-    <link rel="preload" href="images/boyama-kitabi-main.jpg" as="image">
-
+    <link rel="preload" href="optimize-images.js" as="script">
+    <!-- Image preloading handled by JavaScript to prevent 404 errors -->
+    
+    <!-- Font optimization - swap for better FCP -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CRITICAL CSS - INLINE FOR FASTEST FCP -->
+    <style>
+        /* ===== CRITICAL CSS - ABOVE THE FOLD OPTIMIZATION ===== */
+        :root{--primary-color:#6366f1;--primary-dark:#4f46e5;--secondary-color:#ec4899;--dark:#1e293b;--white:#ffffff;--font-family:'Poppins',sans-serif;--gradient-primary:linear-gradient(135deg,#6366f1 0%,#8b5cf6 50%,#ec4899 100%)}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}body{font-family:var(--font-family);font-size:1rem;line-height:1.6;color:var(--dark);background-color:var(--white);overflow-x:hidden}
+        .header{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);z-index:1000;transition:all 0.3s ease;border-bottom:1px solid rgba(99,102,241,0.1)}.header .container{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;max-width:1200px;margin:0 auto}.nav-brand .logo{font-size:1.5rem;font-weight:700;color:var(--primary-color);text-decoration:none}.logo-image{height:40px;width:auto}.nav{display:flex}.nav-list{display:flex;list-style:none;gap:2rem}.nav-link{text-decoration:none;color:var(--dark);font-weight:500;transition:color 0.3s ease}.nav-link:hover{color:var(--primary-color)}.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:0.5rem;z-index:1001}.hamburger-line{display:block;width:25px;height:3px;background-color:var(--dark);margin:5px 0;transition:0.3s}
+        .hero{min-height:100vh;display:flex;align-items:center;position:relative;background:var(--gradient-primary);overflow:hidden;padding:2rem 0}.hero-background{position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.1}.container{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:2}.hero-content{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem}.hero-text{color:var(--white)}.hero-text h1{font-size:3.5rem;font-weight:700;margin-bottom:1.5rem;line-height:1.2}.hero-text p{font-size:1.25rem;margin-bottom:2rem;opacity:0.9}.hero-video{max-width:100%;border-radius:1rem;box-shadow:0 20px 40px rgba(0,0,0,0.3)}
+        .btn{display:inline-block;padding:1rem 2rem;border-radius:0.5rem;text-decoration:none;font-weight:600;transition:all 0.3s ease;border:none;cursor:pointer}.btn-primary{background:var(--white);color:var(--primary-color)}.btn-primary:hover{background:rgba(255,255,255,0.9);transform:translateY(-2px)}.cta-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+        @media (max-width:768px){.header .container{padding:1rem}.nav{position:fixed;top:0;right:-100%;height:100vh;width:300px;background:var(--white);display:flex;flex-direction:column;justify-content:center;transition:right 0.3s ease;z-index:999}.nav.active{right:0}.nav-list{flex-direction:column;text-align:center;gap:2rem}.nav-toggle{display:flex!important;flex-direction:column;justify-content:space-around;width:44px;height:44px;background:transparent!important;border:none!important;padding:8px;z-index:10001;position:relative;cursor:pointer}.hamburger-line{display:block!important;width:24px!important;height:3px!important;background:#1e293b!important;margin:4px 0;border-radius:2px;transition:all 0.3s ease}.hero{padding:1rem 0}.hero-content{grid-template-columns:1fr;text-align:center;gap:2rem}.hero-text h1{font-size:2.5rem}}
+        .typewriter{border-right:2px solid var(--white);animation:blink 1s infinite}@keyframes blink{0%,50%{border-color:var(--white)}51%,100%{border-color:transparent}}
+        .video-container{position:relative}.video-overlay{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);border-radius:1rem;cursor:pointer;transition:opacity 0.3s ease}.play-button{width:80px;height:80px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--primary-color);transition:transform 0.3s ease}.play-button:hover{transform:scale(1.1)}
+    </style>
+    
+    <!-- NON-CRITICAL CSS - LOAD ASYNCHRONOUSLY -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
+    <link rel="preload" href="mobile-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="screen and (max-width: 768px)">
+    <noscript><link rel="stylesheet" href="mobile-styles.css" media="screen and (max-width: 768px)"></noscript>
+    
+    <!-- DEFER FONTAWESOME - NON-CRITICAL -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous"></noscript>
+    
     <!-- Prefetch next likely pages -->
     <link rel="prefetch" href="urun1.html">
     <link rel="prefetch" href="urun2.html">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="mobile-styles.css" media="screen and (max-width: 768px)">
-    <link rel="stylesheet" href="android-mobile-fix.css" media="screen and (max-width: 768px)">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png">
@@ -124,15 +197,15 @@
                     <i class="fas fa-pencil-alt" style="display: none;"></i>
                 </h2>
             </div>
-            <nav class="nav" id="nav" role="navigation" aria-label="Ana navigasyon" aria-hidden="true">
+            <nav class="nav" id="nav" aria-label="Ana navigasyon" aria-hidden="true">
                 <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
                 <div class="nav-content">
-                    <ul class="nav-list" role="menubar">
-                        <li role="none"><a href="#home" class="nav-link" role="menuitem" tabindex="-1">Ana Sayfa</a></li>
-                        <li role="none"><a href="#featured-products" class="nav-link" role="menuitem" tabindex="-1">Ürünler</a></li>
-                        <li role="none"><a href="#features" class="nav-link" role="menuitem" tabindex="-1">Özellikler</a></li>
-                        <li role="none"><a href="#process" class="nav-link" role="menuitem" tabindex="-1">Süreç</a></li>
-                        <li role="none"><a href="#contact" class="nav-link" role="menuitem" tabindex="-1">İletişim</a></li>
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
+                        <li><a href="#featured-products" class="nav-link">Ürünler</a></li>
+                        <li><a href="#features" class="nav-link">Özellikler</a></li>
+                        <li><a href="#process" class="nav-link">Süreç</a></li>
+                        <li><a href="#contact" class="nav-link">İletişim</a></li>
                     </ul>
                 </div>
             </nav>
@@ -202,30 +275,26 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <div class="video-card">
-                        <div class="video-container">
-                            <video
-                                id="hero-video"
-                                width="100%"
-                                height="100%"
-                                poster="images/boyama-kitabi-main.jpg"
-                                preload="auto"
-                                autoplay
-                                muted
-                                loop
-                                playsinline
-                                onclick="toggleVideo()"
-                                style="cursor: pointer;">
-                                <source src="images/video.webm" type="video/webm">
-                                <p>Tarayıcınız video oynatmayı desteklemiyor.
-                                   <a href="images/video.webm">Videoyu indir</a>
-                                </p>
-                            </video>
-                            <div class="video-overlay" id="video-overlay">
-                                <div class="play-button" onclick="toggleVideo()">
-                                    <i class="fas fa-play" id="play-icon"></i>
-                                </div>
-                            </div>
+                    <div class="showcase-item active">
+                        <img src="images/boyama-kitabi-main.jpg" alt="Anılarınızı Sanata Dönüştürün" loading="lazy">
+                        <video
+                            id="hero-video"
+                            src="images/video.mp4"
+                            muted
+                            loop
+                            preload="metadata"
+                            autoplay
+                            playsinline
+                            onclick="toggleVideo()"
+                            style="cursor: pointer;">
+                        </video>
+                        <div class="showcase-overlay">
+                            <h4>Anılarınızı Sanata Dönüştürün</h4>
+                            <p>Fotoğraflardan özel boyama kitapları</p>
+                        </div>
+                        <div class="video-overlay" id="video-overlay" style="display: none;">
+                            <div class="play-button" role="button" tabindex="0" aria-label="Videoyu oynat veya duraklat" onclick="toggleVideo()">
+                                <i class="fas fa-play" id="play-icon"></i>
                             </div>
                         </div>
                     </div>
@@ -241,7 +310,7 @@
             <div class="featured-character featured-character-left">
                 <img src="character-images/1.png" alt="Left Character" class="character-image">
                 <div class="character-text">
-                    <span class="typewriter" id="typewriter-web1">Çocuğ hediye mi almak istiyorsunuz?</span>
+                    <span class="typewriter" id="typewriter-web1">Çocuğunuza hediye mi almak istiyorsunuz?</span>
                 </div>
             </div>
             
@@ -305,7 +374,7 @@
                             <div class="price-section">
                                 <div class="main-price">
                                     <span class="currency-symbol">₺</span>
-                                    <span class="price-value">300</span>
+                                    <span class="price-value">450</span>
                                 </div>
                                 <div class="price-qualifier">
                                     <span class="starting-from">den başlayan</span>
@@ -353,46 +422,44 @@
                     <div class="product-mini-character mobile-only">
                         <img src="character-images/3.png" alt="Character" class="mini-character-image">
                         <div class="character-speech-bubble">
-                            <span class="typewriter" id="typewriter1">hediye mi almak istiyorsun?</span>
+                            <span class="typewriter" id="typewriter1">Hediye mi almak istiyorsunuz?</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="luxury-product-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="luxury-product-card" data-aos="fade-up" data-aos-delay="100" style="opacity: 1; transform: translateY(0px) scale(1); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
                     <!-- Product Image Section -->
                     <div class="luxury-image-container">
-                        <div class="luxury-badge">İndirim</div>
-                        <img src="images/sarki-kitabi.jpg" alt="Kişiye Özel Şarkı" class="luxury-product-image" loading="lazy">
+                        <div class="luxury-badge">Yeni</div>
+                        <img src="images/kaynak/1.jpg" alt="Kişiye Özel Masal Kitabı" class="luxury-product-image" loading="lazy">
                     </div>
                     
                     <!-- Product Content Section -->
                     <div class="luxury-content">
                         <!-- Title & Subtitle -->
                         <div class="luxury-header">
-                            <h3 class="luxury-title">Size Özel Melodiler</h3>
-                            <p class="luxury-subtitle">Hikayenizi anlatan kişisel şarkılar</p>
+                            <h3 class="luxury-title">Kişiye Özel Masal Kitabı</h3>
+                            <p class="luxury-subtitle">Çocuğunuza özel yazılan masallar</p>
                         </div>
                         
                         <!-- Premium Features -->
                         <div class="luxury-features">
                             <div class="luxury-feature premium-music">
                                 <div class="product-feature-icon">
-                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <polygon points="10,8 16,12 10,16 10,8"/>
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 10px !important; height: 10px !important; min-width: 10px !important; max-width: 10px !important; min-height: 10px !important; max-height: 10px !important;">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                     </svg>
                                 </div>
-                                <span>2 Farklı Tarz</span>
+                                <span>Ücretsiz Kapak Tasarımı</span>
                             </div>
                             <div class="luxury-feature premium-digital">
                                 <div class="product-feature-icon">
-                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 18V5l12-2v13"/>
-                                        <circle cx="6" cy="18" r="3"/>
-                                        <circle cx="18" cy="16" r="3"/>
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 10px !important; height: 10px !important; min-width: 10px !important; max-width: 10px !important; min-height: 10px !important; max-height: 10px !important;">
+                                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
                                     </svg>
                                 </div>
-                                <span>Dijital Teslimat</span>
+                                <span>Ücretsiz Kargo</span>
                             </div>
                         </div>
                         
@@ -401,11 +468,11 @@
                             <div class="price-section">
                                 <div class="main-price">
                                     <span class="currency-symbol">₺</span>
-                                    <span class="price-value">450</span>
+                                    <span class="price-value">550</span>
                                 </div>
                                 <div class="price-qualifier">
-                                    <span class="starting-from">özel fiyat</span>
-                                    <span class="price-description">2 şarkı ile birlikte</span>
+                                    <span class="starting-from">başlangıç fiyatı</span>
+                                    <span class="price-description">8 sayfa ile başlar</span>
                                 </div>
                             </div>
                         </div>
@@ -419,37 +486,37 @@
                                 <span class="star active">★</span>
                                 <span class="star active">★</span>
                             </div>
-                            <span class="rating-count">18 değerlendirme</span>
+                            <span class="rating-count">12 değerlendirme</span>
                         </div>
                         
                         <!-- Delivery Info -->
                         <div class="luxury-delivery">
                             <div class="product-delivery-icon">
                                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12,6 12,12 16,14"/>
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12,6 12,12 16,14"></polyline>
                                 </svg>
                             </div>
-                            <span>7-10 günde hazır</span>
+                            <span>2-3 günde hazır</span>
                         </div>
                         
                         <!-- CTA Button -->
-                        <button class="luxury-cta" onclick="window.location.href='urun2.html'">
+                        <button class="luxury-cta" onclick="window.location.href='urun2.html'" aria-label="Seçenekleri Görüntüle">
                             <span>Seçenekleri Görüntüle</span>
                             <div class="cta-arrow">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14"/>
-                                    <path d="M12 5l7 7-7 7"/>
+                                    <path d="M5 12h14"></path>
+                                    <path d="M12 5l7 7-7 7"></path>
                                 </svg>
                             </div>
                         </button>
                     </div>
                     
-                    <!-- Mobil Mini Karakter - Şarkı -->
+                    <!-- Mobil Mini Karakter - Masal Kitabı -->
                     <div class="product-mini-character mobile-only">
                         <img src="character-images/4.png" alt="Character" class="mini-character-image">
                         <div class="character-speech-bubble">
-                            <span class="typewriter" id="typewriter2">özel şarkı mı istiyorsunuz?</span>
+                            <span class="typewriter" id="typewriter2">kişiye özel masal kitabı mı istiyorsunuz?</span>
                         </div>
                     </div>
                 </div>
@@ -470,7 +537,7 @@
                             </div>
                             <div class="feature-content">
                                 <h4>Özgün Sanatsal Dokunuş</h4>
-                                <p>Her bir fotoğraf, profesyonel sanatçılarımız tarafından özenle, elle çizilerek eşsiz bir sanat eserine dönüştürülür.</p>
+                                <p>Profesyonel sanatçılarımız her fotoğrafı elle çizer.</p>
                             </div>
                         </div>
                         <div class="feature-item" data-aos="slide-right" data-aos-delay="200">
@@ -479,7 +546,7 @@
                             </div>
                             <div class="feature-content">
                                 <h4>Hızlı ve Özenli Teslimat</h4>
-                                <p>Siparişiniz 3-5 iş günü içinde hazırlanır ve özel paketinde, güvenle kapınıza kadar ulaştırılır.</p>
+                                <p>3-5 iş günü içinde güvenle kapınıza ulaşır.</p>
                             </div>
                         </div>
                         <div class="feature-item" data-aos="slide-right" data-aos-delay="300">
@@ -488,7 +555,7 @@
                             </div>
                             <div class="feature-content">
                                 <h4>Anlamlı Hediye Deneyimi</h4>
-                                <p>Her boyama kitabı, yanında boya kalemleriyle birlikte gelir, böylece hediye paketiniz tamamlanmış olur.</p>
+                                <p>Boya kalemleri hediye pakete dahildir.</p>
                             </div>
                         </div>
                         <div class="feature-item" data-aos="slide-right" data-aos-delay="400">
@@ -497,22 +564,52 @@
                             </div>
                             <div class="feature-content">
                                 <h4>Tüm Özel Anlar İçin</h4>
-                                <p>Doğum günlerinden yıldönümlerine, çocuklarınızın en güzel anlarından aile portrelerine kadar her duruma uygun tasarımlar.</p>
+                                <p>Tüm aile birlikte keyifli vakit geçirir.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="features-visual">
                     <div class="visual-card">
-                        <div class="floating-elements">
-                            <div class="floating-icon">
-                                <i class="fas fa-gift"></i>
+                        <div class="product-showcase-carousel" role="region" aria-label="Ürün Vitrinini Gör" tabindex="0">
+                            <div class="carousel-track" aria-live="polite" aria-atomic="true">
+                                <div class="showcase-item active" role="group" aria-roledescription="slide" aria-label="1 / 3">
+                                    <img src="images/kaynak/1.jpg" alt="Kişiye Özel Boyama Kitabı Örneği" loading="lazy" decoding="async">
+                                    <video src="images/kaynak/1.mp4" muted loop preload="none" playsinline aria-hidden="true"></video>
+                                    <div class="showcase-overlay">
+                                        <h4>Kişiye Özel Boyama</h4>
+                                        <p>Anılarınızdan sanat eseri</p>
+                                    </div>
+                                </div>
+                                <div class="showcase-item" role="group" aria-roledescription="slide" aria-label="2 / 3">
+                                    <img src="images/kaynak/2.jpg" alt="Masal Kitabı Örneği" loading="lazy" decoding="async">
+                                    <video src="images/kaynak/2.mp4" muted loop preload="none" playsinline aria-hidden="true"></video>
+                                    <div class="showcase-overlay">
+                                        <h4>Masal Kitapları</h4>
+                                        <p>Çocuklara özel hikayeler</p>
+                                    </div>
+                                </div>
+                                <div class="showcase-item" role="group" aria-roledescription="slide" aria-label="3 / 3">
+                                    <img src="images/kaynak/3.jpg" alt="Hediye Paketi Örneği" loading="lazy" decoding="async">
+                                    <video src="images/kaynak/3.mp4" muted loop preload="none" playsinline aria-hidden="true"></video>
+                                    <div class="showcase-overlay">
+                                        <h4>Hediye Paketleri</h4>
+                                        <p>Özel kutularda teslimat</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="floating-icon">
-                                <i class="fas fa-heart"></i>
+                            <div class="carousel-indicators" role="tablist" aria-label="Ürün Seçimi">
+                                <button class="indicator active" role="tab" aria-label="Ürün 1: Kişiye Özel Boyama" aria-selected="true" aria-controls="slide-1" tabindex="0"></button>
+                                <button class="indicator" role="tab" aria-label="Ürün 2: Masal Kitapları" aria-selected="false" aria-controls="slide-2" tabindex="-1"></button>
+                                <button class="indicator" role="tab" aria-label="Ürün 3: Hediye Paketleri" aria-selected="false" aria-controls="slide-3" tabindex="-1"></button>
                             </div>
-                            <div class="floating-icon">
-                                <i class="fas fa-star"></i>
+                            <!-- Mobile Swipe Hint -->
+                            <div class="swipe-hint" aria-hidden="true">
+                                <span class="swipe-text">Kaydırın</span>
+                                <div class="swipe-arrows">
+                                    <span class="arrow-left">←</span>
+                                    <span class="arrow-right">→</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -724,15 +821,83 @@
                         <h3>Hemen Başlayın!</h3>
                         <p>WhatsApp üzerinden fikirlerinizi paylaşın</p>
                         <a href="https://wa.me/908503466172?text=Merhaba! Kişiye özel boyama kitabı sipariş etmek istiyorum. Fotoğraflarımdan boyama kitabı hazırlatabilir miyim?"
-                           class="whatsapp-btn" target="_blank">
+                           class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i>
                             <span class="whatsapp-main-text">WhatsApp'ta Mesaj Gönder</span>
                             <span class="whatsapp-support-text">7/24 Destek</span>
                         </a>
                         <div class="contact-info">
-                            <p><i class="fas fa-phone"></i> +90 850 346 6172</p>
-                            <p><i class="fas fa-envelope"></i> hayalicizgili@gmail.com</p>
+                            <a href="tel:+908503466172" class="contact-button phone">
+                                <i class="fas fa-phone"></i>
+                                +90 850 346 6172
+                            </a>
+                            <a href="mailto:hayalicizgili@gmail.com" class="contact-button email">
+                                <i class="fas fa-envelope"></i>
+                                E-posta Gönder
+                            </a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="sss">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Sık Sorulan Sorular</h2>
+                <p class="section-subtitle">Fotoğraf boyama kitabı ve masal kitabı siparişi hakkında merak ettikleriniz</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Fotoğraf kalitesi boyama kitabını etkiler mi?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Evet, yüksek çözünürlüklü ve net fotoğraflar daha kaliteli boyama kitabı sonucu verir. En az 1080p kalitesinde, iyi ışıklı fotoğraflar öneriyoruz. Blurlu veya düşük çözünürlüklü fotoğrafları da işleyebiliriz ancak sonuç kalitesi etkilenebilir.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Kaç gün içinde boyama kitabım hazır olur?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Standart siparişler 2-3 iş günü içinde hazırlanır. Acil siparişler için +100₺ ek ücret ile 24 saat içinde teslim edebiliriz. Revizyon talepleri süreyi 1-2 gün uzatabilir.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Grup fotoğrafları da boyama kitabına çevrilebilir mi?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tabii ki! 2-5 kişilik grup fotoğrafları için ek ücret almıyoruz. 5'ten fazla kişi için sayfa başı +25₺ ek ücret uygulanır. Aile fotoğrafları ve arkadaş grupları çok popüler!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Sonuçtan memnun kalmazsam revizyon hakkım var mı?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Elbette! İlk tasarımda 2 revizyon hakkınız ücretsizdir. Ek revizyonlar için sayfa başı 50₺ ücret alıyoruz. %100 memnuniyet garantimiz var - beğenmediyseniz ücretinizi iade ediyoruz.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Hangi yaş grupları için uygun?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>3-99 yaş arası herkes için uygun! Çocuk fotoğrafları için basit çizgiler, yetişkin fotoğrafları için detaylı tasarımlar yapıyoruz. Yaş grubuna göre çizim kompleksliği ayarlanır.</p>
                     </div>
                 </div>
             </div>
@@ -752,9 +917,9 @@
                         Sevdiklerinizin fotoğraflarını sanatsal çizgilere dönüştürerek kişiye özel boyama kitapları yaratıyoruz.
                     </p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/hayalicizgili" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/hayali.cizgili" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.youtube.com/@Rüyalaradoğru" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/hayalicizgili" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/hayali.cizgili" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@Rüyalaradoğru" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -777,13 +942,15 @@
                 </div>
                 <div class="footer-section">
                     <h4>İletişim</h4>
-                    <div class="contact-detail">
-                        <i class="fas fa-phone"></i>
-                        <span>+90 850 346 6172</span>
-                    </div>
-                    <div class="contact-detail">
-                        <i class="fas fa-envelope"></i>
-                        <span>hayalicizgili@gmail.com</span>
+                    <div class="footer-contact-buttons">
+                        <a href="tel:+908503466172" class="contact-button phone">
+                            <i class="fas fa-phone"></i>
+                            +90 850 346 6172
+                        </a>
+                        <a href="mailto:hayalicizgili@gmail.com" class="contact-button email">
+                            <i class="fas fa-envelope"></i>
+                            E-posta Gönder
+                        </a>
                     </div>
                     <div class="contact-detail">
                         <i class="fas fa-map-marker-alt"></i>
@@ -808,7 +975,7 @@
     <!-- WhatsApp Floating Button -->
     <div class="whatsapp-float">
         <a href="https://wa.me/908503466172?text=Merhaba! Kişiye özel boyama kitabı sipariş etmek istiyorum. Fotoğraflarımdan boyama kitabı hazırlatabilir miyim?"
-           target="_blank" aria-label="WhatsApp ile iletişime geç">
+           target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile iletişime geç">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -818,11 +985,17 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Scripts -->
-    <script src="analytics-config.js"></script>
-    <script src="form-validations.js"></script>
-    <script src="loading-animations.js"></script>
+    <!-- OPTIMIZED SCRIPTS FOR CORE WEB VITALS -->
+    <!-- Critical JS - Load immediately with full functionality -->
     <script src="script.js"></script>
+    
+    <!-- Image optimization - High priority -->
+    <script src="optimize-images.js"></script>
+    
+    <!-- Non-critical JS - Load asynchronously -->
+    <script src="analytics-config.js" async></script>
+    <script src="form-validations.js" async></script>
+    <script src="loading-animations.js" async></script>
     
     <!-- Enhanced Analytics Tracking -->
     <script>

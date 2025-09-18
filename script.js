@@ -34,7 +34,6 @@ function optimizeSVGIcons() {
         svg.style.setProperty('min-height', '10px', 'important');
         svg.style.setProperty('max-height', '10px', 'important');
     });
-    console.log(`🔧 ${svgIcons.length} SVG icons optimized to 10px`);
 }
 
 // ===== UTILITY FUNCTIONS =====
@@ -354,7 +353,7 @@ class Navigation {
         elements.navToggle?.setAttribute('aria-label', 'Toggle navigation menu');
         
         elements.nav?.setAttribute('aria-hidden', 'true');
-        elements.nav?.setAttribute('role', 'navigation');
+        // role is redundant for <nav>; keeping aria-label only
         elements.nav?.setAttribute('aria-label', 'Main navigation');
     }
 
@@ -759,11 +758,9 @@ function updateCiceksepetiLink() {
             // 8 ve 12 sayfa için butonu göster
             ciceksepetiButton.style.display = 'inline-flex';
             ciceksepetiButton.setAttribute('onclick', `openCiceksepetiLink('${selectedPages}')`);
-            console.log(`🌸 Çiçeksepeti linki güncellendi: ${selectedPages} sayfa`);
         } else {
             // Diğer sayfa sayıları için butonu gizle
             ciceksepetiButton.style.display = 'none';
-            console.log(`🌸 Çiçeksepeti ${selectedPages} sayfa için mevcut değil`);
         }
     }
 }
@@ -784,7 +781,6 @@ function updateTrendyolLink() {
         
         if (trendyolLink) {
             trendyolButton.setAttribute('onclick', `openTrendyolLink('${selectedPages}')`);
-            console.log(`🔗 Trendyol linki güncellendi: ${selectedPages} sayfa`);
         }
     }
 }
@@ -808,9 +804,8 @@ function showTrendyolModal(pages = null) {
     const unitPrice = parseInt(selectedOption.getAttribute('data-price'));
     const qty = parseInt(quantity.value);
     const whatsappTotal = unitPrice * qty;
-    // 8 sayfa için 150 TL, diğerleri için 100 TL fark
-    const is8Pages = pages === '8';
-    const trendyolTotal = whatsappTotal + 100;
+    // Tüm sayfa seçenekleri için 150 TL fark
+    const trendyolTotal = whatsappTotal + 150;
     
     // Modal fiyatlarını güncelle
     document.getElementById('modalWhatsappPrice').textContent = `₺${whatsappTotal.toLocaleString('tr-TR')},00`;
@@ -826,7 +821,6 @@ function showTrendyolModal(pages = null) {
     // Seçilen sayfa sayısını sakla
     modal.setAttribute('data-pages', pages);
     
-    console.log(`📋 Trendyol modal açıldı - ${pages} sayfa için`);
 }
 
 // Trendyol modalını kapat
@@ -834,7 +828,6 @@ function closeTrendyolModal() {
     const modal = document.getElementById('trendyolModal');
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    console.log(`❌ Trendyol modal kapatıldı`);
 }
 
 // WhatsApp ile devam et
@@ -849,7 +842,6 @@ function continueWithWhatsApp() {
     
     window.open(`https://wa.me/908503466172?text=${message}`, '_blank');
     closeTrendyolModal();
-    console.log(`📱 WhatsApp'a yönlendirildi - ${pages} sayfa, ${qty} adet`);
 }
 
 // Trendyol ile devam et
@@ -860,9 +852,7 @@ function continueWithTrendyol() {
     
     if (link) {
         window.open(link, '_blank');
-        console.log(`🛒 Trendyol ${pages} sayfa ürünü açıldı`);
     } else {
-        console.error(`❌ ${pages} sayfa için Trendyol linki bulunamadı`);
     }
     
     closeTrendyolModal();
@@ -888,8 +878,7 @@ function showCiceksepetiModal(pages = null) {
     const unitPrice = parseInt(selectedOption.getAttribute('data-price'));
     const qty = parseInt(quantity.value);
     const whatsappTotal = unitPrice * qty;
-    // 8 sayfa için 100 TL, 12 sayfa için 100 TL fark (8 sayfa: 300+100=400, 12 sayfa: 350+100=450)
-    const is8Pages = pages === '8';
+    // 8 ve 12 sayfa için 100 TL fark
     const ciceksepetiTotal = whatsappTotal + 100;
     
     // Modal fiyatlarını güncelle
@@ -906,7 +895,6 @@ function showCiceksepetiModal(pages = null) {
     // Seçilen sayfa sayısını sakla
     modal.setAttribute('data-pages', pages);
     
-    console.log(`🌸 ÇiçekSepeti modal açıldı - ${pages} sayfa için`);
 }
 
 // ÇiçekSepeti modalını kapat
@@ -914,7 +902,6 @@ function closeCiceksepetiModal() {
     const modal = document.getElementById('ciceksepetiModal');
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    console.log(`❌ ÇiçekSepeti modal kapatıldı`);
 }
 
 // ÇiçekSepeti ile devam et
@@ -925,9 +912,7 @@ function continueWithCiceksepeti() {
     
     if (link) {
         window.open(link, '_blank');
-        console.log(`🌸 ÇiçekSepeti ${pages} sayfa ürünü açıldı`);
     } else {
-        console.error(`❌ ${pages} sayfa için ÇiçekSepeti linki bulunamadı`);
     }
     
     closeCiceksepetiModal();
@@ -969,16 +954,186 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Version seçimi için global değişken
+window.selectedVersion = 'standard'; // Varsayılan olarak standart
+
+// Version seçim fonksiyonu
+function selectVersion(version) {
+    window.selectedVersion = version;
+    
+    // Tüm version kartlarından active class'ı kaldır
+    document.querySelectorAll('.version-card').forEach(card => {
+        card.classList.remove('active', 'selected');
+        card.setAttribute('aria-pressed', 'false');
+    });
+    
+    // Seçilen karta active class ekle
+    const selectedCard = document.querySelector(`.version-card[data-version="${version}"]`);
+    if (selectedCard) {
+        selectedCard.classList.add('active', 'selected');
+        selectedCard.setAttribute('aria-pressed', 'true');
+    }
+    
+    // Dropdown'daki fiyatları güncelle
+    updateDropdownPrices(version);
+    
+    // Satın alma butonlarını göster/gizle
+    updatePurchaseButtons(version);
+    
+    // Fiyatları güncelle
+    if (typeof window.updatePrice === 'function') {
+        window.updatePrice();
+    } else if (typeof updatePrice === 'function') {
+        updatePrice();
+    }
+    
+}
+
+// Satın alma butonlarını güncelleme fonksiyonu
+function updatePurchaseButtons(version) {
+    const alternativePurchase = document.querySelector('.alternative-purchase');
+    const trendyolBtn = document.querySelector('.btn-trendyol');
+    const ciceksepetiBtn = document.querySelector('#ciceksepetiBtn');
+    const dividerText = document.querySelector('.divider-text');
+    
+    if (version === 'premium') {
+        // Fotoğraflı versiyonda Trendyol ve Çiçeksepeti butonlarını gizle
+        if (alternativePurchase) {
+            alternativePurchase.style.display = 'none';
+        }
+    } else {
+        // Standart versiyonda butonları göster
+        if (alternativePurchase) {
+            alternativePurchase.style.display = 'block';
+        }
+        // Çiçeksepeti butonunu kontrol et (sayfa sayısına göre)
+        if (typeof updateCiceksepetiLink === 'function') {
+            updateCiceksepetiLink();
+        }
+    }
+}
+
+// Dropdown fiyatlarını güncelleme fonksiyonu
+function updateDropdownPrices(version) {
+    const pageSelect = document.getElementById('pageSelect');
+    if (!pageSelect) return;
+    
+    const standardPrices = {8: 450, 12: 500, 16: 550, 20: 600, 24: 650};
+    const premiumPrices = {8: 750, 12: 850, 16: 950, 20: 1050, 24: 1150};
+    
+    const prices = version === 'premium' ? premiumPrices : standardPrices;
+    
+    // Her option'ı güncelle
+    Array.from(pageSelect.options).forEach(option => {
+        const pages = parseInt(option.value);
+        const price = prices[pages];
+        if (price) {
+            option.text = `${pages} Sayfa - ₺${price.toLocaleString('tr-TR')},00`;
+            option.setAttribute('data-price', price);
+        }
+    });
+    
+}
+
+// Fiyat verileri
+const priceData = {
+    standard: {
+        name: 'Standart Boyama Kitabı',
+        prices: {
+            8: 450,
+            12: 500,
+            16: 550,
+            20: 600,
+            24: 650
+        }
+    },
+    premium: {
+        name: 'Fotoğraflı Boyama Kitabı',
+        prices: {
+            8: 750,
+            12: 850,
+            16: 950,
+            20: 1050,
+            24: 1150
+        }
+    }
+};
+
 // Direkt WhatsApp siparişi
 function directWhatsAppOrder() {
     const pageSelect = document.getElementById('pageSelect');
+    const quantity = document.getElementById('quantity');
     const selectedOption = pageSelect.options[pageSelect.selectedIndex];
-    const pages = selectedOption.value;
+    const pages = parseInt(selectedOption.value);
+    const qty = quantity ? parseInt(quantity.value) : 1;
     
-    const message = `Merhabalar, ${pages} sayfalık Boyama kitabından almak istiyorum.`;
+    // Sayfa kontrolü - urun2.html masal kitabı sayfası mı?
+    const isStoryBookPage = window.location.pathname.includes('urun2.html') || document.title.includes('Masal Kitabı');
     
-    window.open(`https://wa.me/908503466172?text=${message}`, '_blank');
-    console.log(`📱 Direkt WhatsApp siparişi - ${pages} sayfa`);
+    if (isStoryBookPage) {
+        // MASAL KİTABI İÇİN ÖZEL MESAJ
+        const storyBookPrices = { 8: 550, 12: 600, 16: 650, 20: 700, 24: 750 };
+        const unitPrice = storyBookPrices[pages];
+        const totalPrice = unitPrice * qty;
+        
+        const message = `Merhaba! Kişiye özel masal kitabı sipariş etmek istiyorum.
+
+📕 Ürün: Kişiye Özel Masal Kitabı
+📄 Sayfa Sayısı: ${pages} sayfa
+🔢 Adet: ${qty}
+💰 Toplam: ₺${totalPrice.toLocaleString('tr-TR')},00
+📦 Ücretsiz kargo
+📕 Ücretsiz kapak tasarımı
+✨ Ne zaman isterseniz kelimeleri gönderebilirsiniz, ben hemen masalını yazmaya başlarım 😊
+
+Sipariş detayları için görüşelim.`;
+        
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/908503466172?text=${encodedMessage}`, '_blank');
+        return;
+    }
+    
+    // BOYAMA KİTABI İÇİN MEVCUT MESAJ (urun1.html)
+    // Seçilen versiyona göre fiyat al
+    const versionData = window.selectedVersion === 'premium' ? priceData.premium : priceData.standard;
+    const unitPrice = versionData.prices[pages];
+    const standardPrice = priceData.standard.prices[pages];
+    const totalPrice = unitPrice * qty;
+    
+    // Version bilgisini al
+    const versionName = window.selectedVersion === 'premium' ? 'Fotoğraflı' : 'Standart';
+    const versionDescription = window.selectedVersion === 'premium'
+        ? '(Sol sayfada fotoğraflarım, sağ sayfada boyama çizimi olacak şekilde)'
+        : '(Sadece boyama sayfaları - renksiz çizim)';
+    
+    // Fiyat detayları
+    const priceDifference = unitPrice - standardPrice;
+    const priceBreakdown = window.selectedVersion === 'premium'
+        ? `
+💵 Birim Fiyat: ₺${unitPrice} (Standart: ₺${standardPrice} + Fotoğraf eklentisi: ₺${priceDifference})`
+        : `
+💵 Birim Fiyat: ₺${unitPrice}`;
+    
+    // Detaylı mesaj oluştur
+    const message = `🎨 Merhaba Hayali Çizgili,
+
+Kişiye Özel Boyama Kitabı siparişi vermek istiyorum:
+
+📚 Versiyon: ${versionName} ${versionDescription}
+📄 Sayfa Sayısı: ${pages} sayfa
+🔢 Adet: ${qty}${priceBreakdown}
+💰 Toplam Tutar: ₺${totalPrice}
+
+${window.selectedVersion === 'premium'
+    ? '📸 Not: Fotoğraflarımı size göndereceğim, sol sayfada fotoğraf, sağ sayfada boyama olacak şekilde hazırlanmasını istiyorum.'
+    : '✏️ Not: Klasik boyama kitabı istiyorum, sadece boyama sayfaları olsun.'}
+
+Lütfen sipariş detayları hakkında bilgi verir misiniz?`;
+    
+    // URL encode the message
+    const encodedMessage = encodeURIComponent(message);
+    
+    window.open(`https://wa.me/908503466172?text=${encodedMessage}`, '_blank');
 }
 
 // Global fonksiyonları erişilebilir yap
@@ -990,6 +1145,9 @@ window.openCiceksepetiModal = openCiceksepetiModal;
 window.closeCiceksepetiModal = closeCiceksepetiModal;
 window.continueWithCiceksepeti = continueWithCiceksepeti;
 window.directWhatsAppOrder = directWhatsAppOrder;
+window.selectVersion = selectVersion;
+window.updateDropdownPrices = updateDropdownPrices;
+window.updatePurchaseButtons = updatePurchaseButtons;
 // ===== GLOBAL FUNCTIONS FOR HTML =====
 window.changeTestimonial = function(direction) {
     if (window.testimonialSlider) {
@@ -1019,12 +1177,10 @@ class ErrorHandler {
     }
 
     handleError(event) {
-        console.error('JavaScript Error:', event.error);
         // Could send to analytics service
     }
 
     handlePromiseRejection(event) {
-        console.error('Unhandled Promise Rejection:', event.reason);
         // Could send to analytics service
         event.preventDefault();
     }
@@ -1158,7 +1314,6 @@ class Analytics {
             gtag('event', eventName, data);
         }
         
-        console.log('Analytics Event:', eventName, data);
     }
 }
 
@@ -1181,9 +1336,9 @@ class App {
             // Initialize all components
             this.initializeComponents();
             
-            console.log('🎨 Artisan website initialized successfully!');
+            
         } catch (error) {
-            console.error('Error initializing app:', error);
+            
         }
     }
 
@@ -1192,14 +1347,22 @@ class App {
         getElements();
         
         // Initialize typewriter effect
+        
         if (elements.typewriter) {
+            
+            // Use the working TypewriterEffect class instead
             const words = [
                 'Sanata Dönüştürün',
                 'Hediyeye Çevirin',
                 'Ölümsüzleştirin',
                 'Kalıcı Kılın'
             ];
-            new TypeWriter(elements.typewriter, words);
+            // Clear any existing content
+            elements.typewriter.textContent = '';
+            new TypewriterEffect('typewriter', words, '');
+            
+        } else {
+            
         }
 
         // Initialize core components
@@ -1227,10 +1390,10 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
             .then(registration => {
-                console.log('SW registered: ', registration);
+                
             })
             .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
+                
             });
     });
 }
@@ -1260,7 +1423,7 @@ function initiateVideoAutoplay() {
     videoElement = document.getElementById('hero-video');
     if (!videoElement) return;
     
-    console.log('🚀 Otomatik video sistemi başlatılıyor...');
+    
     setupVideoSystem();
 }
 
@@ -1268,7 +1431,7 @@ function initiateVideoAutoplay() {
 function setupVideoSystem() {
     // Video özelliklerini ayarla
     videoElement.volume = 1.0;
-    videoElement.muted = false;
+    videoElement.muted = true;
     videoElement.loop = true;
     videoElement.autoplay = true;
     
@@ -1285,7 +1448,7 @@ function setupVideoSystem() {
 
 // Video yüklendiğinde
 function handleVideoLoaded() {
-    console.log('📹 Video verisi yüklendi');
+    
     if (!autoplayAttempted) {
         startVideoPlayback();
     }
@@ -1293,7 +1456,7 @@ function handleVideoLoaded() {
 
 // Video oynatılabilir durumda
 function handleVideoCanPlay() {
-    console.log('✅ Video oynatılabilir durumda');
+    
     if (!autoplayAttempted) {
         startVideoPlayback();
     }
@@ -1301,19 +1464,19 @@ function handleVideoCanPlay() {
 
 // Video oynatılıyor
 function handleVideoPlay() {
-    console.log('🎬 Video oynatılıyor');
+    
     hidePlayButton();
 }
 
 // Video durduruldu
 function handleVideoPause() {
-    console.log('⏸️ Video durduruldu');
+    
     showPlayButton();
 }
 
 // Video bitti (loop olduğu için normalde çalışmaz)
 function handleVideoEnded() {
-    console.log('🔄 Video bitti, yeniden başlatılıyor');
+    
     videoElement.currentTime = 0;
     videoElement.play();
 }
@@ -1323,27 +1486,19 @@ function startVideoPlayback() {
     if (autoplayAttempted || !videoElement) return;
     
     autoplayAttempted = true;
-    console.log('🎬 Video oynatma başlatılıyor...');
     
-    // Önce sesli deneme
-    videoElement.muted = false;
+    
+    // Sessiz başlatma (autoplay uyumluluğu için)
+    videoElement.muted = true;
     videoElement.volume = 1.0;
-    
+
     videoElement.play().then(() => {
-        console.log('🎉 Video sesli başarıyla başlatıldı!');
+        
         hidePlayButton(); // Play button'u hemen gizle
+        // Kullanıcı etkileşimi ile sesi aç
+        document.addEventListener('click', enableVideoSound, { once: true });
     }).catch((error) => {
-        console.log('⚠️ Sesli başlatma başarısız, sessiz deneme...');
-        // Sessiz başlatma
-        videoElement.muted = true;
-        videoElement.play().then(() => {
-            console.log('🔇 Video sessiz başlatıldı');
-            hidePlayButton(); // Play button'u hemen gizle
-            // Kullanıcı etkileşimi bekle
-            document.addEventListener('click', enableVideoSound, { once: true });
-        }).catch((error) => {
-            console.log('❌ Video başlatılamadı:', error);
-        });
+        
     });
 }
 
@@ -1352,30 +1507,94 @@ function enableVideoSound() {
     if (videoElement && videoElement.muted) {
         videoElement.muted = false;
         videoElement.volume = 1.0;
-        console.log('🔊 Kullanıcı etkileşimi ile ses açıldı!');
+        
     }
 }
 
-// Kullanıcı video kontrolü (tıklama)
+// Basit ses açma/kapama fonksiyonu
 function toggleVideo() {
-    if (!videoElement) return;
-    
-    console.log('👆 Kullanıcı video kontrolüne tıkladı');
-    
-    if (videoElement.paused) {
-        // Video başlat
-        videoElement.muted = false;
-        videoElement.volume = 1.0;
-        videoElement.play().then(() => {
-            console.log('▶️ Video kullanıcı tarafından başlatıldı');
-        }).catch((error) => {
-            console.log('❌ Manuel başlatma hatası:', error);
-        });
-    } else {
-        // Video durdur
-        videoElement.pause();
-        console.log('⏸️ Video kullanıcı tarafından durduruldu');
+    const videoEl = document.getElementById('hero-video');
+    if (!videoEl) {
+        
+        return;
     }
+    
+    
+    
+    // Video her zaman çalır durumda, sadece ses açma/kapama
+    if (videoEl.muted) {
+        // Sesi aç
+        videoEl.muted = false;
+        videoEl.volume = 1.0;
+        
+        showSoundFeedback('🔊', 'Ses Açıldı');
+    } else {
+        // Sesi kapat
+        videoEl.muted = true;
+        
+        showSoundFeedback('🔇', 'Ses Kapatıldı');
+    }
+}
+
+// Basit ses feedback gösterme fonksiyonu
+function showSoundFeedback(icon, text) {
+    // Mevcut feedback'i temizle
+    const existingFeedback = document.querySelector('.sound-feedback');
+    if (existingFeedback) {
+        existingFeedback.remove();
+    }
+    
+    // Yeni feedback elementi oluştur
+    const feedback = document.createElement('div');
+    feedback.className = 'sound-feedback';
+    feedback.innerHTML = `
+        <div class="sound-icon">${icon}</div>
+        <div class="sound-text">${text}</div>
+    `;
+    
+    // Feedback için basit stil ekle
+    feedback.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px 30px;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        backdrop-filter: blur(10px);
+        animation: fadeInOut 1.5s ease-in-out forwards;
+    `;
+    
+    // Animasyon CSS'ini ekle
+    if (!document.querySelector('#sound-feedback-style')) {
+        const style = document.createElement('style');
+        style.id = 'sound-feedback-style';
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(feedback);
+    
+    // 1.5 saniye sonra temizle
+    setTimeout(() => {
+        if (feedback && feedback.parentNode) {
+            feedback.remove();
+        }
+    }, 1500);
 }
 
 // UI Kontrol Fonksiyonları
@@ -1383,7 +1602,7 @@ function hidePlayButton() {
     const overlay = document.querySelector('.video-overlay');
     if (overlay) {
         overlay.style.display = 'none';
-        console.log('🫥 Play button gizlendi');
+        
     }
 }
 
@@ -1391,7 +1610,7 @@ function showPlayButton() {
     const overlay = document.querySelector('.video-overlay');
     if (overlay) {
         overlay.style.display = 'flex';
-        console.log('📱 Play button gösteriliyor');
+        
     }
 }
 
@@ -1403,53 +1622,76 @@ function updateVideoUI(playing) {
     }
 }
 
-// Video player initialization - YENİ SİSTEM
+// Video player initialization - ENHANCED SAFETY
 function initVideoPlayer() {
     const video = document.getElementById('hero-video');
     
     if (!video) {
-        console.error('❌ Video elementi bulunamadı');
+        
         return;
     }
     
-    console.log('🎬 Video player başlatıldı');
-    console.log('📂 Video dosyası:', video.src || video.currentSrc || 'Henüz yüklenmedi');
+    
+    
     
     // Autoplay sistemini başlat
     initiateVideoAutoplay();
     
-    console.log('✅ Video player hazır');
+    
 }
 
 // Global fonksiyonları HTML için erişilebilir yap
 window.toggleVideo = toggleVideo;
 
-// Volume control
-window.toggleMute = function() {
-    const video = document.getElementById('hero-video');
-    const volumeIcon = document.getElementById('volume-icon');
-    
-    if (!video || !volumeIcon) return;
-    
-    userInteracted = true;
-    
-    if (video.muted) {
-        video.muted = false;
-        volumeIcon.classList.remove('fa-volume-mute');
-        volumeIcon.classList.add('fa-volume-up');
-        console.log('🔊 Video sesi açıldı (manuel)');
-    } else {
-        video.muted = true;
-        volumeIcon.classList.remove('fa-volume-up');
-        volumeIcon.classList.add('fa-volume-mute');
-        console.log('🔇 Video sesi kapatıldı (manuel)');
+
+// Enhanced Hero Video Autoplay Function - SHOWCASE ITEM COMPATIBLE
+function forceHeroVideoAutoplay() {
+    const heroVideo = document.getElementById('hero-video');
+    if (!heroVideo) {
+        
+        return;
     }
-};
+
+    
+    
+    // Browser autoplay requirements
+    heroVideo.muted = true;
+    heroVideo.loop = true;
+    heroVideo.autoplay = true;
+    heroVideo.playsInline = true;
+    
+    // Multiple attempts for different browser behaviors
+    const startVideo = () => {
+        heroVideo.play().then(() => {
+            
+        }).catch(err => {
+            
+            // Fallback attempts
+            setTimeout(() => {
+                heroVideo.play().catch(e => {
+                    // Failed autoplay attempt
+                }); 
+            }, 500);
+        });
+    };
+
+    // Immediate start attempt
+    startVideo();
+    
+    // Additional attempts for stubborn browsers
+    setTimeout(startVideo, 100);
+    setTimeout(startVideo, 500);
+}
 
 // Sayfa yüklendiğinde video player'ı başlat - YENİ SİSTEM
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 DOM yüklendi, video sistemi başlatılıyor...');
+    
+    
+    // Enhanced Hero Video Autoplay - IMMEDIATE
+    forceHeroVideoAutoplay();
+    
     setTimeout(initVideoPlayer, 1000);
+    
     
     // SVG Icon optimization
     optimizeSVGIcons();
@@ -1457,7 +1699,55 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize typewriter effects for character speech bubbles
     initTypewriterEffects();
+    
+    // Initialize Product Carousel
+    initializeProductCarousel();
+
+    // A11y: Play button keyboard support (Enter/Space)
+    const playBtn = document.querySelector('.play-button');
+    if (playBtn) {
+        playBtn.addEventListener('keydown', (e) => {
+            const key = e.key || e.code;
+            if (key === 'Enter' || key === ' ') {
+                e.preventDefault();
+                try {
+                    toggleVideo();
+                } catch (err) {
+                    
+                }
+            }
+        });
+    }
 });
+
+// Additional autoplay triggers for maximum compatibility
+window.addEventListener('load', () => {
+    // Secondary autoplay attempt after full page load
+    setTimeout(forceHeroVideoAutoplay, 200);
+});
+
+// Intersection Observer for viewport-based autoplay (fallback)
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const video = entry.target.querySelector('#hero-video');
+                if (video && video.paused) {
+                    video.play().catch(e => {
+                        // Intersection autoplay failed
+                    }); 
+                }
+            }
+        });
+    });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            observer.observe(heroSection);
+        }
+    });
+}
 // ===== TYPEWRITER EFFECT FOR CHARACTER SPEECH BUBBLES =====
 class TypewriterEffect {
     constructor(elementId, texts, staticEnd) {
@@ -1566,3 +1856,510 @@ function initTypewriterEffects() {
         new TypewriterEffect('typewriter-web2', webTexts2, 'anı mı bırakmak istiyorsunuz?');
     }, 1500);
 }
+
+// ===== PRODUCT SHOWCASE CAROUSEL FUNCTIONALITY =====
+class ProductShowcaseCarousel {
+    constructor(container) {
+        this.container = container;
+        this.track = container.querySelector('.carousel-track');
+        this.items = container.querySelectorAll('.showcase-item');
+        this.indicators = container.querySelectorAll('.indicator');
+        this.currentIndex = 0;
+        this.autoplayInterval = null;
+        this.autoplayDelay = 5000; // 5 saniye (mobil için biraz daha uzun)
+        
+        // Touch/swipe properties
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+        this.touchStartY = 0;
+        this.touchEndY = 0;
+        this.isDragging = false;
+        this.minSwipeDistance = 50;
+        this.isAnimating = false;
+        
+        // Performance optimizations
+        this.useIntersectionObserver = 'IntersectionObserver' in window;
+        this.isMobile = window.innerWidth <= 768;
+        
+        this.init();
+    }
+    
+    init() {
+        if (!this.container || !this.track || this.items.length === 0) {
+            
+            return;
+        }
+        
+        this.setupEventListeners();
+        this.setupIntersectionObserver();
+        this.preloadVideos();
+        this.startAutoplay();
+        
+        // Set initial active state
+        this.goToSlide(0);
+        
+        
+    }
+    
+    setupIntersectionObserver() {
+        if (!this.useIntersectionObserver) return;
+        
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Carousel görünür olduğunda autoplay'i başlat
+                    this.startAutoplay();
+                } else {
+                    // Carousel görünür olmadığında autoplay'i durdur (performance)
+                    this.pauseAutoplay();
+                }
+            });
+        }, {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        this.observer.observe(this.container);
+    }
+    
+    preloadVideos() {
+        // İlk 2 video'yu preload et (performance)
+        this.items.forEach((item, index) => {
+            const video = item.querySelector('video');
+            if (video && index < 2) {
+                video.preload = 'metadata';
+                video.load();
+            }
+        });
+    }
+    
+    setupEventListeners() {
+        // Enhanced Indicator click events with accessibility
+        this.indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (this.isAnimating) return;
+                this.goToSlide(index);
+                this.resetAutoplay();
+            });
+            
+            // Keyboard support for indicators
+            indicator.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (this.isAnimating) return;
+                    this.goToSlide(index);
+                    this.resetAutoplay();
+                }
+            });
+        });
+        
+        // Container hover pause/resume (desktop only)
+        if (!this.isMobile) {
+            this.container.addEventListener('mouseenter', () => {
+                this.pauseAutoplay();
+            });
+            
+            this.container.addEventListener('mouseleave', () => {
+                this.startAutoplay();
+            });
+        }
+        
+        // Enhanced Video hover events (desktop only)
+        if (!this.isMobile) {
+            this.items.forEach((item, index) => {
+                const video = item.querySelector('video');
+                const img = item.querySelector('img');
+                
+                if (video && img) {
+                    let hoverTimeout;
+                    
+                    item.addEventListener('mouseenter', () => {
+                        // Delay video start to prevent accidental triggers
+                        hoverTimeout = setTimeout(() => {
+                            if (video.readyState >= 2) { // Video loaded
+                                video.currentTime = 0;
+                                video.play().catch(e => {
+                                    // Video play error
+                                });
+                            }
+                        }, 300);
+                    });
+                    
+                    item.addEventListener('mouseleave', () => {
+                        clearTimeout(hoverTimeout);
+                        video.pause();
+                        video.currentTime = 0;
+                    });
+                }
+            });
+        }
+        
+        // Enhanced Keyboard navigation with focus management
+        this.container.addEventListener('keydown', (e) => {
+            if (this.isAnimating) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    this.prevSlide();
+                    this.resetAutoplay();
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                    e.preventDefault();
+                    this.nextSlide();
+                    this.resetAutoplay();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    this.goToSlide(0);
+                    this.resetAutoplay();
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    this.goToSlide(this.items.length - 1);
+                    this.resetAutoplay();
+                    break;
+            }
+        });
+        
+        // Advanced Touch/Swipe support
+        this.setupTouchEvents();
+        
+        // Visibility change handling (performance)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pauseAutoplay();
+            } else {
+                this.startAutoplay();
+            }
+        });
+        
+        // Window resize handling
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.isMobile = window.innerWidth <= 768;
+                this.updateLayout();
+            }, 150);
+        });
+    }
+    
+    setupTouchEvents() {
+        if (!('ontouchstart' in window)) return;
+        
+        this.container.addEventListener('touchstart', (e) => {
+            if (this.isAnimating) return;
+            
+            this.isDragging = true;
+            this.touchStartX = e.touches[0].clientX;
+            this.touchStartY = e.touches[0].clientY;
+            this.pauseAutoplay();
+            
+            // Add visual feedback
+            this.container.style.cursor = 'grabbing';
+            
+            // Hide swipe hint after first interaction
+            this.hideSwipeHint();
+        }, { passive: true });
+        
+        this.container.addEventListener('touchmove', (e) => {
+            if (!this.isDragging || this.isAnimating) return;
+            
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const deltaX = currentX - this.touchStartX;
+            const deltaY = currentY - this.touchStartY;
+            
+            // Prevent vertical scrolling if horizontal swipe is detected
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+                e.preventDefault();
+                
+                // Optional: Show preview of next/prev slide during drag
+                const percentage = (deltaX / this.container.offsetWidth) * 100;
+                const currentTransform = -this.currentIndex * 33.33;
+                const newTransform = currentTransform + (percentage * 0.3); // Dampening factor
+                
+                this.track.style.transform = `translateX(${newTransform}%)`;
+                this.track.style.transition = 'none';
+            }
+        }, { passive: false });
+        
+        this.container.addEventListener('touchend', (e) => {
+            if (!this.isDragging) return;
+            
+            this.isDragging = false;
+            this.touchEndX = e.changedTouches[0].clientX;
+            this.touchEndY = e.changedTouches[0].clientY;
+            
+            const deltaX = this.touchStartX - this.touchEndX;
+            const deltaY = this.touchStartY - this.touchEndY;
+            
+            // Reset visual feedback
+            this.container.style.cursor = '';
+            this.track.style.transition = '';
+            
+            // Hide swipe hint after interaction
+            this.hideSwipeHint();
+            
+            // Determine if it's a horizontal swipe
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.minSwipeDistance) {
+                if (deltaX > 0) {
+                    this.nextSlide();
+                } else {
+                    this.prevSlide();
+                }
+            } else {
+                // Snap back to current slide
+                this.goToSlide(this.currentIndex);
+            }
+            
+            this.resetAutoplay();
+        }, { passive: true });
+        
+        // Handle touch cancel (e.g., phone call during swipe)
+        this.container.addEventListener('touchcancel', () => {
+            if (this.isDragging) {
+                this.isDragging = false;
+                this.container.style.cursor = '';
+                this.track.style.transition = '';
+                this.goToSlide(this.currentIndex);
+                this.resetAutoplay();
+            }
+        });
+    }
+    
+    hideSwipeHint() {
+        // Mark carousel as interacted to hide swipe hint
+        this.container.classList.add('interacted');
+        
+        const swipeHint = this.container.querySelector('.swipe-hint');
+        if (swipeHint) {
+            swipeHint.style.display = 'none';
+        }
+    }
+    
+    updateLayout() {
+        // Re-calculate positions on orientation change
+        this.goToSlide(this.currentIndex);
+    }
+    
+    goToSlide(index) {
+        if (index < 0 || index >= this.items.length || this.isAnimating) return;
+        
+        this.isAnimating = true;
+        this.currentIndex = index;
+        
+        // Enhanced transform with better easing for mobile
+        const translateX = -index * 33.33;
+        this.track.style.transform = `translateX(${translateX}%)`;
+        this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        
+        // Update indicators with enhanced accessibility
+        this.indicators.forEach((indicator, i) => {
+            const isActive = i === index;
+            indicator.classList.toggle('active', isActive);
+            indicator.setAttribute('aria-pressed', isActive.toString());
+            indicator.setAttribute('aria-current', isActive ? 'true' : 'false');
+            
+            // Update aria-label for screen readers
+            const ariaLabel = `Ürün ${i + 1}${isActive ? ' (şu anda aktif)' : ''}`;
+            indicator.setAttribute('aria-label', ariaLabel);
+        });
+        
+        // Update items active state with enhanced video handling
+        this.items.forEach((item, i) => {
+            const isActive = i === index;
+            const video = item.querySelector('video');
+            const img = item.querySelector('img');
+            
+            item.classList.toggle('active', isActive);
+            
+            if (video && img) {
+                if (isActive && this.isMobile) {
+                    // Mobile'da aktif slide'da video'yu lazy load et
+                    if (video.preload !== 'metadata') {
+                        video.preload = 'metadata';
+                        video.load();
+                    }
+                } else if (!isActive) {
+                    // Aktif olmayan slide'larda video'yu durdur
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            }
+        });
+        
+        // Performance: lazy load adjacent images
+        this.lazyLoadAdjacentImages(index);
+        
+        // Reset animation flag after transition
+        setTimeout(() => {
+            this.isAnimating = false;
+        }, 600);
+        
+        // Analytics tracking
+        this.trackSlideChange(index);
+    }
+    
+    lazyLoadAdjacentImages(currentIndex) {
+        const prevIndex = (currentIndex - 1 + this.items.length) % this.items.length;
+        const nextIndex = (currentIndex + 1) % this.items.length;
+        
+        [prevIndex, nextIndex].forEach(index => {
+            const item = this.items[index];
+            const video = item.querySelector('video[data-src]');
+            const img = item.querySelector('img[data-src]');
+            
+            if (video && video.dataset.src) {
+                video.src = video.dataset.src;
+                delete video.dataset.src;
+            }
+            
+            if (img && img.dataset.src) {
+                img.src = img.dataset.src;
+                delete img.dataset.src;
+            }
+        });
+    }
+    
+    trackSlideChange(index) {
+        // Simple analytics tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'carousel_slide_change', {
+                slide_index: index,
+                slide_title: this.items[index].querySelector('h4')?.textContent || 'Unknown'
+            });
+        }
+    }
+    
+    nextSlide() {
+        if (this.isAnimating) return;
+        const nextIndex = (this.currentIndex + 1) % this.items.length;
+        this.goToSlide(nextIndex);
+    }
+    
+    prevSlide() {
+        if (this.isAnimating) return;
+        const prevIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+        this.goToSlide(prevIndex);
+    }
+    
+    startAutoplay() {
+        if (this.autoplayInterval) return; // Already running
+        
+        // Don't start autoplay if user prefers reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            
+            return;
+        }
+        
+        this.autoplayInterval = setInterval(() => {
+            // Check if carousel is still visible before auto-advancing
+            if (this.isElementVisible(this.container)) {
+                this.nextSlide();
+            }
+        }, this.autoplayDelay);
+        
+        
+    }
+    
+    pauseAutoplay() {
+        if (this.autoplayInterval) {
+            clearInterval(this.autoplayInterval);
+            this.autoplayInterval = null;
+            
+        }
+    }
+    
+    resetAutoplay() {
+        this.pauseAutoplay();
+        // Add small delay before restarting to prevent rapid cycling
+        setTimeout(() => {
+            this.startAutoplay();
+        }, 100);
+    }
+    
+    isElementVisible(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+    
+    destroy() {
+        
+        
+        // Clear autoplay
+        this.pauseAutoplay();
+        
+        // Disconnect intersection observer
+        if (this.observer) {
+            this.observer.disconnect();
+        }
+        
+        // Clean up videos
+        this.items.forEach(item => {
+            const video = item.querySelector('video');
+            if (video) {
+                video.pause();
+                video.src = '';
+                video.load();
+            }
+        });
+        
+        // Remove event listeners by cloning nodes (prevents memory leaks)
+        this.indicators.forEach(indicator => {
+            indicator.replaceWith(indicator.cloneNode(true));
+        });
+        
+        // Set references to null for garbage collection
+        this.container = null;
+        this.track = null;
+        this.items = null;
+        this.indicators = null;
+    }
+}
+
+// Initialize Product Showcase Carousel when DOM is ready
+function initializeProductCarousel() {
+    const carousel = document.querySelector('.product-showcase-carousel');
+    if (carousel) {
+        
+        window.productCarousel = new ProductShowcaseCarousel(carousel);
+    } else {
+        
+    }
+}
+// FAQ Accordion Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('active');
+            } else {
+                item.classList.add('active');
+            }
+        });
+    });
+});

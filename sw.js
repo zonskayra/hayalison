@@ -2,31 +2,41 @@
    SERVICE WORKER - PWA FEATURES
    =========================================== */
 
-const CACHE_NAME = 'mobile-app-v1.0.0';
-const STATIC_CACHE = 'static-v1';
+const CACHE_NAME = 'mobile-app-v1.1.0-performance';
+const STATIC_CACHE = 'static-performance-v1';
 const DYNAMIC_CACHE = 'dynamic-v1';
 const IMAGE_CACHE = 'images-v1';
 
-// Files to cache immediately
-const STATIC_FILES = [
+// CRITICAL FILES - HIGHEST PRIORITY - Core Web Vitals Optimized
+const CRITICAL_FILES = [
     '/',
     '/index.html',
-    '/critical-css.css',
-    '/mobile-styles.css',
-    '/web-styles.css',
-    '/device-detector.js',
-    '/mobile-performance.js',
-    '/image-optimizer.js',
+    '/script.min.js',
+    '/critical.css',
+    '/optimize-images.js',
     '/images/logo.png',
-    '/manifest.json'
+    '/images/boyama-kitabi-main.jpg'
 ];
 
-// Dynamic files to cache on first visit
+// Files to cache immediately - PERFORMANCE OPTIMIZED
+const STATIC_FILES = [
+    '/offline.html',
+    '/styles.css',
+    '/mobile-styles.css',
+    '/manifest.json',
+    '/analytics-config.js',
+    '/form-validations.js',
+    '/loading-animations.js'
+];
+
+// Dynamic files to cache on first visit - LAZY LOADED
 const DYNAMIC_FILES = [
     '/urun1.html',
     '/urun2.html',
-    '/images/boyama-kitabi-main.jpg',
-    '/images/sarki-kitabi.jpg'
+    '/images/sarki-kitabi.jpg',
+    '/images/boyama-kitabi.jpg',
+    '/images/video.webm',
+    '/images/video.mp4'
 ];
 
 // Image files for intelligent caching
@@ -36,13 +46,13 @@ const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
  * Service Worker Install Event
  */
 self.addEventListener('install', (event) => {
-    console.log('🔧 Service Worker installing...');
+    
     
     event.waitUntil(
         Promise.all([
             // Cache static files
             caches.open(STATIC_CACHE).then(cache => {
-                console.log('📦 Caching static files...');
+                
                 return cache.addAll(STATIC_FILES);
             }),
             
@@ -56,7 +66,7 @@ self.addEventListener('install', (event) => {
  * Service Worker Activate Event
  */
 self.addEventListener('activate', (event) => {
-    console.log('✅ Service Worker activating...');
+    
     
     event.waitUntil(
         Promise.all([
@@ -67,7 +77,7 @@ self.addEventListener('activate', (event) => {
                         if (cacheName !== STATIC_CACHE && 
                             cacheName !== DYNAMIC_CACHE && 
                             cacheName !== IMAGE_CACHE) {
-                            console.log('🗑️ Deleting old cache:', cacheName);
+                            
                             return caches.delete(cacheName);
                         }
                     })
@@ -135,7 +145,7 @@ function handleImageRequest(request) {
     return caches.open(IMAGE_CACHE).then(cache => {
         return cache.match(request).then(response => {
             if (response) {
-                console.log('🖼️ Image served from cache:', request.url);
+                
                 return response;
             }
             
@@ -143,7 +153,7 @@ function handleImageRequest(request) {
                 // Only cache successful responses
                 if (fetchResponse.ok) {
                     cache.put(request, fetchResponse.clone());
-                    console.log('📸 Image cached:', request.url);
+                    
                 }
                 return fetchResponse;
             }).catch(() => {
@@ -169,7 +179,7 @@ function handleStaticRequest(request) {
     return caches.open(STATIC_CACHE).then(cache => {
         return cache.match(request).then(response => {
             if (response) {
-                console.log('📦 Static asset served from cache:', request.url);
+                
                 return response;
             }
             
@@ -200,7 +210,7 @@ function handlePageRequest(request) {
         return caches.open(DYNAMIC_CACHE).then(cache => {
             return cache.match(request).then(response => {
                 if (response) {
-                    console.log('📄 Page served from cache (offline):', request.url);
+                    
                     return response;
                 }
                 
@@ -242,7 +252,7 @@ function handleDynamicRequest(request) {
  * Background Sync Event
  */
 self.addEventListener('sync', (event) => {
-    console.log('🔄 Background sync triggered:', event.tag);
+    
     
     if (event.tag === 'contact-form') {
         event.waitUntil(syncContactForm());
@@ -260,7 +270,7 @@ function syncContactForm() {
  * Push Event for notifications
  */
 self.addEventListener('push', (event) => {
-    console.log('📬 Push notification received');
+    
     
     const options = {
         body: event.data ? event.data.text() : 'Yeni bildiriminiz var!',
@@ -293,7 +303,7 @@ self.addEventListener('push', (event) => {
  * Notification Click Event
  */
 self.addEventListener('notificationclick', (event) => {
-    console.log('🔔 Notification clicked:', event.action);
+    
     
     event.notification.close();
     
@@ -308,7 +318,7 @@ self.addEventListener('notificationclick', (event) => {
  * Message Event for communication with main thread
  */
 self.addEventListener('message', (event) => {
-    console.log('💬 Message received:', event.data);
+    
     
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
@@ -338,4 +348,3 @@ function getCacheSize() {
     });
 }
 
-console.log('🚀 Service Worker loaded successfully');

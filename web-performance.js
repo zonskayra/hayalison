@@ -15,7 +15,7 @@ class DesktopPerformance {
     init() {
         if (!this.isDesktop) return;
         
-        console.log('🖥️ Desktop Performance System başlatılıyor...');
+        
         
         // Core desktop optimizations
         this.setupHighDPISupport();
@@ -27,14 +27,14 @@ class DesktopPerformance {
         this.setupLazyLoadingAdvanced();
         this.setupCriticalResourceHints();
         
-        console.log('✅ Desktop Performance System aktif');
+        
     }
 
     // ===== HIGH-DPI DISPLAY SUPPORT =====
     setupHighDPISupport() {
         if (!this.isHighDPI) return;
         
-        console.log('🔍 High-DPI display desteği aktifleştiriliyor...');
+        
         
         // Retina image replacement
         document.querySelectorAll('img[data-src-2x]').forEach(img => {
@@ -90,7 +90,7 @@ class DesktopPerformance {
 
     // ===== LARGE FORMAT IMAGE OPTIMIZATION =====
     setupLargeImageOptimization() {
-        console.log('🖼️ Large format image optimization aktifleştiriliyor...');
+        
         
         // Progressive image loading for large screens
         this.setupProgressiveImageLoading();
@@ -155,9 +155,10 @@ class DesktopPerformance {
             document.documentElement.classList.toggle('webp', isWebPSupported);
             
             if (isWebPSupported) {
-                document.querySelectorAll('img[data-webp]').forEach(img => {
-                    img.src = img.dataset.webp;
-                });
+                // WEBP DISABLED - Skip WebP loading to prevent 404 errors
+                // document.querySelectorAll('img[data-webp]').forEach(img => {
+                //     img.src = img.dataset.webp;
+                // });
             }
         };
         webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
@@ -165,7 +166,7 @@ class DesktopPerformance {
 
     // ===== SCROLL OPTIMIZATION =====
     setupScrollOptimization() {
-        console.log('📜 Desktop scroll optimization aktifleştiriliyor...');
+        
         
         // Smooth scroll polyfill for older browsers
         this.setupSmoothScrollPolyfill();
@@ -238,7 +239,7 @@ class DesktopPerformance {
 
     // ===== MOUSE OPTIMIZATIONS =====
     setupMouseOptimizations() {
-        console.log('🖱️ Mouse interaction optimizations aktifleştiriliyor...');
+        
         
         // Advanced hover effects
         this.setupAdvancedHoverEffects();
@@ -307,7 +308,7 @@ class DesktopPerformance {
 
     // ===== KEYBOARD NAVIGATION =====
     setupKeyboardNavigation() {
-        console.log('⌨️ Keyboard navigation system aktifleştiriliyor...');
+        
         
         // Tab navigation enhancement
         this.setupTabNavigation();
@@ -393,7 +394,7 @@ class DesktopPerformance {
 
     // ===== DESKTOP ANALYTICS =====
     setupDesktopAnalytics() {
-        console.log('📊 Desktop analytics tracking aktifleştiriliyor...');
+        
         
         // Desktop-specific user behavior tracking
         this.trackDesktopBehavior();
@@ -467,7 +468,7 @@ class DesktopPerformance {
 
     // ===== ADVANCED LAZY LOADING =====
     setupLazyLoadingAdvanced() {
-        console.log('🔄 Advanced lazy loading aktifleştiriliyor...');
+        
         
         const observerOptions = {
             root: null,
@@ -509,7 +510,7 @@ class DesktopPerformance {
 
     // ===== CRITICAL RESOURCE HINTS =====
     setupCriticalResourceHints() {
-        console.log('⚡ Critical resource hints aktifleştiriliyor...');
+        
         
         // Preload critical fonts
         this.preloadFonts();
@@ -588,7 +589,7 @@ class DesktopPerformance {
             gtag('event', eventName, eventData);
         }
         
-        console.log(`📊 Desktop Event: ${eventName}`, eventData);
+        
     }
 
     // Public API methods

@@ -23,7 +23,7 @@ class DesktopAnalytics {
     init() {
         if (!this.isDesktop) return;
         
-        console.log('📊 Desktop Analytics System başlatılıyor...');
+        
         
         // Core analytics systems
         this.setupSessionTracking();
@@ -37,12 +37,12 @@ class DesktopAnalytics {
         this.setupDataVisualization();
         this.setupPrivacyCompliance();
         
-        console.log('✅ Desktop Analytics System aktif');
+        
     }
 
     // ===== SESSION TRACKING =====
     setupSessionTracking() {
-        console.log('🕐 Session tracking aktifleştiriliyor...');
+        
         
         this.sessionData = {
             sessionId: this.generateSessionId(),
@@ -168,7 +168,7 @@ class DesktopAnalytics {
 
     // ===== USER BEHAVIOR TRACKING =====
     setupUserBehaviorTracking() {
-        console.log('👤 User behavior tracking aktifleştiriliyor...');
+        
         
         // Click tracking
         this.setupClickTracking();
@@ -424,7 +424,7 @@ class DesktopAnalytics {
 
     // ===== PERFORMANCE TRACKING =====
     setupPerformanceTracking() {
-        console.log('⚡ Performance tracking aktifleştiriliyor...');
+        
         
         // Core Web Vitals
         this.trackCoreWebVitals();
@@ -560,7 +560,7 @@ class DesktopAnalytics {
 
     // ===== CONVERSION TRACKING =====
     setupConversionTracking() {
-        console.log('🎯 Conversion tracking aktifleştiriliyor...');
+        
         
         // Define conversion funnels
         this.setupConversionFunnels();
@@ -654,7 +654,7 @@ class DesktopAnalytics {
 
     // ===== HEATMAP TRACKING =====
     setupHeatmapTracking() {
-        console.log('🔥 Heatmap tracking aktifleştiriliyor...');
+        
         
         // Click heatmap
         this.setupClickHeatmap();
@@ -758,7 +758,7 @@ class DesktopAnalytics {
 
     // ===== A/B TESTING FRAMEWORK =====
     setupA_BTestingFramework() {
-        console.log('🧪 A/B Testing framework aktifleştiriliyor...');
+        
         
         // Load user's test assignments
         this.loadTestAssignments();
@@ -901,7 +901,7 @@ class DesktopAnalytics {
         };
         
         // Console logging
-        console.log(`📊 Analytics Event: ${eventName}`, eventData);
+        
         
         // Send to Google Analytics
         if (typeof gtag !== 'undefined') {
@@ -924,7 +924,7 @@ class DesktopAnalytics {
             },
             body: JSON.stringify(eventData)
         }).catch(error => {
-            console.warn('Analytics endpoint error:', error);
+            
         });
     }
 
@@ -942,7 +942,7 @@ class DesktopAnalytics {
 
     // ===== PRIVACY COMPLIANCE =====
     setupPrivacyCompliance() {
-        console.log('🔒 Privacy compliance aktifleştiriliyor...');
+        
         
         // Check for consent
         if (!this.hasAnalyticsConsent()) {

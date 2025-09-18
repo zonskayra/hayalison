@@ -1,0 +1,146 @@
+﻿[
+    {
+        "Page":  "index.html",
+        "Variant":  "desktop",
+        "Resolution":  "1440x900",
+        "File":  "screenshots/index-desktop-1440x900.png",
+        "Exists":  true,
+        "SizeKB":  51.3,
+        "LastWrite":  "\/Date(1755552970109)\/"
+    },
+    {
+        "Page":  "index.html",
+        "Variant":  "mobile",
+        "Resolution":  "390x844",
+        "File":  "screenshots/index-mobile-390x844.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "urun1.html",
+        "Variant":  "desktop",
+        "Resolution":  "1440x900",
+        "File":  "screenshots/urun1-desktop-1440x900.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "urun1.html",
+        "Variant":  "mobile",
+        "Resolution":  "390x844",
+        "File":  "screenshots/urun1-mobile-390x844.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "urun2.html",
+        "Variant":  "desktop",
+        "Resolution":  "1440x900",
+        "File":  "screenshots/urun2-desktop-1440x900.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "urun2.html",
+        "Variant":  "mobile",
+        "Resolution":  "390x844",
+        "File":  "screenshots/urun2-mobile-390x844.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "sss.html",
+        "Variant":  "desktop",
+        "Resolution":  "1440x900",
+        "File":  "screenshots/sss-desktop-1440x900.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "sss.html",
+        "Variant":  "mobile",
+        "Resolution":  "390x844",
+        "File":  "screenshots/sss-mobile-390x844.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "gizlilik-politikasi.html",
+        "Variant":  "desktop",
+        "Resolution":  "1440x900",
+        "File":  "screenshots/gizlilik-politikasi-desktop-1440x900.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "gizlilik-politikasi.html",
+        "Variant":  "mobile",
+        "Resolution":  "390x844",
+        "File":  "screenshots/gizlilik-politikasi-mobile-390x844.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "kullanim-sartlari.html",
+        "Variant":  "desktop",
+        "Resolution":  "1440x900",
+        "File":  "screenshots/kullanim-sartlari-desktop-1440x900.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "kullanim-sartlari.html",
+        "Variant":  "mobile",
+        "Resolution":  "390x844",
+        "File":  "screenshots/kullanim-sartlari-mobile-390x844.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "404.html",
+        "Variant":  "desktop",
+        "Resolution":  "1440x900",
+        "File":  "screenshots/404-desktop-1440x900.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "404.html",
+        "Variant":  "mobile",
+        "Resolution":  "390x844",
+        "File":  "screenshots/404-mobile-390x844.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "offline.html",
+        "Variant":  "desktop",
+        "Resolution":  "1440x900",
+        "File":  "screenshots/offline-desktop-1440x900.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    },
+    {
+        "Page":  "offline.html",
+        "Variant":  "mobile",
+        "Resolution":  "390x844",
+        "File":  "screenshots/offline-mobile-390x844.png",
+        "Exists":  false,
+        "SizeKB":  null,
+        "LastWrite":  null
+    }
+]

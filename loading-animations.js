@@ -573,7 +573,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.loadingAnimationSystem.setupMobileOptimizations();
     }
     
-    console.log('✅ Loading & Animation System initialized');
+    
 });
 
 // Export for module usage

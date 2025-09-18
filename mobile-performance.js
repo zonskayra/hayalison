@@ -14,7 +14,7 @@ class MobilePerformanceOptimizer {
      * Initialize performance optimization
      */
     init() {
-        console.log('⚡ Performance optimizer başlatılıyor...');
+        
         
         // Measure core vitals
         this.measureCoreWebVitals();
@@ -36,7 +36,7 @@ class MobilePerformanceOptimizer {
         // Memory management
         this.setupMemoryManagement();
         
-        console.log('🚀 Performance optimization aktif');
+        
     }
     
     /**
@@ -74,7 +74,7 @@ class MobilePerformanceOptimizer {
                 const entries = entryList.getEntries();
                 const lastEntry = entries[entries.length - 1];
                 this.metrics.lcp = lastEntry.startTime;
-                console.log('📊 LCP:', this.metrics.lcp);
+                
             }).observe({ entryTypes: ['largest-contentful-paint'] });
             
             // First Input Delay (FID)
@@ -82,7 +82,7 @@ class MobilePerformanceOptimizer {
                 const entries = entryList.getEntries();
                 entries.forEach(entry => {
                     this.metrics.fid = entry.processingStart - entry.startTime;
-                    console.log('📊 FID:', this.metrics.fid);
+                    
                 });
             }).observe({ entryTypes: ['first-input'] });
             
@@ -95,7 +95,7 @@ class MobilePerformanceOptimizer {
                     }
                 }
                 this.metrics.cls = clsValue;
-                console.log('📊 CLS:', this.metrics.cls);
+                
             }).observe({ entryTypes: ['layout-shift'] });
         }
     }
@@ -104,7 +104,7 @@ class MobilePerformanceOptimizer {
      * Optimize for low-end devices
      */
     optimizeForLowEndDevice() {
-        console.log('📱 Low-end device optimizations aktif');
+        
         
         // Reduce animation complexity
         document.documentElement.style.setProperty('--animation-duration', '0.1s');
@@ -271,7 +271,7 @@ class MobilePerformanceOptimizer {
                 const usage = memoryInfo.usedJSHeapSize / memoryInfo.totalJSHeapSize;
                 
                 if (usage > 0.9) {
-                    console.warn('🚨 High memory usage detected:', usage);
+                    
                     this.freeMemory();
                 }
             }, 30000);
@@ -295,7 +295,7 @@ class MobilePerformanceOptimizer {
             window.gc();
         }
         
-        console.log('🧹 Memory cleanup yapıldı');
+        
     }
     
     /**
@@ -322,7 +322,7 @@ class MobilePerformanceOptimizer {
      */
     reportMetrics() {
         const metrics = this.getMetrics();
-        console.log('📊 Performance Metrics:', metrics);
+        
         
         // Send to analytics (if available)
         if (window.gtag) {

@@ -218,6 +218,6 @@ if (typeof module !== 'undefined' && module.exports) {
 
 // Browser implementation for development
 if (typeof window !== 'undefined') {
-    console.log('🔒 Security Headers Configuration Loaded');
-    console.log('📋 Available configurations:', Object.keys({ securityHeaders, nginxConfig, htaccessConfig, securityTxt }));
+    
+    
 }

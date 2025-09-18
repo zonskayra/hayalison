@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Çevrimdışı | Hayali Çizgili</title>
+  <meta name="description" content="Şu anda çevrimdışısınız. İnternet bağlantısı kurulduğunda sayfalar otomatik yenilenecek.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <style>
+    :root{
+      --primary:#6366f1;
+      --bg:#f8fafc;
+      --text:#0f172a;
+      --muted:#64748b;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: linear-gradient(135deg,#eef2ff 0%, #f8fafc 100%);
+      color: var(--text);
+      display:flex;align-items:center;justify-content:center;padding:24px;
+    }
+    .card{
+      background:#fff;
+      width:min(680px,100%);
+      border-radius:16px;
+      box-shadow: 0 20px 40px rgba(2,6,23,.08);
+      overflow:hidden;
+      border:1px solid rgba(99,102,241,.12);
+    }
+    .header{
+      display:flex;gap:12px;align-items:center;padding:20px 20px 0 20px;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:8px;object-fit:contain;border:1px solid rgba(99,102,241,.18);
+      background:#fff;
+    }
+    .brand h1{
+      font-size:18px;line-height:1.2
+    }
+    .brand p{
+      color:var(--muted);font-size:13px
+    }
+    .hero{
+      padding:24px 20px;
+    }
+    .banner{
+      background: radial-gradient(1200px 400px at 10% -10%, rgba(99,102,241,.18), transparent),
+                 radial-gradient(1200px 400px at 110% 110%, rgba(139,92,246,.16), transparent),
+                 linear-gradient(135deg,#ffffff 0%, #f8fafc 100%);
+      border:1px solid rgba(99,102,241,.12);
+      border-radius:14px;
+      padding:24px;
+    }
+    .status{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+    .dot{width:10px;height:10px;background:#ef4444;border-radius:50%;box-shadow:0 0 0 6px rgba(239,68,68,.15)}
+    h2{font-size:20px;margin-bottom:8px}
+    p{color:var(--muted);line-height:1.6}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:12px 16px;border-radius:10px;border:1px solid rgba(2,6,23,.08);
+      background:#fff;color:var(--text);text-decoration:none;font-weight:600;transition:.2s;
+    }
+    .btn.primary{background:var(--primary);border-color:transparent;color:#fff}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(99,102,241,.12)}
+    .list{margin-top:18px;font-size:14px;color:var(--muted)}
+    .list li{margin:.35rem 0;display:flex;gap:8px;align-items:flex-start}
+    .list li::before{content:"•";color:var(--primary);font-weight:900;margin-top:1px}
+    .footer{
+      padding:14px 20px;color:var(--muted);font-size:12px;border-top:1px dashed rgba(2,6,23,.08);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
+    }
+    .kbd{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;background:#f1f5f9;border:1px solid #e2e8f0;border-bottom-width:2px;border-radius:6px;padding:2px 6px;color:#0f172a}
+    @media (max-width:520px){.actions{flex-direction:column}.btn{width:100%;justify-content:center}}
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="offline-title">
+    <div class="header">
+      <img src="images/logo.png" alt="Hayali Çizgili Logo" class="logo" loading="lazy" decoding="async">
+      <div class="brand">
+        <h1 id="offline-title">Hayali Çizgili</h1>
+        <p>Kişiye Özel Hediyeler</p>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="banner" role="status" aria-live="polite">
+        <div class="status"><span class="dot" aria-hidden="true"></span><strong>Çevrimdışısınız</strong></div>
+        <h2>Bağlantı problemi tespit edildi</h2>
+        <p>İnternet bağlantınız yok veya zayıf. Bağlantı sağlandığında bu sayfa otomatik yenilenecek. Aşağıdan ana içeriğe kolayca ulaşabilirsiniz.</p>
+
+        <div class="actions">
+          <a class="btn primary" href="index.html">Ana Sayfaya Dön</a>
+          <a class="btn" href="urun1.html">Boyama Kitabı</a>
+          <a class="btn" href="urun2.html">Kişiye Özel Şarkı</a>
+          <a class="btn" href="https://wa.me/908503466172" rel="noopener noreferrer" target="_blank">WhatsApp Destek</a>
+        </div>
+
+        <ul class="list" aria-label="İpucu listesi">
+          <li>Wi‑Fi / Mobil veriyi kontrol edin ve yeniden deneyin</li>
+          <li>Tarayıcınızı <span class="kbd">CTRL</span> + <span class="kbd">R</span> ile yenileyin</li>
+          <li>Bu sayfa çevrimdışı çalışsın diye cihazınıza kaydedildi</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="footer">
+      <span>&copy; 2024 Hayali Çizgili</span>
+      <span>Çevrimdışı desteği: Service Worker</span>
+    </div>
+  </main>
+
+  <script>
+    // Basit yeniden dene mekanizması
+    (function retryOnline(){
+      function onlineCheck(){
+        if (navigator.onLine) location.replace(document.referrer || 'index.html');
+      }
+      window.addEventListener('online', onlineCheck, { passive: true });
+      setInterval(onlineCheck, 8000);
+    })();
+  </script>
+</body>
+</html>

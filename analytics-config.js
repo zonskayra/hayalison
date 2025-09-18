@@ -44,7 +44,7 @@ class AnalyticsManager {
         });
 
         this.isGALoaded = true;
-        console.log('✅ Google Analytics 4 loaded');
+        
     }
 
     // Core Web Vitals Tracking
@@ -106,7 +106,7 @@ class AnalyticsManager {
             }]
         });
 
-        console.log(`📊 E-commerce Event: ${eventName}`, eventData);
+        
     }
 
     // Conversion Tracking
@@ -139,7 +139,7 @@ class AnalyticsManager {
         this.conversionEvents.push(conversionData);
         localStorage.setItem('hayali_conversions', JSON.stringify(this.conversionEvents));
 
-        console.log('🎯 Conversion tracked:', conversionData);
+        
     }
 
     // User Behavior Tracking
@@ -220,7 +220,7 @@ class AnalyticsManager {
         if (this.isGALoaded) {
             gtag('event', eventName, eventData);
         }
-        console.log(`📊 Analytics Event: ${eventName}`, eventData);
+        
     }
 
     // Performance Event Sender
