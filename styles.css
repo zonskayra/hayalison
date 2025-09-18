@@ -1933,6 +1933,8 @@ body.nav-open .nav-toggle {
     left: 5%;
     opacity: 0;
     z-index: 2;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
 .showcase-item:hover video {
@@ -1941,6 +1943,36 @@ body.nav-open .nav-toggle {
 
 .showcase-item:hover img {
     opacity: 0;
+}
+
+/* Mobile video states - tıklama ile aktif */
+@media (max-width: 768px) {
+    .showcase-item video {
+        cursor: pointer;
+    }
+    
+    .showcase-item.video-playing video {
+        opacity: 1;
+    }
+    
+    .showcase-item.video-playing img {
+        opacity: 0;
+    }
+    
+    /* Hover effects'i mobile'da kaldır */
+    .showcase-item:hover video {
+        opacity: 0;
+    }
+    
+    .showcase-item:hover img {
+        opacity: 1;
+    }
+    
+    /* Active state for touch feedback */
+    .showcase-item:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
 }
 
 .showcase-overlay {

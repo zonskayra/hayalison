@@ -1550,12 +1550,12 @@
             const whatsappUrl = `https://wa.me/908503466172?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
             
-            console.log('📱 WhatsApp order initiated:', {
-                version: currentVersion,
-                pages: selectedPages,
-                quantity: qty,
-                total: totalPrice
-            });
+            // console.log('📱 WhatsApp order initiated:', {
+            //     version: currentVersion,
+            //     pages: selectedPages,
+            //     quantity: qty,
+            //     total: totalPrice
+            // });
         }
 
         // Analytics Integration
@@ -1596,9 +1596,9 @@
                 });
             }
             
-            console.log('📊 WhatsApp order tracked:', {
-                version, pages, quantity, total
-            });
+            // console.log('📊 WhatsApp order tracked:', {
+            //     version, pages, quantity, total
+            // });
         }
 
         // Enhanced E-commerce Functions (Updated)

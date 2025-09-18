@@ -1932,6 +1932,13 @@ class ProductShowcaseCarousel {
                 video.load();
             }
         });
+        
+        // Global click listener for mobile user interaction
+        if (this.isMobile) {
+            document.addEventListener('touchend', () => {
+                this.hasUserInteracted = true;
+            }, { once: true, passive: true });
+        }
     }
     
     setupEventListeners() {
@@ -2078,6 +2085,9 @@ class ProductShowcaseCarousel {
             this.touchStartY = e.touches[0].clientY;
             this.pauseAutoplay();
             
+            // Mark user interaction for video playback
+            this.hasUserInteracted = true;
+            
             // Add visual feedback
             this.container.style.cursor = 'grabbing';
             
@@ -2205,32 +2215,57 @@ class ProductShowcaseCarousel {
                         video.load();
                     }
                     
-                    // Mobile'da user interaction sonrası video oynat
-                    if (this.isMobile && !this.hasUserInteracted) {
-                        // İlk user interaction'ı bekle
-                        const playVideo = () => {
-                            if (video.readyState >= 2) {
-                                video.play().catch(() => {
-                                    // Autoplay failed, video will remain as image
-                                });
-                            }
-                            document.removeEventListener('touchend', playVideo, { once: true });
-                        };
-                        document.addEventListener('touchend', playVideo, { once: true });
-                        this.hasUserInteracted = true;
-                    } else if (!this.isMobile) {
-                        // Desktop'da hover ile oynat
-                        item.addEventListener('mouseenter', () => {
-                            if (video.readyState >= 2) {
-                                video.play().catch(() => {
-                                    // Video play error - ignore
-                                });
-                            }
-                        });
-                        item.addEventListener('mouseleave', () => {
-                            video.pause();
-                            video.currentTime = 0;
-                        });
+                    // Mobile video handling - her video için ayrı ayrı
+                    if (this.isMobile) {
+                        // Video için click handler ekle (eğer yoksa)
+                        if (!item.hasAttribute('data-video-handler')) {
+                            const playVideoOnClick = () => {
+                                if (video.readyState >= 2) {
+                                    if (video.paused) {
+                                        video.play().catch(() => {
+                                            // Video play failed - show image
+                                        });
+                                    } else {
+                                        video.pause();
+                                    }
+                                }
+                            };
+                            
+                            item.addEventListener('touchend', playVideoOnClick);
+                            item.setAttribute('data-video-handler', 'true');
+                        }
+                        
+                        // Aktif slide olduğunda video'yu otomatik oynat (user interaction sonrası)
+                        if (this.hasUserInteracted) {
+                            setTimeout(() => {
+                                if (video.readyState >= 2) {
+                                    video.play().catch(() => {
+                                        // Video play failed - ignore
+                                    });
+                                }
+                            }, 100);
+                        }
+                        
+                    } else {
+                        // Desktop hover handling - memory leak önleme
+                        if (!item.hasAttribute('data-hover-handler')) {
+                            const mouseEnterHandler = () => {
+                                if (video.readyState >= 2) {
+                                    video.play().catch(() => {
+                                        // Video play error - ignore
+                                    });
+                                }
+                            };
+                            
+                            const mouseLeaveHandler = () => {
+                                video.pause();
+                                video.currentTime = 0;
+                            };
+                            
+                            item.addEventListener('mouseenter', mouseEnterHandler);
+                            item.addEventListener('mouseleave', mouseLeaveHandler);
+                            item.setAttribute('data-hover-handler', 'true');
+                        }
                     }
                 } else {
                     // Aktif olmayan slide'larda video'yu durdur
