@@ -150,9 +150,12 @@ function handleImageRequest(request) {
             }
             
             return fetch(request).then(fetchResponse => {
+                // ✅ Clone immediately after fetch, before any response usage
+                const responseClone = fetchResponse.clone();
+                
                 // Only cache successful responses
                 if (fetchResponse.ok) {
-                    cache.put(request, fetchResponse.clone());
+                    cache.put(request, responseClone);
                     
                 }
                 return fetchResponse;
@@ -184,8 +187,11 @@ function handleStaticRequest(request) {
             }
             
             return fetch(request).then(fetchResponse => {
+                // ✅ Clone immediately after fetch, before any response usage
+                const responseClone = fetchResponse.clone();
+                
                 if (fetchResponse.ok) {
-                    cache.put(request, fetchResponse.clone());
+                    cache.put(request, responseClone);
                 }
                 return fetchResponse;
             });
@@ -198,10 +204,13 @@ function handleStaticRequest(request) {
  */
 function handlePageRequest(request) {
     return fetch(request).then(response => {
+        // ✅ Clone immediately after fetch, before any response usage
+        const responseClone = response.clone();
+        
         if (response.ok) {
             // Cache successful page responses
             caches.open(DYNAMIC_CACHE).then(cache => {
-                cache.put(request, response.clone());
+                cache.put(request, responseClone);
             });
         }
         return response;
@@ -235,10 +244,18 @@ function handlePageRequest(request) {
  */
 function handleDynamicRequest(request) {
     return fetch(request).then(response => {
+        // ✅ Only clone successful responses to avoid "body already used" error
         if (response.ok) {
-            caches.open(DYNAMIC_CACHE).then(cache => {
-                cache.put(request, response.clone());
-            });
+            try {
+                const responseClone = response.clone();
+                caches.open(DYNAMIC_CACHE).then(cache => {
+                    cache.put(request, responseClone);
+                }).catch(() => {
+                    // Ignore cache errors silently
+                });
+            } catch (error) {
+                // Ignore clone errors silently for failed responses
+            }
         }
         return response;
     }).catch(() => {
