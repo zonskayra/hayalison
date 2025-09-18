@@ -31,7 +31,7 @@
       "name": "Boyama Kitabı Sipariş",
       "short_name": "Boyama Kitabı",
       "description": "Kişiselleştirilmiş boyama kitabı sipariş et",
-      "url": "/urun1.html",
+      "url": "urun1.html",
       "icons": [
         {
           "src": "images/boyama-kitabi.jpg",
@@ -44,7 +44,7 @@
       "name": "Özel Şarkı Sipariş",
       "short_name": "Özel Şarkı",
       "description": "Kişiselleştirilmiş şarkı sipariş et",
-      "url": "/urun2.html",
+      "url": "urun2.html",
       "icons": [
         {
           "src": "images/sarki-kitabi.jpg",

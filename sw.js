@@ -244,17 +244,22 @@ function handlePageRequest(request) {
  */
 function handleDynamicRequest(request) {
     return fetch(request).then(response => {
-        // ✅ Only clone successful responses to avoid "body already used" error
-        if (response.ok) {
+        // Only cache successful GET requests (not POST, not partial responses)
+        if (response.ok &&
+            request.method === 'GET' &&
+            response.status === 200 &&
+            !request.url.includes('cdn-cgi') &&
+            !request.url.includes('google-analytics.com') &&
+            !request.url.includes('googletagmanager.com')) {
             try {
                 const responseClone = response.clone();
                 caches.open(DYNAMIC_CACHE).then(cache => {
                     cache.put(request, responseClone);
                 }).catch(() => {
-                    // Ignore cache errors silently
+                    // Silently ignore cache errors
                 });
             } catch (error) {
-                // Ignore clone errors silently for failed responses
+                // Silently ignore clone errors
             }
         }
         return response;

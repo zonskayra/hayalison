@@ -942,7 +942,7 @@
                 totalPrice.style.transform = 'scale(1)';
             }, 200);
             
-            console.log(`💰 Fiyat güncellendi - Versiyon: ${window.selectedVersion}, Sayfa: ${pages}, Adet: ${qty}, Toplam: ₺${total}`);
+            // console.log(`💰 Fiyat güncellendi - Versiyon: ${window.selectedVersion}, Sayfa: ${pages}, Adet: ${qty}, Toplam: ₺${total}`);
         };
         
         function increaseQty() {
@@ -1011,7 +1011,7 @@
                 nav.classList.toggle('active');
                 document.body.classList.toggle('nav-open');
                 
-                console.log('Navigasyon menüsü:', !isExpanded ? 'açıldı' : 'kapandı');
+                // console.log('Navigasyon menüsü:', !isExpanded ? 'açıldı' : 'kapandı');
             });
 
             // Close menu when clicking on a link
@@ -1100,9 +1100,9 @@
         }
 
         function showPurchaseNotification() {
-            console.log('🔔 showPurchaseNotification called');
+            // console.log('🔔 showPurchaseNotification called');
             if (isNotificationVisible) {
-                console.log('⚠️ Notification already visible, skipping');
+                // console.log('⚠️ Notification already visible, skipping');
                 return;
             }
 
@@ -1112,11 +1112,11 @@
             const timeEl = document.getElementById('notificationTime');
 
             if (!notification || !customerEl || !productEl || !timeEl) {
-                console.error('❌ Notification elements not found!');
+                // console.error('❌ Notification elements not found!');
                 return;
             }
 
-            console.log('✅ Elements found');
+            // console.log('✅ Elements found');
 
             // Random veri seç
             const randomCustomer = getRandomItem(customerNames);
@@ -1141,7 +1141,7 @@
             notification.classList.add('show');
             notification.classList.add('notification-visible');
             
-            console.log('🎨 Applied variant:', selectedVariant);
+            // console.log('🎨 Applied variant:', selectedVariant);
 
             // Mobil/Desktop kontrolü ve direkt stil ayarları
             const isMobile = window.innerWidth <= 768;
@@ -1162,7 +1162,7 @@
                 notification.style.setProperty('transform', 'translateX(0) translateY(0)', 'important');
                 notification.style.setProperty('max-width', '280px', 'important');
                 notification.style.setProperty('width', '260px', 'important');
-                console.log('📱 Mobile notification positioned - bottom left');
+                // console.log('📱 Mobile notification positioned - bottom left');
             } else {
                 // Desktop için ayarlar
                 notification.style.setProperty('bottom', '30px', 'important');
@@ -1170,7 +1170,7 @@
                 notification.style.setProperty('top', 'auto', 'important');
                 notification.style.setProperty('right', 'auto', 'important');
                 notification.style.setProperty('transform', 'translateX(0)', 'important');
-                console.log('🖥️ Desktop notification positioned');
+                // console.log('🖥️ Desktop notification positioned');
             }
             
             // CSS sınıfları da ekleyelim
@@ -1179,7 +1179,7 @@
             
             isNotificationVisible = true;
 
-            console.log('🎉 Notification shown, hiding in 10 seconds...');
+            // console.log('🎉 Notification shown, hiding in 10 seconds...');
 
             // Önceki timeout'u temizle
             if (window.notificationTimeout) {
@@ -1189,19 +1189,19 @@
             // 10 saniye sonra otomatik gizle - Basit ve güvenilir setTimeout
             clearTimeout(window.notificationTimeout); // Önceki timeout'u temizle
             window.notificationTimeout = setTimeout(() => {
-                console.log('⏰ 10 seconds passed, hiding notification automatically...');
+                // console.log('⏰ 10 seconds passed, hiding notification automatically...');
                 hidePurchaseNotification();
             }, 10000);
             
-            console.log('⏰ Auto-hide timer set for 10 seconds');
+            // console.log('⏰ Auto-hide timer set for 10 seconds');
         }
 
         function hidePurchaseNotification() {
-            console.log('🔄 Hiding notification');
+            // console.log('🔄 Hiding notification');
             const notification = document.getElementById('purchaseNotification');
             
             if (!notification) {
-                console.error('❌ Notification element not found!');
+                // console.error('❌ Notification element not found!');
                 return;
             }
             
@@ -1220,7 +1220,7 @@
             
             isNotificationVisible = false;
 
-            console.log('🔄 Notification hidden');
+            // console.log('🔄 Notification hidden');
 
             setTimeout(() => {
                 notification.classList.remove('hide');
@@ -1234,7 +1234,7 @@
         function startNotificationSystem() {
             function scheduleNextNotification() {
                 const interval = getRandomInterval();
-                console.log(`Next notification in ${interval / 60000} minutes`);
+                // console.log(`Next notification in ${interval / 60000} minutes`);
                 
                 notificationTimeout = setTimeout(() => {
                     showPurchaseNotification();
@@ -1244,7 +1244,7 @@
 
             // İlk bildirimi 3 saniye sonra göster (test için)
             setTimeout(() => {
-                console.log('Showing first notification...');
+                // console.log('Showing first notification...');
                 showPurchaseNotification();
                 scheduleNextNotification();
             }, 3000);
@@ -1252,11 +1252,11 @@
 
         // Basitleştirilmiş bildirim sistemi - Doğrudan çalışan
         function initNotificationSystem() {
-            console.log('🚀 Initializing GUARANTEED notification system...');
+            // console.log('🚀 Initializing GUARANTEED notification system...');
             
             // İlk bildirimi hemen göster (1 saniye sonra)
             setTimeout(() => {
-                console.log('📢 SHOWING FIRST NOTIFICATION NOW!');
+                // console.log('📢 SHOWING FIRST NOTIFICATION NOW!');
                 showPurchaseNotification();
                 
                 // Sonraki bildirimler için otomatik sistem
@@ -1269,12 +1269,12 @@
         
         function startNotificationOnce() {
             if (notificationSystemStarted) {
-                console.log('⚠️ Notification system already started, skipping');
+                // console.log('⚠️ Notification system already started, skipping');
                 return;
             }
             
             notificationSystemStarted = true;
-            console.log('🚀 Starting notification system ONCE');
+            // console.log('🚀 Starting notification system ONCE');
             
             // 1 saniye bekle ve ilk notification'ı göster
             setTimeout(() => {
@@ -1288,7 +1288,7 @@
         // Yedek başlatma (sadece DOM ready çalışmazsa)
         setTimeout(() => {
             if (!notificationSystemStarted) {
-                console.log('🔄 Backup startup triggered');
+                // console.log('🔄 Backup startup triggered');
                 startNotificationOnce();
             }
         }, 2000);
@@ -1296,11 +1296,11 @@
         // Window resize event - notification konumunu güncelle ve mobilde yeniden göster
         window.addEventListener('resize', function() {
             const notification = document.getElementById('purchaseNotification');
-            console.log('📱 Window resized to:', window.innerWidth);
+            // console.log('📱 Window resized to:', window.innerWidth);
             
             if (notification) {
                 const isMobile = window.innerWidth <= 768;
-                console.log('📱 Is mobile:', isMobile, 'Notification visible:', isNotificationVisible);
+                // console.log('📱 Is mobile:', isMobile, 'Notification visible:', isNotificationVisible);
                 
                 if (isNotificationVisible) {
                     // Mevcut notification'ı yeniden konumlandır
@@ -1316,7 +1316,7 @@
                         notification.style.setProperty('display', 'block', 'important');
                         notification.style.setProperty('opacity', '1', 'important');
                         notification.style.setProperty('visibility', 'visible', 'important');
-                        console.log('📱 Repositioned for mobile - bottom left');
+                        // console.log('📱 Repositioned for mobile - bottom left');
                     } else {
                         // Desktop ayarları
                         notification.style.setProperty('bottom', '30px', 'important');
@@ -1327,7 +1327,7 @@
                         notification.style.setProperty('display', 'block', 'important');
                         notification.style.setProperty('opacity', '1', 'important');
                         notification.style.setProperty('visibility', 'visible', 'important');
-                        console.log('🖥️ Repositioned for desktop');
+                        // console.log('🖥️ Repositioned for desktop');
                     }
                 }
             }
@@ -1378,7 +1378,7 @@
 
         // Version Selection Function
         function selectVersion(version) {
-            console.log(`🎨 Version selected: ${version}`);
+            // console.log(`🎨 Version selected: ${version}`);
             
             // Update current version
             currentVersion = version;
@@ -1392,7 +1392,7 @@
             // Analytics tracking
             trackVersionSelection(version);
             
-            console.log(`✅ Version ${version} activated`);
+            // console.log(`✅ Version ${version} activated`);
         }
 
         function updateVersionCards(selectedVersion) {
@@ -1436,7 +1436,7 @@
             // Update total price
             updatePrice();
             
-            console.log(`💰 Pricing updated for ${version} version`);
+            // console.log(`💰 Pricing updated for ${version} version`);
         }
 
         function updateChannelAvailability(version) {
@@ -1473,7 +1473,7 @@
                 alternativePurchase.style.display = hasAlternatives ? 'block' : 'none';
             }
             
-            console.log(`🛒 Channel availability updated for ${version}`);
+            // console.log(`🛒 Channel availability updated for ${version}`);
         }
 
         function updateProductOptions(version) {
@@ -1569,7 +1569,7 @@
             }
             
             // Custom analytics
-            console.log('📊 Version selection tracked:', version);
+            // console.log('📊 Version selection tracked:', version);
         }
 
         function trackWhatsAppOrder(version, pages, quantity, total) {
@@ -1632,7 +1632,7 @@
                 totalPrice.style.transform = 'scale(1)';
             }, 200);
             
-            console.log(`💰 Price updated: ₺${total.toLocaleString('tr-TR')} (${currentVersion}, ${selectedPages}p, ${qty}x)`);
+            // console.log(`💰 Price updated: ₺${total.toLocaleString('tr-TR')} (${currentVersion}, ${selectedPages}p, ${qty}x)`);
         }
 
         function updateModalPrices(whatsappPrice, pages) {
@@ -1704,7 +1704,7 @@
 
         // Initialize Version Selector
         function initVersionSelector() {
-            console.log('🎨 Initializing Version Selector...');
+            // console.log('🎨 Initializing Version Selector...');
             
             // Set default version (standard)
             selectVersion('standard');
@@ -1725,7 +1725,7 @@
                 });
             });
             
-            console.log('✅ Version Selector initialized');
+            // console.log('✅ Version Selector initialized');
         }
 
         // Initialize on DOM ready

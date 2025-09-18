@@ -4,7 +4,7 @@
  */
 
 // Google Analytics 4 Configuration
-const GA4_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Gerçek ID ile değiştirilecek
+const GA4_MEASUREMENT_ID = null; // Production'da gerçek ID ile değiştirilecek
 
 // Analytics Event Tracking
 class AnalyticsManager {
@@ -24,6 +24,13 @@ class AnalyticsManager {
 
     // Google Analytics 4 Yükleme
     loadGoogleAnalytics() {
+        // GA4 yalnızca geçerli Measurement ID varsa yüklenir
+        if (!GA4_MEASUREMENT_ID || GA4_MEASUREMENT_ID.includes('XXXXXXXXXX')) {
+            // console.warn('Google Analytics: Geçerli Measurement ID bulunamadı. Analytics devre dışı.');
+            this.isGALoaded = false;
+            return;
+        }
+
         // GA4 Script yükleme
         const script1 = document.createElement('script');
         script1.async = true;
@@ -90,22 +97,25 @@ class AnalyticsManager {
 
     // E-commerce Event Tracking
     trackEcommerceEvent(eventName, eventData) {
-        if (!this.isGALoaded) return;
+        if (!this.isGALoaded || typeof gtag !== 'function') return;
 
-        gtag('event', eventName, {
-            event_category: 'ecommerce',
-            event_label: eventData.product_name || '',
-            value: eventData.value || 0,
-            currency: 'TRY',
-            items: [{
-                item_id: eventData.item_id || '',
-                item_name: eventData.product_name || '',
-                category: eventData.category || 'Kişiye Özel Hediyeler',
-                quantity: eventData.quantity || 1,
-                price: eventData.price || 0
-            }]
-        });
-
+        try {
+            gtag('event', eventName, {
+                event_category: 'ecommerce',
+                event_label: eventData.product_name || '',
+                value: eventData.value || 0,
+                currency: 'TRY',
+                items: [{
+                    item_id: eventData.item_id || '',
+                    item_name: eventData.product_name || '',
+                    category: eventData.category || 'Kişiye Özel Hediyeler',
+                    quantity: eventData.quantity || 1,
+                    price: eventData.price || 0
+                }]
+            });
+        } catch (error) {
+            // Silently ignore analytics errors
+        }
         
     }
 
@@ -120,19 +130,23 @@ class AnalyticsManager {
         };
 
         // GA4 Conversion Event
-        if (this.isGALoaded) {
-            gtag('event', 'purchase', {
-                transaction_id: 'txn_' + Date.now(),
-                value: value,
-                currency: 'TRY',
-                items: [{
-                    item_id: 'conversion_' + conversionType,
-                    item_name: conversionType,
-                    category: 'Conversion',
-                    quantity: 1,
-                    price: value
-                }]
-            });
+        if (this.isGALoaded && typeof gtag === 'function') {
+            try {
+                gtag('event', 'purchase', {
+                    transaction_id: 'txn_' + Date.now(),
+                    value: value,
+                    currency: 'TRY',
+                    items: [{
+                        item_id: 'conversion_' + conversionType,
+                        item_name: conversionType,
+                        category: 'Conversion',
+                        quantity: 1,
+                        price: value
+                    }]
+                });
+            } catch (error) {
+                // Silently ignore analytics errors
+            }
         }
 
         // Local storage for backup
@@ -217,8 +231,12 @@ class AnalyticsManager {
 
     // Generic Event Sender
     sendEvent(eventName, eventData) {
-        if (this.isGALoaded) {
-            gtag('event', eventName, eventData);
+        if (this.isGALoaded && typeof gtag === 'function') {
+            try {
+                gtag('event', eventName, eventData);
+            } catch (error) {
+                // Silently ignore analytics errors
+            }
         }
         
     }
