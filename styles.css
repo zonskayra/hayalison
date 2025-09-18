@@ -1937,35 +1937,45 @@ body.nav-open .nav-toggle {
     transition: opacity 0.3s ease;
 }
 
-.showcase-item:hover video {
-    opacity: 1;
+/* Desktop hover behavior - görselden videoya geçiş */
+@media (min-width: 769px) {
+    .showcase-item:hover video {
+        opacity: 1;
+    }
+
+    .showcase-item:hover img {
+        opacity: 0;
+    }
 }
 
-.showcase-item:hover img {
-    opacity: 0;
-}
-
-/* Mobile video states - tıklama ile aktif */
+/* Mobile video-only mode - sadece video göster */
 @media (max-width: 768px) {
+    .showcase-item img {
+        display: none !important;
+    }
+    
     .showcase-item video {
+        position: relative;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        z-index: 1;
+        width: 90%;
+        height: 90%;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
         cursor: pointer;
     }
     
-    .showcase-item.video-playing video {
-        opacity: 1;
+    /* Video controls styling for mobile */
+    .showcase-item video::-webkit-media-controls-panel {
+        background-color: rgba(0, 0, 0, 0.8);
     }
     
-    .showcase-item.video-playing img {
-        opacity: 0;
-    }
-    
-    /* Hover effects'i mobile'da kaldır */
-    .showcase-item:hover video {
-        opacity: 0;
-    }
-    
-    .showcase-item:hover img {
-        opacity: 1;
+    .showcase-item video::-webkit-media-controls-play-button {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
     }
     
     /* Active state for touch feedback */
@@ -2011,6 +2021,72 @@ body.nav-open .nav-toggle {
     display: flex;
     gap: 6px;
     z-index: 4;
+}
+
+/* Mobile navigation arrows */
+.carousel-nav-arrows {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 15px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.nav-arrow {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+    font-size: 20px;
+    color: #333;
+    backdrop-filter: blur(10px);
+}
+
+.nav-arrow:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.05);
+}
+
+.nav-arrow:active {
+    transform: scale(0.95);
+}
+
+.nav-arrow.prev::before {
+    content: "←";
+}
+
+.nav-arrow.next::before {
+    content: "→";
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    .carousel-indicators {
+        display: none !important;
+    }
+    
+    .carousel-nav-arrows {
+        display: flex !important;
+    }
+}
+
+/* Desktop keeps indicators, hides arrows */
+@media (min-width: 769px) {
+    .carousel-nav-arrows {
+        display: none !important;
+    }
 }
 
 /* OPTIMIZED CAROUSEL INDICATORS - Clean Neutral Design */
