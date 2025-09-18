@@ -694,9 +694,9 @@ class ProductShowcaseCarousel {
         this.isDragging = false;
         this.minSwipeDistance = 50;
         
-        // Autoplay
+        // Autoplay - 10 saniye her slide
         this.autoplayInterval = null;
-        this.autoplayDelay = 4000;
+        this.autoplayDelay = 10000; // 10 saniye
         
         this.init();
     }
@@ -710,65 +710,30 @@ class ProductShowcaseCarousel {
     }
     
     setupEventListeners() {
-        // Indicator tıklama - Desktop için
-        if (!this.isMobile) {
-            this.indicators.forEach((indicator, index) => {
-                const handleClick = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    if (this.isAnimating) return;
-                    
-                    this.goToSlide(index);
-                    this.resetAutoplay();
-                };
+        // Desktop Indicator tıklama - her zaman çalışsın
+        this.indicators.forEach((indicator, index) => {
+            const handleClick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 
-                indicator.addEventListener('click', handleClick);
+                if (this.isAnimating) return;
                 
-                // Keyboard support
-                indicator.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        handleClick(e);
-                    }
-                });
-            });
-        }
-        
-        // Mobile navigation arrows
-        if (this.isMobile) {
-            const prevArrow = this.container.querySelector('.nav-arrow.prev');
-            const nextArrow = this.container.querySelector('.nav-arrow.next');
+                this.goToSlide(index);
+                this.resetAutoplay();
+            };
             
-            if (prevArrow && nextArrow) {
-                const handlePrevClick = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (this.isAnimating) return;
-                    this.prevSlide();
-                    this.resetAutoplay();
-                };
-                
-                const handleNextClick = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (this.isAnimating) return;
-                    this.nextSlide();
-                    this.resetAutoplay();
-                };
-                
-                prevArrow.addEventListener('click', handlePrevClick);
-                prevArrow.addEventListener('touchend', handlePrevClick);
-                nextArrow.addEventListener('click', handleNextClick);
-                nextArrow.addEventListener('touchend', handleNextClick);
-            }
-        }
+            // Desktop için click eventi
+            indicator.addEventListener('click', handleClick);
+            
+            // Keyboard support
+            indicator.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    handleClick(e);
+                }
+            });
+        });
         
-        // Touch swipe support
-        if (this.isMobile) {
-            this.setupTouchEvents();
-        }
-        
-        // Video ended event listeners for mobile auto-advance
+        // Mobile için sadece otomatik geçiş - manual kontrol yok
         if (this.isMobile) {
             this.setupVideoAutoAdvance();
         }
@@ -885,38 +850,22 @@ class ProductShowcaseCarousel {
             video.load();
             
             if (this.isMobile) {
-                // Mobile - sadece video göster, kontroller ekle
-                video.controls = true;
+                // Mobile - sadece video göster, kontroller tamamen gizli
+                video.controls = false;
                 video.setAttribute('playsinline', 'true');
                 video.setAttribute('webkit-playsinline', 'true');
-                video.muted = false; // Ses açık
+                video.muted = true; // Sessiz oynat
                 
                 if (!video.hasAttribute('data-mobile-handler')) {
-                    // Slide değiştiğinde videoyu başlat
-                    const startVideo = () => {
-                        video.currentTime = 0;
-                        video.play().catch(() => {
-                            // Autoplay failed - normal, kullanıcı kontrolleri kullanacak
-                        });
-                    };
-                    
-                    // İlk user interaction sonrası otomatik başlat
-                    const enableAutoplay = () => {
-                        startVideo();
-                        document.removeEventListener('touchend', enableAutoplay, true);
-                        document.removeEventListener('click', enableAutoplay, true);
-                    };
-                    
-                    document.addEventListener('touchend', enableAutoplay, { once: true, capture: true });
-                    document.addEventListener('click', enableAutoplay, { once: true, capture: true });
-                    
                     video.setAttribute('data-mobile-handler', 'true');
                 }
                 
-                // Her slide geçişinde videoyu baştan başlat
+                // Her slide geçişinde videoyu otomatik başlat
                 setTimeout(() => {
                     video.currentTime = 0;
-                    video.play().catch(() => {});
+                    video.play().catch(() => {
+                        // Autoplay failed - ignore, video will start when possible
+                    });
                 }, 100);
                 
             } else {
@@ -945,7 +894,8 @@ class ProductShowcaseCarousel {
             video.currentTime = 0;
             
             if (this.isMobile) {
-                video.controls = false; // Kontrolleri gizle
+                video.controls = false;
+                video.muted = true;
             }
         }
     }
